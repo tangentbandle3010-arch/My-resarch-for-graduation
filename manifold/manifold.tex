@@ -35,19 +35,30 @@
 本ノートは、松本『多様体の基礎』に関する学習記録である。
 日々の学習を「AC（Accepted）」として記録し、GitHubでの進捗可視化を目的とする。
 
-\section{共形場理論の基礎}
-ここに、今日思い出した定義を一つだけ書いてみる。
+\section{多様体の基礎}
 \begin{definition}[座標近傍、局所座標系]
     % --- ここに数式 ---
-    $U\subsetX$から$U'\subset\mathbb{R}^{m}$への
+    X:位相空間とする。$U\subset X$:開集合から$U'\subset\mathbb{R}^{m}$:開集合への同相写像
     \[
     \phi : U \to U'
     \]
     があるとき$(U,\phi)$を\textbf{m次元座標近傍}といい、$\phi$を$U$上の\textbf{局所座標系}という。
     \begin{itemize}
-        \item[\textbf{Type:}] 確定特異点$\xi_{i}$と各確定特異点の特性指数$s_j^{(i)}$を書き並べたもの。
-        \item[\textbf{Insight:}] この表の数値（局所的な性質）を\textbf{一切変えずに}、特異点の位置 $\xi_i$ だけを時間発展させた時に、裏で満たされるべき非線形の方程式が「ガルニエ系」。つまり、モノドロミー保存変形において\textbf{「絶対に定数として保存したいターゲット」}がこれ。
-        \item[\textbf{Link:}] 岡本2.4節の(2.81)/p.81を参照。
+        \item[\textbf{Insight:}] 多様体上の小領域を数空間$\mathbb{R}^{m}$に対応させる「地図」であり、抽象的な図形の上で微分などの計算を可能にするための定義。地球儀の一部を平面図として扱うように、図形上の各点に「座標」という数値の番地を割り振る役割を担っている。
+        \item[\textbf{Link:}] 松本6節の定義6.1/p.37を参照。
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[位相多様体]
+    % --- ここに数式 ---
+    位相空間$M$が次の条件(1)(2)を満たす時、$M$を\textbf{m次元位相多様体}という。
+    \begin{itemize}
+        \item[(1)] $M$はハウスドルフ空間
+        \item[(2)] 任意の$p\in M$に対して$p$を含むm次元座標近傍$(U,\phi)$が存在する。
+    \end{itemize}
+    \begin{itemize}
+        \item[\textbf{Insight:}] 「局所的には数空間 $\mathbb{R}^m$ と見なせる」という性質により、複雑な図形を慣れ親しんだ計算の土俵に載せるための定義。ハウスドルフ性は空間としての健全性（点が適切に分離できること）を保証し、全域が「地図（座標近傍）」で漏れなく覆い尽くせることを約束している。
+        \item[\textbf{Link:}] 松本6節の定義6.2/p.38を参照。
     \end{itemize}
 \end{definition}
 
@@ -56,8 +67,7 @@
 % --- 今後の課題（TODOリスト） ---
 \section{Next Step / To-Do}
 \begin{itemize}
-    \item [ ] ヴィラソロ代数の中心電荷 $c$ の物理的意味の解釈。
-    \item [ ] パンルヴェIIのタウ関数を具体的にTeXで書き出す。
+    \item [ ] 座標変換について学習する
 \end{itemize}
 
 \end{document}
