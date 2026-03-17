@@ -36,6 +36,19 @@
 日々の学習を「AC（Accepted）」として記録し、GitHubでの進捗可視化を目的とする。
 
 \section{パンルヴェ方程式の基礎}
+\begin{definition}[非対数的特異点]
+    % --- ここに数式 ---
+    $x=\xi$をフックス型微分方程式
+    \begin{equation}\label{eq:Fuchs}
+    \frac{d^{2}y}{dx^{2}} + p_{1}(x)\frac{dy}{dx} + p_{2}(x)y = 0   
+    \end{equation}
+    の特異点とする。$x=\xi$の特性指数$s_{1},s_{2}$が整数差のとき$x=\xi$は\textbf{非対数的特異点}と呼ばれる。
+    \begin{itemize}
+        \item[\textbf{Insight:}] 通常、特性指数の差が整数の場合、解の片方に $\log$（対数項）が現れる。しかし、係数が特定の条件を満たして「$\log$ の項が完全に消滅する」特殊なケースがあり、それが非対数的特異点である。「みかけの特異点」の周りで解が分岐しないためにはこの性質が必須であり、この「対数項が消える条件」を計算することが、後のハミルトニアン導出の鍵を握る。
+        \item[\textbf{Link:}] 岡本2.2節の(2.20)/p.64を参照。
+    \end{itemize}
+\end{definition}
+
 \begin{definition}[リーマン図式]
     % --- ここに数式 ---
     \[
@@ -55,6 +68,23 @@
         \item[\textbf{Link:}] 岡本2.4節の(2.48)/p.81を参照。
     \end{itemize}
 \end{definition}
+
+\begin{definition}[みかけの特異点]
+  % --- ここに数式 ---
+    $\Xi$の元を確定特異点としてもつ微分方程式を考える。
+    このときモノドロミー$\hat{\rho}$が等しく、さらに$\Xi\cup\Lambda$の元を確定特異点としてもつフックス型微分方程式が存在したとする。
+    このとき、以下の2条件を満たす$\Lambda$の各元を\textbf{みかけの特異点}という。
+    \begin{itemize}
+        \item[(1)] $x=\lambda$における特性指数は全て整数。
+        \item[(2)] $x=\lambda$は非対数的特異点
+    \end{itemize}
+    \begin{itemize}
+        \item[\textbf{Insight:}] 方程式の係数には特異性が現れるが、解自体はそこで分岐を持たず正則（局所モノドロミーが単位行列）になる「偽物の特異点」。パンルヴェ方程式やガルニエ系の理論において最大のポイントは、**「このみかけの特異点の位置 $\lambda$ が、ハミルトン系における正準変数（未知関数 $q$）の役割を果たす」**という点にある。
+        \item[\textbf{Link:}] 岡本2.5節/p.86を参照。
+    \end{itemize}
+\end{definition}
+
+
 
 \begin{definition}[モノドロミー保存変形]
   % --- ここに数式 ---
@@ -88,7 +118,6 @@
 \begin{itemize}
     \item [-] 確定特異点とは？
     \item [-] 特性指数とは？
-    \item [-] みかけの特異点とは?
     \item [-] モノドロミーが既約とはどういうこと？
     \item [-] モノドロミーとは?
 \end{itemize}
