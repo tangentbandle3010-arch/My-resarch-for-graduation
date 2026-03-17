@@ -62,6 +62,55 @@
     \end{itemize}
 \end{definition}
 
+\begin{definition}[座標変換]
+    % --- ここに数式 ---
+    $(U,\varphi),(V,\psi)$に対して、同相写像$\psi\circ\varphi^{-1}:\varphi(U\cap V)\to\psi(U\cap V)$を、$(U,\varphi)$から$(V,\psi)$への\textbf{座標変換}と呼ぶ
+    \begin{itemize}
+        \item[\textbf{Type:}] $(U,\varphi),(V,\psi)$はm次元多様体$M$の座標近傍
+        \item[\textbf{Insight:}] 座標変換 $\psi \circ \varphi^{-1}$ は、多様体の重なり合う2つの「地図」の間で、座標値を直接翻訳するルールである。これにより、抽象的な曲がった空間上の問題を、私たちが扱い慣れたユークリッド空間同士の具体的な計算へと落とし込むことができる。
+        \item[\textbf{Link:}] 松本6節の定義6.3/p.41を参照。
+    \end{itemize}
+\end{definition}
+
+\begin{example}[直交座標と極座標の座標変換]
+    平面 $\mathbb{R}^2$ の第1象限を開集合 $U$ とする。$U$ 上の点に対して、2組の局所座標系として直交座標 $(x,y)$ と極座標 $(r,\theta)$ を考える。
+    
+    極座標を与える座標近傍を $(U, \varphi)$、直交座標を与える座標近傍を $(U, \psi)$ としたとき、$(U, \varphi)$ から $(U, \psi)$ への座標変換 $\psi \circ \varphi^{-1} : (r, \theta) \mapsto (x, y)$ は以下の式で与えられる。
+    \begin{align*}
+        x &= r \cos \theta \\
+        y &= r \sin \theta
+    \end{align*}
+    
+    \begin{itemize}
+        \item[\textbf{Insight:}] 抽象的な記号 $\psi \circ \varphi^{-1}$ の正体は、微積分でよく知っている「極座標から直交座標への変換公式」そのものである。多様体論における座標変換が、決して特殊な操作ではなく、馴染み深い概念を厳密に定式化し直したものに過ぎないことがよくわかる。
+        \item[\textbf{Link:}] 松本6節の例/p.41を参照。
+    \end{itemize}
+\end{example}
+
+\begin{definition}[$C^{r}$級微分可能多様体]
+    % --- ここに数式 ---
+    $r\geq 1$を自然数または$\infty$とする。位相空間$M$が次の条件(1)-(3)を満たす時、$M$を\textbf{m次元$C^{r}$級微分可能多様体}という。\textbf{m次元$C^{r}$級多様体}ともいう。
+    \begin{itemize}
+        \item[(1)] $M$はハウスドルフ空間。
+        \item[(2)] $M$はm次元の座標近傍によって被覆される。すなわち、$M$はm次元座標近傍からなる族$\{(U_{\alpha},\varphi_{\alpha})\}_{\alpha\in A}$があって、
+                    \[
+                    M = \bigcup_{\alpha\in A}U_{\alpha}
+                    \]
+                    が成り立つ。($A$は適当な添字集合)\\
+                    $\{(U_{\alpha},\varphi_{\alpha})\}_{\alpha\in A}$を\textbf{座標近傍系}または\textbf{アトラス}という。
+        \item[(3)] $U_{\alpha}\cap U_{\beta}\neq\phi$であるような任意の$\alpha,\beta\in A$について、座標変換
+                    \[
+                    \varphi_{\beta}\circ\varphi_{\alpha}^{-1}:\varphi_{\alpha}(U_{\alpha}\cap U_{\beta})\to\varphi_{\beta}(U_{\alpha}\cap U_{\beta})
+                    \]
+                    は$C^{r}$級写像である。\\
+                    この座標近傍系$\{(U_{\alpha},\varphi_{\alpha})\}_{\alpha\in A}$を\textbf{$C^{r}$級座標近傍系}という。
+    \end{itemize}
+    \begin{itemize}
+        \item[\textbf{Insight:}] ただの「つぎはぎの地図（位相多様体）」を、微積分が可能な「滑らかな空間」へとアップグレードする定義。地図同士のつなぎ目（座標変換）が $C^r$ 級で滑らかに接続されることを要求することで、多様体全体で矛盾なく微分や接ベクトルの計算ができるようになる。
+        \item[\textbf{Link:}] 松本6節の定義6.4/p.42を参照。
+    \end{itemize}
+\end{definition}
+
 
 
 % --- 今後の課題（TODOリスト） ---
