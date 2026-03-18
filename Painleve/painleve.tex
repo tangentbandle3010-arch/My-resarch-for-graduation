@@ -14,6 +14,7 @@
 \theoremstyle{definition}
 \newtheorem{theorem}{定理}[section]
 \newtheorem{definition}[theorem]{定義}
+\newtheorem{proposition}[theorem]{命題}
 \newtheorem{example}[theorem]{例}
 \newtheorem{remark}[theorem]{注釈}
 \newtheorem{problem}[theorem]{問題} % 自作問題用
@@ -36,13 +37,49 @@
 日々の学習を「AC（Accepted）」として記録し、GitHubでの進捗可視化を目的とする。
 
 \section{パンルヴェ方程式の基礎}
-\begin{definition}[非対数的特異点]
-    % --- ここに数式 ---
+
     $x=\xi$をフックス型微分方程式
     \begin{equation}\label{eq:Fuchs}
     \frac{d^{2}y}{dx^{2}} + p_{1}(x)\frac{dy}{dx} + p_{2}(x)y = 0   
     \end{equation}
-    の特異点とする。$x=\xi$の特性指数$s_{1},s_{2}$が整数差のとき$x=\xi$は\textbf{非対数的特異点}と呼ばれる。
+    の特異点とする。
+
+\begin{proposition}[]
+    % --- ここに数式 ---
+    適当な2次の行列関数$\Phi_{\xi}(x)$を選んで
+    \[
+    \phi(x) = \vec{z}(x)\Phi_{\xi}(x)
+    \]
+    で定まる$\vec{z}(x)$が$x=\xi$のまわりで1価になるようにできる。もし、$\Gamma$が対角化可能ならば、$\Phi_{\xi}(x)$は対角行列になるように選べる。\\
+    また、1価性により$x=\xi$のまわりで
+    \begin{equation}\label{eq:power_series_z}
+    \vec{z}(x) = \sum_{j=-\infty}^{\infty}\vec{a_{j}}u^{j}
+    \end{equation}
+    と表せる。
+    \textbf{証明のスケッチ:}
+    
+    \begin{itemize}
+        \item[\textbf{Insight:}] 通常、特性指数の差が整数の場合、解の片方に $\log$（対数項）が現れる。しかし、係数が特定の条件を満たして「$\log$ の項が完全に消滅する」特殊なケースがあり、それが非対数的特異点である。「みかけの特異点」の周りで解が分岐しないためにはこの性質が必須であり、この「対数項が消える条件」を計算することが、後のハミルトニアン導出の鍵を握る。
+        \item[\textbf{Link:}] 岡本2.2節の命題2.5/p.59を参照。
+    \end{itemize}
+\end{proposition}
+
+\begin{definition}[確定特異点]
+    % --- ここに数式 ---
+    \eqref{eq:power_series_z}において、ある整数$j_{0}$があって、$j\leq j_{0}$となるすべてのjに対し、
+    \[
+    \vec{a_{j}} = \vec{0}
+    \]
+    となる時$\xi$は\textbf{確定特異点}という。確定特異点でない時\textbf{不確定特異点}という。
+    \begin{itemize}
+        \item[\textbf{Insight:}] 特異点周りの級数展開において、「負のべき乗の項が無限に続かず、どこかで打ち止めになる（有限個しかない）」状態を表している。複素関数論における「極（pole）」に相当する、解析的に扱いやすい「おとなしい特異点」の定義である。パンルヴェ方程式の根幹である「動く特異点が極のみである（パンルヴェ性）」という性質を語る上で、この「確定（極）か、不確定（真性特異点など）か」の厳密な線引きがすべての土台となる。
+        \item[\textbf{Link:}] 岡本2.2節の定義2.5/p.59を参照。
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[非対数的特異点]
+    % --- ここに数式 ---
+    $x=\xi$の特性指数$s_{1},s_{2}$が整数差のとき$x=\xi$は\textbf{非対数的特異点}と呼ばれる。
     \begin{itemize}
         \item[\textbf{Insight:}] 通常、特性指数の差が整数の場合、解の片方に $\log$（対数項）が現れる。しかし、係数が特定の条件を満たして「$\log$ の項が完全に消滅する」特殊なケースがあり、それが非対数的特異点である。「みかけの特異点」の周りで解が分岐しないためにはこの性質が必須であり、この「対数項が消える条件」を計算することが、後のハミルトニアン導出の鍵を握る。
         \item[\textbf{Link:}] 岡本2.2節の(2.20)/p.64を参照。
