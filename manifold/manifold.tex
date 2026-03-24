@@ -172,12 +172,25 @@
     \end{itemize}
 \end{example}
 
+\begin{example}[立体射影]
+    $S^{m}$にただ2つの座標近傍からなる$C^{\infty}$級座標近傍系を考えたい。
+    $p_{1}=(0,,...,0,1),\,p_{-1}=(0,...,0,-1)$として、$U_{1}=S^{m}\setminus\{p_{1}\},\,U_{-1}=S^{m}\setminus\{p_{-1}\}$として、
+    \begin{gather*}
+    \varphi_{1}:U_{1}\to\mathbb{R}^{m};(x_{1},\cdots,x_{m+1})\mapsto(\frac{x_{1}}{1-x_{m+1}},\cdots,\frac{x_{m}}{1-x_{m+1}})\\
+    \varphi_{-1}:U_{-1}\to\mathbb{R}^{m};(x_{1},\cdots,x_{m+1})\mapsto(\frac{x_{1}}{1+x_{m+1}},\cdots,\frac{x_{m}}{1+x_{m+1}})
+    \end{gather*}
+    とすることで、$\{(U_{1},\varphi_{1}),(U_{-1},\varphi_{-1})\}$は$S^{m}$の$C^{\infty}$級座標近傍系になっている。(証明は一旦略)$\varphi_{i}$を\textbf{$p_{i}$を中心とする立体射影}という。
+    \begin{itemize}
+        \item[\textbf{Insight:}] 立体射影の本質は、「コンパクトな空間（球面）を、理論上最小である『たった2枚』の地図で覆い尽くす」という無駄を省いた座標導入である。解析的には「平坦な空間に無限遠点を1つ追加して閉じる（1点コンパクト化）」操作に相当する。特に $m=2$ の場合はリーマン球面 $\hat{\mathbb{C}}$ の構成そのものであり、パンルヴェ方程式において「無限遠点での解の挙動」を局所座標（例: $z \mapsto 1/z$）の枠組みでスマートに解析するための不可欠な基盤となる。
+        \item[\textbf{Link:}] 松本6節の例4/p.47を参照。
+    \end{itemize}
+\end{example}
+
 
 % --- 今後の課題（TODOリスト） ---
 \section{Next Step / To-Do}
 \begin{itemize}
-    \item [ ] 多様体の例を見ていく(立体射影)
-    \item [ ] 積多様体の座標近傍系のcheck
+    \item [ ] 多様体の例を見ていく(リーマン球面)
 \end{itemize}
 
 \end{document}
