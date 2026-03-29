@@ -1,4 +1,4 @@
-This is e-upTeX, Version 3.141592653-p4.1.0-u1.29-230214-2.6 (utf8.uptex) (TeX Live 2023) (preloaded format=uplatex 2023.6.21)  29 MAR 2026 14:15
+This is e-upTeX, Version 3.141592653-p4.1.0-u1.29-230214-2.6 (utf8.uptex) (TeX Live 2023) (preloaded format=uplatex 2023.6.21)  29 MAR 2026 16:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -556,17 +556,22 @@ LaTeX Font Info:    Font shape `JY2/gt/bx/n' in size <11> not available
 (Font)              Font shape `JY2/gt/m/n' tried instead on input line 153.
 LaTeX Font Info:    Font shape `JY2/gt/m/n' will be
 (Font)              scaled to size 11.0pt on input line 153.
- [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] (./painleve.aux)
+ [3] [4] [5] [6]
+Overfull \hbox (31.336pt too wide) detected at line 324
+[]\OT1/lmr/m/n/11 (\OML/lmm/m/it/11 x\OT1/lmr/m/n/11 ) = [](\OML/lmm/m/it/11 x\OT1/lmr/m/n/11 ) [][] = [](\OML/lmm/m/it/11 x\OT1/lmr/m/n/11 ) [] [] ^^H(\OML/lmm/m/it/11 x\OT1/lmr/m/n/11 )[] = [](\OML/lmm/m/it/11 x\OT1/lmr/m/n/11 )^^H(\OML/lmm/m/it/11 x\OT1/lmr/m/n/11 )[] = [](\OML/lmm/m/it/11 x\OT1/lmr/m/n/11 )
+ []
+
+[7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] (./painleve.aux)
 Package rerunfilecheck Info: File `painleve.out' has not changed.
 (rerunfilecheck)             Checksum: EB155E1412BD2FBBA39A181DB449763F;2278.
  ) 
 Here is how much of TeX's memory you used:
- 12927 strings out of 476685
- 227027 string characters out of 5805206
+ 12928 strings out of 476685
+ 227069 string characters out of 5805206
  1857212 words of memory out of 5000000
- 33181 multiletter control sequences out of 15000+600000
+ 33182 multiletter control sequences out of 15000+600000
  621163 words of font info for 143 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 78i,8n,104p,897b,600s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 78i,8n,104p,897b,598s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on painleve.dvi (18 pages, 95976 bytes).
+Output written on painleve.dvi (20 pages, 108048 bytes).

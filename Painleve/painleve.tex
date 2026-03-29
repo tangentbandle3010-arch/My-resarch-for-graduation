@@ -230,9 +230,9 @@ $\Gamma(\gamma_{2}\cdot\gamma_{1})=\Gamma(\gamma_{2})\Gamma(\gamma_{1})$や、$\
 \vec{\psi}^{\gamma}(x) = \vec{\varphi}^{\gamma}(x)C
 \]
 よって、$\vec{\psi}(x)$ のモノドロミー行列は、
-\[
+\begin{equation}\label{eq:monodromy_change_of_basis}
 \vec{\psi}^{\gamma}(x) = \vec{\varphi}^{\gamma}(x)C= \vec{\varphi}(x)\Gamma(\gamma)C = \vec{\psi}(x)C^{-1}\Gamma(\gamma)C
-\]
+\end{equation}
 より、$C^{-1}\Gamma(\gamma)C$ となる。
 よって、
 \[
@@ -246,14 +246,125 @@ $\Gamma(\gamma_{2}\cdot\gamma_{1})=\Gamma(\gamma_{2})\Gamma(\gamma_{1})$や、$\
 
 \subsection{確定特異点}
 
-    $x=\xi$をフックス型微分方程式
-    \begin{equation}\label{eq:Fuchs}
-    \frac{d^{2}y}{dx^{2}} + p_{1}(x)\frac{dy}{dx} + p_{2}(x)y = 0   
-    \end{equation}
-    の特異点とする。
+    2階微分方程式\eqref{eq:2-ode}を考える。$x=\xi$を\eqref{eq:2-ode}の特異点とする。\eqref{eq:2-ode}の特異点ではない点$x_{0}$を取り、$x_{0}$を始点・終点として、$\xi$の周りを1周する閉曲線$\gamma$をとる。
+
+\begin{Q}[そんな閉曲線$\gamma$は常にとれるの？]
+\textbf{A.} 今は$p_{1}, p_{2}$を有理関数としているため特異点は離散的である。したがって、他の特異点を巻き込まないように$\xi$の周りを回る道をとることができる。
+\end{Q}
+
+\eqref{eq:2-ode}の解の基本系$\vec{\varphi}(x)$の$\gamma$に沿った解析接続を考える。$u=x-\xi$とする。このとき、解が
+\[
+\vec{\varphi}(x)=(\varphi_{1}(x),\varphi_{2}(x))=\left(u^{\alpha}\sum_{n=0}^{\infty}a_{n}u^{n},u^{\beta}\sum_{n=0}^{\infty}b_{n}u^{n}\right)
+\]
+とかけるとする。
+
+\begin{Q}[冪級数部分の収束円盤内に$x_{0}$をとることはできる？]
+\textbf{A.} できる。特異点は離散的なので、$\xi$から最も近い他の特異点までの距離より小さい収束半径を持つ円盤を考え、その内部に$x_{0}$を設定すればよい。
+\end{Q}
+
+このとき、$\gamma$に沿った解の解析接続$\vec{\varphi}^{\gamma}(x)$は、$u \to ue^{2\pi i}$ の変化（偏角が $2\pi$ 増える）を考慮して
+\[
+\vec{\varphi}^{\gamma}(x)=\left(u^{\alpha}e^{2\pi i\alpha}\sum_{n=0}^{\infty}a_{n}u^{n},u^{\beta}e^{2\pi i\beta}\sum_{n=0}^{\infty}b_{n}u^{n}\right)
+\]
+となり、行列表記を用いると
+\[
+\vec{\varphi}^{\gamma}(x)=\vec{\varphi}(x)
+\begin{pmatrix}
+    e^{2\pi i\alpha} & 0 \\
+    0 & e^{2\pi i\beta} \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+    e(\alpha) & 0 \\
+    0 & e(\beta) \\
+\end{pmatrix}
+=:\vec{\varphi}(x)\Gamma(\gamma)
+\]
+となる。\\
+また、任意の解の基本系$\vec{\phi}(x)$について、\eqref{eq:2-ode}は線型であるから、ある可逆行列$C$を用いて$\vec{\phi}(x)=\vec{\varphi}(x)C$とかける。このとき、モノドロミー行列は\eqref{eq:monodromy_change_of_basis}から$C^{-1}\Gamma(\gamma) C$とかける。
+
+以下では、具体的な解の表示を仮定せずに一般論を進める。
+\eqref{eq:2-ode}の解の基本系を$\vec{\varphi}(x)$とし、閉曲線$\gamma$に沿った解析接続のモノドロミー行列を$\Gamma(\gamma)$とする。その固有値を $e^{2\pi i \alpha}, e^{2\pi i \beta}$ とおく（ここでは記述の簡略化のため $e(\alpha)=e^{2\pi i \alpha}$ のように書くこととする）。
+
+\begin{Q}[$\alpha, \beta$ の取り方には不定性がある？]
+\textbf{A.} ある。任意の整数 $n \in \mathbb{Z}$ に対して $e(\alpha) = e(\alpha+n)$ となるため、$\alpha, \beta$ の値には整数分の不定性が生じる。しかし、ここではある特定の $\alpha, \beta$ を一つ固定したとして議論を進める。
+\end{Q}
+
+\begin{Q}[なぜ $\alpha-\beta \in \mathbb{Z}$ かどうかで場合分けするのか？]
+\textbf{A.} モノドロミー行列 $\Gamma(\gamma)$ が対角化可能か、それともジョルダン細胞（非対角成分に1が残る形）になるかの分岐点だからである。特性指数の差が整数の場合、解に $\log$（対数項）が現れる可能性がある。
+\end{Q}
+
+$\alpha-\beta \in \mathbb{Z}$ の場合と $\alpha-\beta \notin \mathbb{Z}$ の場合で分けて考える。
+
+\begin{itemize}
+    \item[\textbf{[1]}] $\alpha-\beta \notin \mathbb{Z}$ のとき\\
+    このとき2つの固有値は異なるので $\Gamma(\gamma)$ は対角化可能である。ある正則行列$P$を用いて
+    \[
+    P^{-1}\Gamma(\gamma)P=
+    \begin{pmatrix}
+        e(\alpha) & 0 \\
+        0 & e(\beta) \\
+    \end{pmatrix}
+    \]
+    とできる。よって、\eqref{eq:monodromy_change_of_basis}により $\vec{\psi}(x)=\vec{\varphi}(x)P$ なる解の基本系に取り直すことで、モノドロミー行列は最初から対角行列であるとしてよい。
+    ここで、行列関数 $\Phi(x)$ を
+    \[
+    \Phi(x)=
+    \begin{pmatrix}
+        (x-\xi)^{\alpha} & 0 \\
+        0 & (x-\xi)^{\beta} \\
+    \end{pmatrix}
+    \]
+    で定める。$\Phi(x)$ が $\gamma$ に沿って1周すると $\Phi^{\gamma}(x) = \Phi(x) \begin{pmatrix} e(\alpha) & 0 \\ 0 & e(\beta) \end{pmatrix}$ となる。
+    ここで $\vec{z}(x)=\vec{\psi}(x)\Phi(x)^{-1}$ とおくと、
+    \[
+    \vec{z}^{\gamma}(x) = \vec{\psi}^{\gamma}(x)\left(\Phi^{\gamma}(x)\right)^{-1} 
+    = \vec{\psi}(x)\begin{pmatrix} e(\alpha) & 0 \\ 0 & e(\beta) \end{pmatrix} \begin{pmatrix} e(-\alpha) & 0 \\ 0 & e(-\beta) \end{pmatrix}\Phi(x)^{-1} 
+    = \vec{\psi}(x)\Phi(x)^{-1} = \vec{z}(x)
+    \]
+    となり、$\vec{z}(x)$ は $x=\xi$ の周りで1価であることがわかる。
+
+    \item[\textbf{[2]}] $\alpha-\beta \in \mathbb{Z}$ のとき\\
+    $\Gamma(\gamma)$ が対角化可能であれば、[1]のときと同様にして $\vec{z}(x)$ は1価となる。
+    一方、$\Gamma(\gamma)$ が対角化不可能で、ある正則行列$P$を用いて
+    \[
+    P^{-1}\Gamma(\gamma)P=
+    \begin{pmatrix}
+        e(\alpha) & 1 \\
+        0 & e(\alpha) \\
+    \end{pmatrix}
+    \]
+    となるジョルダン細胞のケースを考える。[1]と同様に解の基本系 $\vec{\psi}(x)$ を取り直すことで、モノドロミー行列がこの形であるとしてよい。このとき、
+    \[
+    \Phi(x)=
+    \begin{pmatrix}
+        (x-\xi)^{\alpha} & \frac{1}{2\pi i e(\alpha)}(x-\xi)^{\alpha}\log(x-\xi) \\
+        0 & (x-\xi)^{\alpha} \\
+    \end{pmatrix}
+    \]
+    と置く。$\log(x-\xi)$ は1周すると $\log(x-\xi) + 2\pi i$ となるため、
+    \[
+    \Phi^{\gamma}(x)= \Phi(x)
+    \begin{pmatrix}
+        e(\alpha) & 1 \\
+        0 & e(\alpha) \\
+    \end{pmatrix}
+    \]
+    を満たすことが確認できる。したがって、[1]と同様に $\vec{z}(x)=\vec{\psi}(x)\Phi(x)^{-1}$ と置くことで、逆行列との積が打ち消し合い $\vec{z}^{\gamma}(x) = \vec{z}(x)$ となるため、$\vec{z}(x)$ が1価であることがわかる。
+\end{itemize}
+
+以上より、以下の極めて重要な命題が成り立つ。
+
+\begin{proposition}\label{prop:single_valued_z}
+    \eqref{eq:2-ode}の任意の解の基本系 $\vec{\varphi}(x)$ に対して、ある適当な2次の行列関数 $\Phi(x)$ を選ぶことで、
+    \[
+    \vec{z}(x)=\vec{\varphi}(x)\Phi(x)^{-1} \quad (\text{すなわち } \vec{\varphi}(x) = \vec{z}(x)\Phi(x))
+    \]
+    で定められる $\vec{z}(x)$ が、$x=\xi$ の周りで1価の解析関数になるようにできる。\\
+    また、$\Gamma(\gamma)$が対角化可能であるという条件のもとで、上の$\vec{\psi}(x)$に対しては$\Phi(x)$を対角行列になるようにとることができる。
+\end{proposition}
 
 \begin{proposition}[]
-    % --- ここに数式 ---
     適当な2次の行列関数$\Phi_{\xi}(x)$を選んで
     \[
     \phi(x) = \vec{z}(x)\Phi_{\xi}(x)
@@ -405,7 +516,7 @@ $\Gamma(\gamma_{2}\cdot\gamma_{1})=\Gamma(\gamma_{2})\Gamma(\gamma_{1})$や、$\
 
 \subsection{フックスの問題}
 
-\begin{definition}[モノドロミー保存変形]\label{mono_deform}
+\begin{definition}[モノドロミー保存変形]\label{mono_deform}%TODO(書き直す。確定特異点の定義を見る。)
   % --- ここに数式 ---
     \begin{equation}\label{eq:before}
     \frac{d^{n}y}{dx^{n}}+\sum_{j=1}^{n} p_{j}(x)\frac{d^{n-1}y}{dx^{n-1}} = 0   
