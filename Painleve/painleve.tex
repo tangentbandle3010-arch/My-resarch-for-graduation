@@ -31,7 +31,6 @@
 \newtheorem{example}[theorem]{例}
 \newtheorem{problem}[theorem]{問題} % 自作問題用
 \newtheorem*{fact}{事実}
-\newtheorem*{setup}{設定}
 \newtheorem*{connect}{$\mho\mho$}
 
 % --- 環境の終わりにマークをつける設定 ---
@@ -73,6 +72,7 @@
 
 \begin{document}
 
+%#region
 \maketitle
 \tableofcontents % 自動で目次を作成
 
@@ -83,57 +83,89 @@
 \section{フックス型微分方程式}
 
 \subsection{2階線型常微分方程式}
+%#endregion
 
-\begin{setup}
-    \begin{equation}\label{eq:2-ode}
-    \frac{d^{2}y}{dx^{2}} + p_{1}(x)\frac{dy}{dx} + p_{2}(x)y = 0   
-    \end{equation}
-    を考える。$x\in\mathbb{C}$とする。よって解$y$は解析的である。
-    また、$p_{1}(x),p_{2}(x)$は$x$の有理関数とする。よって\eqref{eq:2-ode}は広くても$\mathbb{P}^{1}(\mathbb{C})$上の微分方程式である。
-\end{setup}
-
-\begin{definition}[$x=\infty$における微分方程式]%TODO(書き直す)
-    \eqref{eq:2-ode}で$x=\frac{1}{u}$とする。u=0の近傍で考えたものを\textbf{$x=\infty$における微分方程式}という。ある有理関数$q_{1},q_{2}$を用いて
-    \[
-    \frac{d^{2}y}{du^{2}} + q_{1}(u)\frac{dy}{du} + q_{2}(u)y = 0
-    \]
-    のように書いたとき、\eqref{eq:2-ode}に連鎖律 $\frac{d}{dx} = -u^2 \frac{d}{du}$ を用いたものとの係数比較により、
-    \[
-    q_{1}(u) = \frac{2}{u}-\frac{1}{u^{2}}p_{1}\left(\frac{1}{u}\right),\, q_2(u)=\frac{1}{u^{4}}p_{2}\left(\frac{1}{u}\right)
-    \]
-    という関係がわかる。
-    \begin{itemize}
-        \item[\textbf{Insight:}] 複素幾何学（リーマン球面 $\mathbb{P}^1(\mathbb{C})$）の観点では、無限遠点 $\infty$ は有限の点と全く対等な「ただの1点」である。$u=1/x$ はその点を見るための「レンズ（局所座標）」に過ぎない。$q_1(u)$ に現れる $2/u$ という余分な項は、座標変換の非線形性から生じる見かけ上のズレであり、$x=\infty$ での特異性の度合い（確定特異点かどうか）を判定する上で極めて重要な役割を果たす。
-        \item[\textbf{Link:}] 岡本2.1節のp.49を参照。
-    \end{itemize}
+%#region
+\begin{equation}\label{eq:2-ode}
+\frac{d^{2}y}{dx^{2}} + p_{1}(x)\frac{dy}{dx} + p_{2}(x)y = 0   
+\end{equation}
+を考える。$x\in\mathbb{C}$とする。よって解$y$は解析的である。
+また、$p_{1}(x),p_{2}(x)$は$x$の有理関数とする。よって\eqref{eq:2-ode}は広くても$\mathbb{P}^{1}(\mathbb{C})$上の微分方程式である。
+%#endregion
+%#region
+\begin{definition}[$x=\infty$における微分方程式]
+    \eqref{eq:2-ode}で$x=\frac{1}{u}$とする。$u=0$の近傍で考えたものを\textbf{$x=\infty$における微分方程式}という。
+    （\cite[p.49]{book:okamoto} を参照）
 \end{definition}
+%#endregion
+%#region
+ある有理関数$q_{1},q_{2}$を用いて
+\[
+\frac{d^{2}y}{du^{2}} + q_{1}(u)\frac{dy}{du} + q_{2}(u)y = 0
+\]
+のように書いたとき、\eqref{eq:2-ode}に連鎖律 $\frac{d}{dx} = -u^2 \frac{d}{du}$ を用いたものとの係数比較により、
+\[
+q_{1}(u) = \frac{2}{u}-\frac{1}{u^{2}}p_{1}\left(\frac{1}{u}\right),\, q_2(u)=\frac{1}{u^{4}}p_{2}\left(\frac{1}{u}\right)
+\]
+という関係がわかる。
+%#endregion
+%#region
+$p_{1}, p_{2}$ を $x=x_{0}$ で正則とする。このとき、コーシーの存在定理（Cauchy's existence theorem）から、任意の $(y_{0}, y'_{0}) \in \mathbb{C}^{2}$ に対して、初期条件
+$$
+y(x_{0}) = y_{0}, \quad \frac{dy}{dx}(x_{0}) = y'_{0}
+$$
+を満たす微分方程式 \eqref{eq:2-ode} の解 $y = \varphi(x; x_{0}, y_{0}, y'_{0})$ がただ一つ存在する。
 
-\begin{connect}% TODO(connectを消す。閉じれないから他を描き直してもいい)
-    $p_{1},p_{2}$を$x=x_{0}$で正則とする。このとき、コーシーの存在定理から、任意の$(y_{0},y'_{0})\in\mathbb{C}^{2}$に対して、
-    \[
-    y(x_{0}) = y_{0},\,\frac{dy}{dx}(x_{0})=y_{0}'
-    \]
-    を満たす解$y=\varphi(x;x_{0},y_{0},y_{0}')$がただ一つ存在する。ここで、$u=x-x_{0}$とする。テイラー展開は
-    \[
-    \varphi(x;x_{0},y_{0},y_{0}') = \sum_{j=0}^{\infty}c_{j}u^{j},\,c_{0}=y_{0},\,c_{1}=y_{0}'
-    \]
-    と表せる。また、
-    \[
-    p_{1}(x) = \sum_{j=0}^{\infty}a_{j}u^{j},\,p_{2}(x) = \sum_{j=0}^{\infty}b_{j}u^{j}
-    \]
-    と表すことにする。
-\end{connect}
+ここで、$u = x - x_{0}$ とおく。$p_1, p_2$ および解 $\varphi$ は $x=x_0$ で正則であるから、以下のようにテイラー展開できる。
+$$
+\varphi(x; x_{0}, y_{0}, y'_{0}) = \sum_{n=0}^{\infty} c_{n} u^{n} \quad (c_{0} = y_{0}, \, c_{1} = y'_{0})
+$$
+$$
+p_{1}(x) = \sum_{n=0}^{\infty} a_{n} u^{n}, \quad p_{2}(x) = \sum_{n=0}^{\infty} b_{n} u^{n}
+$$
+これらを \eqref{eq:2-ode} に代入すると、
+$$
+\sum_{n=2}^{\infty} c_{n} n(n-1) u^{n-2} + \left( \sum_{n=0}^{\infty} a_{n} u^{n} \right) \left( \sum_{n=1}^{\infty} c_{n} n u^{n-1} \right) + \left( \sum_{n=0}^{\infty} b_{n} u^{n} \right) \left( \sum_{n=0}^{\infty} c_{n} u^{n} \right) = 0
+$$
+となる。この式の $u$ の各べきの係数を比較することで、$c_n$ を漸化式として具体的に順次決定することができる。
 
-\begin{proposition}% TODO (書き直す)
-    $x=\xi$を$y=\varphi(x;x_{0};y_{0},y_{0}')$の特異点とすれば、$\xi$は$p_{1}(x)$または、$p_{2}(x)$の特異点である。\\
-    \textbf{証明のスケッチ}:
-    証明は一旦略
-    \begin{itemize}
-        \item[\textbf{Insight:}] 線形微分方程式の最大の特長は、「解の特異点が初期条件 $(x_{0}, y_{0}, y_{0}')$ に一切依存しない」ことである。特異点はあらかじめ係数の特異点として空間上に「固定」されており、どこから出発しようと障害物の位置は変わらない。これは、非線形方程式における「動く特異点」の異常さを際立たせるための、最も重要な比較基準（ベースライン）となる。
-        \item[\textbf{Link:}] 岡本2.1節の命題2.1/p.50を参照。
-    \end{itemize}
+また、得られた級数 $\sum_{n=0}^{\infty} c_{n} u^{n}$ の収束半径を $r$ とすると、命題\ref{prop:singular_point_on_convergence_circle}により、収束円周 $|x-x_0|=r$ 上には解 $\varphi$ の特異点が少なくとも1つ存在する。
+
+\begin{Q}[【補足】解の冪級数の収束半径 $r$ は、具体的にどのくらい大きくなることが保証されているか？]
+\textbf{A.} 初期値 $x_0$ から、「係数関数 $p_1(x), p_2(x)$ の特異点」までの距離の最小値以上になることが保証されている。線形常微分方程式においては、解の特異点は係数の特異点以外には決して新たに生じない（特異点が固定されている）という強力な性質があるためである。
+\end{Q}
+
+\begin{Q}[【補足】「ある展開中心での冪級数の収束円上の特異点」は、大域的な関数にとっての「真の特異点」と常に一致するのか？]
+\textbf{A.} 常に一致するとは限らない。収束円上の特異点はあくまで「その点を中心としたテイラー展開が破綻する限界点」に過ぎず、別の点を経由して解析接続すれば正則に振る舞うこともある。しかし、線形常微分方程式においては前述の通り特異点が係数によって固定されるため、収束限界点は「係数の特異点」あるいは「多価関数の分岐点」といった真の特異点構造に由来するものと一致する。
+\end{Q}
+%#endregion
+%#region
+\begin{proposition}\label{prop:linear_ode_singularities_fixed}
+    $x=\xi$ を $y=\varphi(x;x_{0};y_{0},y_{0}')$ の特異点とすれば、$\xi$ は $p_{1}(x)$ または $p_{2}(x)$ の特異点である。
+    （\cite[p.50 命題2.1]{book:okamoto} を参照）
 \end{proposition}
-%TODO(証明を書く)
+
+\begin{proof}%FIXME(理解して書き直す)
+    対偶を示す。すなわち、「$x=\xi$ が $p_{1}(x)$ および $p_{2}(x)$ の正則点であれば、$\xi$ は解 $\varphi(x)$ の正則点である」ことを示す。
+
+    仮定より、$p_{1}(x), p_{2}(x)$ は $x=\xi$ において正則である。コーシーの存在定理によれば、係数関数が正則である領域内の任意の点において、その近傍で正則な解がただ一つ存在する。
+    さらに、線形常微分方程式の解の性質として、解の冪級数展開 $\sum c_n (x-x_0)^n$ の収束半径は、中心 $x_0$ から「係数関数の特異点」までの最短距離に等しい（あるいはそれ以上である）。
+
+    したがって、$\xi$ が係数関数の特異点でないならば、解 $\varphi(x)$ は $\xi$ を含む開円板上まで解析接続が可能であり、その領域で正則となる。
+    ゆえに $\xi$ は解 $\varphi(x)$ の特異点ではあり得ない。
+    対偶が示されたことにより、解の特異点は必ず係数の特異点のいずれかに一致する。
+\end{proof}
+
+\begin{Q}[【補足】なぜ線形微分方程式では、解が勝手に（係数にない場所で）特異点を持つことはないのか？]
+\textbf{A.} コーシーの存在定理により、係数が正則である限り、解は局所的に必ず冪級数として一意に構成でき、その収束半径は次の「係数の特異点」にぶつかるまで解析接続で伸ばし続けられるからである。
+\end{Q}
+
+\begin{Q}[【重要】この命題が、後のパンルヴェ方程式の学習においてなぜ重要になるのか？]
+\textbf{A.} 線形方程式では特異点の場所が初期値によらず係数のみで決まる（固定特異点）のに対し、パンルヴェ方程式のような「非線形」方程式では、初期値によって解の特異点の場所が動く（動く特異点）という決定的な違いを対比させるための基礎となるからである。
+\end{Q}
+%#endregion
+
+%#region
 
 $\Xi$を\eqref{eq:2-ode}の特異点の集合とし、$\mathbb{X}=\mathbb{P}^{1}(\mathbb{C})\setminus\Xi$とする。解の基本系を$\vec{\varphi}(x)$とする。
 
@@ -740,11 +772,11 @@ p.129
 \begin{Q}[解析接続と微分は交換可能？]
 \textbf{A.} 可能。(定義\ref{prop:interchange-ac-diff}を参照)\\
 \end{Q}
-
+%#endregion
 \appendix
 
 \section{用いた定理}%TODO(それぞれの定理に証明つけてもいいかも　優先度:低)
-
+%#region
 \begin{theorem}[正則な解の存在と一意性]\label{thm:cauchy}
     各$f^{j}(z,w),0\leq j\leq n-1$が$\mathbb{C}^{n-1}$内の領域$D$で正則ならば、任意の点$(a,b)\in D$に対して、$(a,b)$を通る
     \begin{equation}\label{eq:cauchy_problem}
@@ -754,7 +786,8 @@ p.129
     % \cite[オプション]{ラベル} で特定のページをスマートに引用できる
     （\cite[p.50 定理8.1]{book:takano} を参照）
 \end{theorem}
-
+%#endregion
+%#region
 \begin{theorem}[確定特異点まわりの解の基本系（フックスの定理）]\label{thm:fuchs}
     $z=c$を微分方程式
     \begin{equation}\label{eq:nth_order_linear_ode}
@@ -767,7 +800,8 @@ p.129
     という形のものが$n$個とれる。ここで$\rho\in \mathbb{C}$、$P(z,t)$は次数が$n-1$以下の$t$の多項式であり、その係数は$z=c$の周りで正則な関数である。特に、少なくとも1つの解として$\log(z-c)$を含まないものが存在する。
     （\cite[p.119 定理13.1]{book:takano} を参照）
 \end{theorem}
-
+%#endregion
+%#region
 \begin{definition}[直接接続]
     点 $a \in \mathbb{C}$ を中心とする収束冪級数を $f_a(z)$ とし、その収束半径を $r_a > 0$、収束円（定義域）を $D_a = \{z \in \mathbb{C} \mid |z - a| < r_a\}$ とする。
     $D_a$ 内の点 $b \in D_a$ を任意にとる。$f_a(z)$ は $D_a$ 上で正則であるため、これを点 $b$ の周りでテイラー展開し直すことで、新しい収束冪級数 $f_b(z)$ を作ることができる。この $f_b(z)$ の収束円を $D_b$ とすると、共通の領域 $D_a \cap D_b$ において
@@ -778,14 +812,16 @@ p.129
     このようにして得られた新しい収束冪級数 $f_b(z)$ のことを、$f_a(z)$ の $b$ を中心とする\textbf{直接接続}という。
     （\cite[p.101]{book:kimura} を参照）
 \end{definition}
-
+%#endregion
+%#region
 \begin{definition}[曲線に沿っての解析接続]
     $a,b\in\mathbb{C}$とその間の連続曲線$\varphi:[0,1]\to\mathbb{C};t\mapsto \varphi(t)$をとる。$a$を中心とする収束冪級数$f_{a}(z)$が与えられたとする。$f_{a}(z)$が$\varphi$に沿って解析接続可能であるとは、各$t\in[0,1]$に対して、$\varphi(t)$を中心とする収束冪級数が定まって次の条件が満たされることをいう。\\
     \textbf{条件} : 任意の$t_{0}\in[0,1]$に対して$\epsilon(t_{0})>0$が存在し、任意の$t\in[t_{0}-\epsilon,t_{0}+\epsilon]\bigcap[0,1]$に対して、$f(z;t)$は$f(z;t_{0})$の直接接続である。\\
     この時、$f_{b}(z)=f(z;1)$を$f_{a}(z)$の\textbf{$\varphi$に沿っての解析接続}という。
     （\cite[p.119 定義21.1]{book:kimura} を参照）
 \end{definition}
-
+%#endregion
+%#region
 \begin{proposition}[解析接続の線型性]\label{prop:analytic_linear}
     関数 $f(z), g(z)$ が曲線 $\varphi$ に沿って解析接続可能であるとする。このとき、任意の複素定数 $c_1, c_2$ に対して、その線型結合 $h(z) = c_1f(z) + c_2g(z)$ も $\varphi$ に沿って解析接続可能であり、終端 $t=1$ での解析接続の結果をそれぞれ $f(z;1), g(z;1), h(z;1)$ とすると、
     $$ h(z;1) = c_1f(z;1) + c_2g(z;1) $$
@@ -807,7 +843,8 @@ p.129
     $$ h(z; 1) = c_1f(z; 1) + c_2g(z; 1) $$
     が成立する。したがって、解析接続の操作は定数係数の線型結合（および定数行列の掛け算）と交換可能である。
 \end{proof}
-
+%#endregion
+%#region
 \begin{definition}[ホモトープ]\label{def:homotope}
     $X$:位相空間,$l,l':[0,1]\to X$を連続曲線とする。$l(0)=l'(0)=p,l(1)=l'(1)=q$とする。$l$と$l'$が\textbf{ホモトープ}であるとは、次の性質を持つ連続写像$H:[0,1]\times[0,1]\to X$が存在することである。\\
     \textbf{(A).}$H(t,0)=l(t),H(t,1)=l'(t)\quad (\forall t \in[0,1])$\\
@@ -815,12 +852,14 @@ p.129
     このような$H$を\textbf{$l$から$l'$へのホモトピー}という
     （\cite[p.121 定義9.1]{book:matsumoto} を参照）
 \end{definition}
-
+%#endregion
+%#region
 \begin{theorem}[一価性定理]\label{thm:monodromy}
     $D$を$\mathbb{C}$内の領域とする。$a\in D$を中心とする収束冪級数$f_{a}(z)$が$a$を始点とする$D$内の任意の連続曲線に沿って解析接続可能とする。このとき、$a$を始点とし、$b\in D$を終点とする$D$内の連続曲線$L_{0},L_{1}$が$D$において始点と終点を固定してホモトープならば、$f_{a}(z)$の$L_{0},L_{1}$に沿っての解析接続は$b$において一致する。
     （\cite[p.110 定理22.2]{book:kimura} を参照。証明付き）
 \end{theorem}
-
+%#endregion
+%#region
 \begin{theorem}\label{thm:linear_ode_existence_and_continuation}
     \eqref{eq:nth_order_linear_ode}の$a_{1}(z),\cdots,a_{n}(z)$を領域$D\subset\mathbb{C}$で正則とする。このとき\\
     \textbf{(A).}任意の$p\in D,q^{0},\cdots,q^{n-1}\in\mathbb{C}$に対して初期条件
@@ -831,12 +870,14 @@ p.129
     \textbf{(B).}\eqref{eq:nth_order_linear_ode}の局所解は、$D$内のすべての曲線に沿って解析接続可能である。\\
     （\cite[p.127 定理25.3]{book:kimura} を参照。）
 \end{theorem}
-
+%#endregion
+%#region
 \begin{theorem}[解の解析接続定理]\label{thm:ode_solution_continuation}
    $f(z,w)$が領域$D\subset\mathbb{C}$において正則であるとする。$\varphi:[0,1]\to D$を連続とする。任意の$t\in[0,1]$に対して、$(\varphi(t),w(\varphi(t);t))\in D$であるとすると、各$t$に対して、$w(z;t)$は$z\in B_{z}(\varphi(t);r(t)), (z,w(z;t))\in D$なる限り、\eqref{eq:cauchy_problem}の解である。
    （\cite[p.56 定理8.6]{book:takano} を参照。）
 \end{theorem}
-
+%#endregion
+%#region
 \begin{definition}[表現]\label{dfn:representation}
     $G$を群、$V$を複素ベクトル空間とする。$G$の単位元を$e$と書くことにする。写像
     \[
@@ -848,7 +889,8 @@ p.129
     を満たす時、$\pi$を\textbf{群$G$の$V$上の表現}といい$V$を\textbf{表現空間}という。
     （\cite[p.10 定義1.12]{book:kobayashi} を参照。）
 \end{definition}
-
+%#endregion
+%#region
 \begin{theorem}[行列の微分]\label{thm:derivative-of-determinant}
     $A(x)=(a_{ij}(x))$とする。$i$行目を微分した行列を$A_{i}$とおくと、
     \[
@@ -874,7 +916,8 @@ p.129
     \]
     
 \end{proof}
-
+%#endregion
+%#region
 \begin{proposition}[解析接続と微分は交換可能]\label{prop:interchange-ac-diff}
     関数 $f(z)$ が曲線 $\varphi$ に沿って解析接続可能であるとする。このとき、任意の$n\geq 0$ に対して、その微分 $f^{(n)}(z)$ も $\varphi$ に沿って解析接続可能であり、終端 $t=1$ での解析接続の結果をそれぞれ $f(z;1), f^{(n)}(z;1)$ とすると、
     \[
@@ -888,26 +931,30 @@ p.129
     $f(z)$の元の収束円盤を$D_{1}$とする。また、$f(z)$は解析接続可能なので、解析接続先の関数を$g(z)$、その収束円盤を$D_{2}$とすると、$z \in D_{1}\cap D_{2}$上で$f(z)=g(z)$である。\\
     このとき、命題\ref{prop:convergence-radius-invariant}より、$f'(z)はD_{1}$上収束し、$g'(z)はD_{2}$上収束する。また、$z \in D_{1}\cap D_{2}$上では$f'(z)=g'(z)$より、$f'(z)$の$D_{2}$への解析接続は一致の定理から、$g'(z)$である。
 \end{proof}
-
+%#endregion
+%#region
 \begin{proposition}[解析関数を微分しても収束半径は不変]\label{prop:convergence-radius-invariant}
-    $a\in\mathbb{C}$とする。$f(z)=\sum_{n=0}^{\infty}a_{n}(z-a)^{n}$の収束半径を$R(>0)$とすると、f(z)は$B(a;r)$上の正則関数で
+    $a\in\mathbb{C}$とする。$f(z)=\sum_{n=0}^{\infty}a_{n}(z-a)^{n}$の収束半径を$R(>0)$とすると、f(z)は$B(a;R)$上の正則関数で
     \[
     f'(z)=\sum_{n=0}^{\infty}na_{n}(z-a)^{n-1}
     \]
     である。$f'(z)$の収束半径も$R$である。
     （\cite[p.62 定理3.1.10]{book:noguchi} を参照。）
 \end{proposition}
-
+%#endregion
+%#region
 \begin{theorem}[正則関数は解析関数]\label{thm:holomorphic-is-analytic}
     $D$上の正則関数$f$は$D$上解析的で、各点$a\in D$で、$f(z)=\sum_{n=0}^{\infty}a_{n}(z-a)^{n}, z\in B(a;d(a,\partial D))$と展開され、収束半径は$d(a;\partial D)$以上である。
     （\cite[p.89 定理3.5.7]{book:noguchi} を参照。）
 \end{theorem}
-
-\begin{proposition}[一致の定理]
+%#endregion
+%#region
+\begin{proposition}[一致の定理]\label{prop:identity_theorem}
     $f$を領域$D$上の解析関数とする。部分集合$E\subset D$は$D$内に少なくとも$1$つ集積点を持つとする。もし$f$の$E$への制限$f|_{E}$が恒等的に$0$ならば、$f$は$D$上恒等的に$0$である。
     （\cite[p.35 定理2.4.14]{book:noguchi} を参照。）
 \end{proposition}
-
+%#endregion
+%#region
 \begin{theorem}[ローラン展開]\label{thm:laurent_expansion}
     $B=B(c;r)$とし、$f(z)$が$\bar{B}\setminus\{c\}$で正則であるとすると、$f(z)$は$B\setminus\{c\}$において
     \[
@@ -924,7 +971,8 @@ p.129
 \begin{Q}[なぜ特異点の周りでテイラー展開ではなくローラン展開を使うの？]
 \textbf{A.} テイラー展開は関数が正則な（特異点がない）場所でしか成り立たないためである。特異点 $z=c$ を持つ解の挙動を調べるには、「負の冪乗の項（主要部）」を許容するローラン展開を用いる必要がある。この負の冪の項が有限個で打ち止めになるかどうかが、確定特異点と不確定特異点を分ける決定的な基準となる。
 \end{Q}
-
+%#endregion
+%#region
 \begin{theorem}[ローラン展開の一意性]\label{thm:laurent_uniqueness}
     関数 $f(z)$ が円環領域 $A = \{z \in \mathbb{C} \mid r_1 < |z-c| < r_2\}$ において、正負の冪級数
     \[
@@ -958,7 +1006,8 @@ p.129
     \]
     となり、係数 $c_n$ がローラン展開の定義式と完全に一致することが示された。
 \end{proof}
-
+%#endregion
+%#region
 \begin{theorem}[孤立特異点における極と増大度の同値性]\label{thm:growth_and_pole}
     関数 $f(z)$ が $z=c$ を孤立特異点として持つとする。このとき、以下の2つの条件は互いに同値である。
     \begin{enumerate}
@@ -1024,7 +1073,8 @@ p.129
 \textbf{A.} 「解析的な条件」と「代数的な条件」を完全に橋渡ししてくれる点である。
 微分方程式の解が「確定特異点」を持つかどうかを判定する際、ローラン展開をすべて計算して有限の負べきで終わるか（代数的な条件）を確かめるのは非常に困難である。しかしこの定理のおかげで、解が特異点に近づくスピードが「多項式オーダーで抑えられるか」（解析的な条件）さえクリアすれば、自動的にローラン展開が打ち切られることが保証され、判定が劇的に簡単になるのである。
 \end{Q}
-
+%#endregion
+%#region
 \begin{theorem}[アーベルの補題]\label{thm:abels_lemma}
     冪級数 $\sum_{n=0}^{\infty} a_n (z-c)^n$ が、ある点 $z = z_0$ （ただし $z_0 \neq c$）で収束すると仮定する。
     このとき、以下の2つが成り立つ。
@@ -1042,6 +1092,58 @@ p.129
     \]
     と評価できる。これは公比 $\rho < 1$ の等比級数で上から抑えられることを意味し、ワイエルシュトラスのM判定法より絶対収束（および閉円板上での一様収束）が直ちに導かれる。
 \end{proof}
+%#endregion
+%#region
+\begin{proposition}[冪級数展開の一意性]\label{prop:uniqueness_of_power_series}
+    正則関数 $f(z)$ のある点 $c$ を中心とする冪級数展開（テイラー展開）は一意に定まる。すなわち、ある開円板 $B(c, r)$ 上で $f(z) = \sum_{n=0}^{\infty} a_n (z-c)^n = \sum_{n=0}^{\infty} b_n (z-c)^n$ が成り立つならば、すべての $n \ge 0$ に対して $a_n = b_n$ である。
+\end{proposition}
+
+\begin{proof}
+    命題\ref{prop:convergence-radius-invariant}により、$\sum_{n=0}^{\infty} a_n (z-c)^n$ と $\sum_{n=0}^{\infty} b_n (z-c)^n$ は $B(c, r)$ 上で何度でも項別微分できる。
+    両辺を $i$ 回微分すると、$i-1$ 次以下の項は $0$ になるため、
+    $$
+    \sum_{n=i}^{\infty} a_n\frac{n!}{(n-i)!} (z-c)^{n-i} = \sum_{n=i}^{\infty} b_n\frac{n!}{(n-i)!} (z-c)^{n-i}
+    $$
+    となる。この両辺に $z=c$ を代入すると、$n > i$ の項はすべて $0$ となり、$n=i$ の項のみが残るため、
+    $$
+    i! a_i = i! b_i
+    $$
+    が得られる。両辺を $i!$ で割ることで $a_i = b_i$ がわかる。これが任意の $i \ge 0$ について成り立つため示された。
+\end{proof}
+
+\begin{Q}[【補足】なぜ冪級数展開（テイラー展開）の係数は一意に決まると一言で断言できるのか？]
+\textbf{A.} 収束冪級数は収束円内で項別微分が可能であり、$n$ 回微分して中心 $z=c$ を代入することで、各係数が元の関数の微係数 $f^{(n)}(c)/n!$ として完全に逆算・決定されるからである。
+\end{Q}
+%#endregion
+%#region
+\begin{proposition}\label{prop:singular_point_on_convergence_circle}
+    冪級数 $\sum_{n=0}^{\infty}a_{n}(z-c)^{n}$ の収束半径を $r>0$ とする。このとき、収束円の周 $|z-c|=r$ 上には、特異点が少なくとも1つ存在する。
+\end{proposition}
+
+\begin{proof}
+    背理法で示す。収束円の周 $|z-c|=r$ 上のすべての点が正則点であると仮定する。
+
+    仮定より、円周上の任意の点 $s$ に対して、ある半径 $r_s > 0$ が存在し、開円板 $B(s, r_s)$ 上へ冪級数を解析接続できる。
+    このとき、元の開円板 $B(c, r)$ とこれらの開円板の族 $\{B(s, r_s)\}_{|s-c|=r}$ は、コンパクトな閉円板 $\overline{B(c, r)} = \{z \in \mathbb{C} \mid |z-c| \le r\}$ の開被覆となる。
+
+    コンパクト性より有限部分被覆を選び出すことができ、それらの和集合はある少し大きな開円板 $B(c, r+\epsilon)$ ($\epsilon > 0$) を完全に含む。
+    拡張された領域 $B(c, r+\epsilon)$ は単連結であるため、一価性定理により解析接続の結果は経路に依存せず、全体で一意な一価の正則関数 $f(z)$ が定まる。
+
+    $f(z)$ は $B(c, r+\epsilon)$ で正則であるから、定理\ref{thm:holomorphic-is-analytic}により点 $c$ を中心とし、収束半径が少なくとも $r+\epsilon$ のテイラー展開 $\sum_{n=0}^{\infty}b_{n}(z-c)^{n}$ を持つ。
+    $B(c, r)$ 上では元の級数と一致するため、展開係数の一意性から $a_n = b_n$ となる。
+    しかし、これは元の冪級数の収束半径が $r$ であるという前提に矛盾する。
+
+    したがって、円周 $|z-c|=r$ 上には少なくとも1つの特異点が存在する。
+\end{proof}
+
+\begin{Q}[【補足】円周上がすべて正則であるとき、収束半径が $r$ より大きくなると一言で断言できるのはなぜ？]
+\textbf{A.} コンパクト性により半径 $r+\epsilon$ の大きな開円板上で正則な関数が構成でき、定理\ref{thm:holomorphic-is-analytic}（正則関数は解析関数）により、その開円板全体で収束するテイラー展開を持つことが保証されるからである。係数の一意性から元の級数と一致するため、自動的に収束半径も $r+\epsilon$ 以上となる。
+\end{Q}
+
+\begin{Q}[【補足】局所的な解析接続をつなぎ合わせた関数 $f(z)$ が、全体として矛盾なく一意に定まる（多価関数にならない）と言えるのはなぜ？]
+\textbf{A.} 拡張された領域 $B(c, r+\epsilon)$ が単連結であるためである。単連結領域内では任意の2点を結ぶ連続曲線が互いにホモトープとなり、一価性定理（モノドロミー定理）によって解析接続の結果が経路に依存せず、全体で一意な一価の正則関数として定まるからである。
+\end{Q}
+%#endregion
 
 \section{補遺：定理・命題の厳密な証明}
 
@@ -1064,7 +1166,6 @@ $x = \xi$ が解 $y = \varphi(x; x_0, y_0, y'_0)$ の特異点であるとする
     結果として、解 $y = \varphi(x)$ は $\xi$ の近傍において正則（テイラー展開可能）となる。これは「$\xi$ が解の特異点である」という前提に矛盾する。
     したがって、最初の仮定は誤りであり、$x = \xi$ は必ず $p_1(x)$ または $p_2(x)$ の特異点でなければならない。\hfill $\blacksquare$
 
-
 % --- 今後の課題（TODOリスト） ---
 
 \section{Next Step / To-Do}
@@ -1082,5 +1183,6 @@ $x = \xi$ が解 $y = \varphi(x; x_0, y_0, y'_0)$ の特異点であるとする
     \bibitem{book:kobayashi} 小林俊行・大島利雄, 『リー群と表現論』, 岩波書店, 2005.
     \bibitem{book:noguchi} 野口潤次郎, 『複素解析概論』, 裳華房, 1993.
 \end{thebibliography}
+%#endregion
 
 \end{document}
