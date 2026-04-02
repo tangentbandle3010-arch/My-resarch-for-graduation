@@ -841,6 +841,7 @@ INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/lm/ts1lmr.fd
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/lm/ts1lmr.fd
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/lm/ts1lmr.fd
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/lm/ts1-lmr12.tfm
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/lm/ec-lmss12.tfm
 INPUT painleve.aux
 INPUT ./painleve.out
 INPUT ./painleve.out
