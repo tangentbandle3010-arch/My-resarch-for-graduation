@@ -1044,6 +1044,355 @@ R_{n} = \sum_{k=0}^{n-1} \left( (t+k)q_{n-k} + r_{n-k} \right) c_{k}
 \subsection{不確定特異点}
 
 \subsection{高階フックス型線型常微分方程式}
+%#region
+n階のフックス型微分方程式
+\begin{equation}\label{eq:linear-ode-n}
+    \frac{d^{n}y}{dx^{n}}+\sum_{j=1}^{n} p_{j}(x)\frac{d^{n-j}y}{dx^{n-j}} = 0   
+\end{equation}
+について考える。
+
+\begin{definition}
+    \eqref{eq:linear-ode-n}の特異点$x=\xi$が\textbf{確定特異点}であるとは、全ての解$\varphi(x)$が$x=\xi$で正則であるか、確定特異点を持つことである
+\end{definition}
+
+\begin{proposition}[フックスの定理]\label{prop:fuchs_theorem_n}
+    $n$階線型常微分方程式\eqref{eq:linear-ode-n}
+    の特異点 $x=\xi$ が確定特異点になる（すなわち任意の解が $x=\xi$ において確定増大度をもつ）ための必要十分条件は、各 $i=1,\dots,n$ について $(x-\xi)^{i}p_{i}(x)$ が $x=\xi$ で正則になることである。
+    これは$n$階でも成り立つ。
+    （\cite[定理13.4 p.128]{book:takano}）
+\end{proposition}
+
+\begin{Q}[$n$階のフックスの定理（命題\ref{prop:fuchs_theorem_n}）の証明は、どのような数学的アイデアに基づいているか？]
+\textbf{A.} 十分性（係数の正則性 $\implies$ 確定特異点）は「フロベニウスの方法」による解の直接構成で示し、必要性（確定特異点 $\implies$ 係数の正則性）は「ロンスキアンの増大度評価」を用いて示します。
+
+証明の骨格は以下の通り：
+\begin{itemize}
+    \item \textbf{十分性の証明（解の構成）：}\\
+    $(x-\xi)^{i}p_{i}(x)$ が正則であると仮定する。方程式 \eqref{eq:linear-ode-n} の両辺に $(x-\xi)^n$ をかけると、一般化されたオイラーの微分方程式（$x^n y^{(n)} + \cdots = 0$ の形）の摂動系とみなせる。このとき、解をフロベニウス級数 $y = (x-\xi)^{\rho} \sum_{k=0}^{\infty} c_k (x-\xi)^k$ の形で仮定し、決定方程式（indicial equation）を解くことで、$n$個の線型独立な解（対数項を含む場合もある）を具体的に構成できる。これらはすべて高々多項式オーダーの増大度を持つため、確定特異点となる。
+
+    \item \textbf{必要性の証明（係数の逆算）：}\\
+    任意の解の基本系 $y_1, \dots, y_n$ がすべて確定増大度をもつと仮定する。方程式の係数 $p_i(x)$ は、基本系から作られるロンスキアン $W(x) = \det(y_j^{(k-1)})$ を用いてクラメルの公式から逆算できる（例えば $p_1(x) = -W'(x)/W(x)$）。解が確定増大度を持つことから各導関数の増大度も評価でき、結果として得られる $p_i(x)$ の極の位数が「高々 $i$ であること（すなわち $(x-\xi)^i p_i(x)$ が正則であること）」が導かれる。
+\end{itemize}
+\end{Q}
+
+\begin{Q}[フックスの定理の証明において、十分性（解の構成）に比べて、必要性（ロンスキアンを用いた逆算）の証明が圧倒的に「面倒」なのはなぜか？]
+\textbf{A.} 最大の理由は、複素領域特有の「モノドロミー（解の多価性）」の処理と、分母に現れる行列式の「零点の評価」が極めて繊細な作業を要求するから。
+
+それぞれの証明のアプローチの違いから、難易度に以下のような差が生じる：
+\begin{itemize}
+    \item \textbf{十分性（構成的で楽）：}\\
+    係数の形（極の位数）が既に与えられているため、フロベニウス級数（べき級数＋対数項）を代入し、決定方程式と漸化式を機械的に解くだけで済む。計算は長いものの、論理はアルゴリズム的で平坦である。
+    
+    \item \textbf{必要性（技巧的で面倒）：}\\
+    「すべての解が確定増大度を持つ」という解析的な仮定だけから、係数 $p_i(x)$ の極の位数を評価しなければならない。係数はロンスキアンを用いた分数の形で表されますが、特異点近傍で分母が $0$ に近づく際の挙動を正確に抑え込む必要がある。さらに、解が特異点の周りを回ったときの多価性を処理するため、「モノドロミー行列のジョルダン標準形」を用いて、評価しやすい特別な基本系（標準基本系）をわざわざ選び直すという、高度に技巧的なステップを踏むことになる。
+\end{itemize}
+\end{Q}
+
+一般の $n$ 階線形微分方程式
+\begin{equation}\label{eq:n-ode}
+\frac{d^{n}y}{dx^{n}} + \sum_{j=1}^{n} q_{j}(x)\frac{d^{n-j}y}{dx^{n-j}} = 0
+\end{equation}
+について、$x=\infty$ での振る舞いを調べるため、局所座標 $x = \frac{1}{u}$ を導入する。
+
+\begin{proposition}\label{prop:regular_infinity_n}
+方程式\eqref{eq:n-ode}に対して、特異点 $x=\infty$ が確定特異点になるための必要十分条件は、各 $j = 1, 2, \dots, n$ について、$x^{j}q_{j}(x)$ が $x=\infty$ において正則になることである。
+（すなわち、$x \to \infty$ において $q_{j}(x) = O(x^{-j})$ となることと同値である。）
+\end{proposition}
+
+\begin{Q}[【核心】$x=\frac{1}{u}$ と変換したとき、連鎖律によって微分方程式は低階の項が複雑に混ざり合った形になるはずである。それにもかかわらず、なぜ $x^{j}q_{j}(x)$ が正則という、各項が独立したシンプルな条件に帰着するのか？]
+\textbf{A.} 変換によって生じる $u$ の冪乗の「最高階部分の寄与」に注目すれば明らかになる。
+連鎖律 $\frac{d}{dx} = -u^{2}\frac{d}{du}$ を繰り返し適用すると、$k$ 階微分の最高階部分は
+\[
+\frac{d^{k}y}{dx^{k}} = (-1)^{k} u^{2k} \frac{d^{k}y}{du^{k}} + (\text{低階の微分項})
+\]
+となる。これを\eqref{eq:n-ode}に代入すると、全体の最高階項は $(-1)^{n} u^{2n} \frac{d^{n}y}{du^{n}}$ となる。
+新しい微分方程式を標準形（最高階の係数を $1$）にするため、全体を $(-1)^{n} u^{2n}$ で割る。このとき、第 $j$ 項（元の $\frac{d^{n-j}y}{dx^{n-j}}$ に対応する部分）の最高階の係数には、
+\[
+\frac{(-1)^{n-j} u^{2(n-j)}}{(-1)^{n} u^{2n}} \cdot q_{j}\left(\frac{1}{u}\right) = (-1)^{-j} u^{-2j} q_{j}\left(\frac{1}{u}\right)
+\]
+がかかることになる。
+$u=0$ が確定特異点になるためには（フックスの定理より）、この $\frac{d^{n-j}y}{du^{n-j}}$ の係数が $u=0$ で高々 $j$ 位の極（つまり $u^{-j}$ の特異性）に収まらなければならない。
+すなわち、$u^{-2j} q_{j}(\frac{1}{u}) = O(u^{-j})$ が要求される。両辺に $u^{2j}$ を掛ければ $q_{j}(\frac{1}{u}) = O(u^{j})$ となり、これを元の $x$ に戻せば $q_{j}(x) = O(x^{-j})$ 、つまり $x^{j}q_{j}(x)$ が $x=\infty$ で正則であることが導かれる。
+連鎖律による低階の複雑な混ざり合いは、常にこの最も厳しい条件（最高階からの寄与）に吸収されるため、結果として各係数ごとの美しい条件式だけが残るのである。
+\end{Q}
+%#endregion
+%#region
+$n$ 階線形微分方程式\eqref{eq:linear-ode-n}において、特異点 $x=\xi$ の周りの局所座標を $u = x-\xi$ とする。
+方程式の両辺に $u^{n}$ をかけると、
+\[
+u^{n}\frac{d^{n}y}{du^{n}} + \sum_{j=1}^{n} u^{n-j} \left( u^{j}p_{j}(u+\xi) \right) \frac{d^{n-j}y}{du^{n-j}} = 0
+\]
+となる。ここで、$x=\xi$ が確定特異点であるという仮定から、$u^{j}p_{j}(u+\xi)$ は $u=0$ で正則となるため、これを $q_{j}(u)$ と置き直す。
+
+解をフロベニウス級数 $\varphi(u) = u^{s} \sum_{k=0}^{\infty} c_{k} u^{k} \quad (c_{0} \neq 0)$ と仮定し、上式に代入して最低次 $u^{s}$ の係数を比較する。
+微分演算子について $u^{k} \frac{d^{k}}{du^{k}} (u^{s}) = s(s-1)\cdots(s-k+1)u^{s}$ となる性質を用いると、$u^{s}$ の係数が消えるための条件として次の方程式が得られる。
+
+\begin{equation}\label{eq:indicial-n}
+f(s) = s(s-1)\cdots(s-n+1) + \sum_{j=1}^{n-1} q_{j}(0) s(s-1)\cdots(s-n+j+1) + q_{n}(0) = 0
+\end{equation}
+（ただし、$q_{j}(0)$ は $(x-\xi)^{j}p_{j}(x)$ の $x=\xi$ における極限値である。）
+
+\begin{definition}
+\eqref{eq:linear-ode-n}に対し、多項式 $f(s)$ を特異点 $x=\xi$ における\textbf{決定多項式}（または特性多項式）という。さらに、$f(s)=0$ を $x=\xi$ における\textbf{決定方程式}（または特性方程式）と呼び、その根 $s$ を\textbf{決定指数}（または特性指数）という。
+\end{definition}
+
+\begin{Q}[【核心】決定方程式 $f(s)=0$ の各項が、$s^{n}$ のような単純な冪乗ではなく、$s(s-1)\cdots(s-n+1)$ のような「下降階乗冪（Falling factorial）」の形をとるのはなぜか？]
+\textbf{A.} これは、特異点近傍での主要な振る舞いが「指数関数 $e^{sx}$」ではなく「冪関数 $u^{s}$」によって支配されているからである。
+定数係数の線形微分方程式では解を $e^{sx}$ と仮定するため、微分するたびに $s$ が前に出て $s^{n}$ が現れる。しかし確定特異点においては、方程式が本質的にオイラーの微分方程式（各項が $x^{k} y^{(k)}$ の形を持つ）に帰着される。冪関数 $u^{s}$ を $k$ 回微分して $u^{k}$ を掛けると、$s^{k}$ ではなく $s(s-1)\cdots(s-k+1)$ という係数が飛び出してくる。この微分の代数的な構造が、決定方程式に下降階乗冪を強制しているのである。
+\end{Q}
+
+決定方程式の根（決定指数）の一つを $s$ とする。
+解が $u=0$ の周りで
+\[
+\varphi(u) = u^{s}\sum_{k=0}^{\infty} c_{k}u^{k} \quad (c_{0}\neq 0)
+\]
+のように展開されると仮定し、方程式に代入して $u^{s+k}$ の係数を整理すると、一般に次のような漸化式が得られる。
+\begin{equation}\label{eq:recurrence-n}
+f(s+k)c_{k} + R_{k}(c_{0}, \cdots, c_{k-1}) = 0 \quad (k \ge 1)
+\end{equation}
+したがって、$f(s+k) = 0$ となる正の整数 $k$ が存在しない限り、$c_{k}$ は $c_{0}$ から順番に矛盾なく一意に決定できる。
+
+次に、この特異点 $x=\xi$ における $n$ 個の決定指数 $s_{1}, s_{2}, \dots, s_{n}$ の和について考察する。
+方程式\eqref{eq:indicial-n}の決定多項式 $f(s)$ に対して「解と係数の関係」を適用することで、以下の美しい関係が導かれる。
+\begin{equation}\label{eq:sum-of-exponents}
+\sum_{j=1}^{n} s_{j} = \frac{1}{2}n(n-1) - q_{1}(0)
+\end{equation}
+
+\begin{Q}[【核心】決定多項式 $f(s)$ から、なぜこの特性指数の和の式が導出されるのか？]
+\textbf{A.} $n$ 次方程式 $f(s)=0$ において、根の和 $\sum s_{j}$ は「$s^{n-1}$ の係数にマイナスをつけたもの」となる（解と係数の関係）。
+決定多項式\eqref{eq:indicial-n}の各項の展開を考えると、
+\begin{align*}
+f(s) &= s(s-1)\cdots(s-n+1) + q_{1}(0)s(s-1)\cdots(s-n+2) + \cdots \\
+&= \left( s^{n} - (0+1+2+\cdots+n-1)s^{n-1} + \cdots \right) + q_{1}(0)\left( s^{n-1} + \cdots \right) + \cdots \\
+&= s^{n} + \left( -\frac{1}{2}n(n-1) + q_{1}(0) \right)s^{n-1} + (\text{低次の項})
+\end{align*}
+となる。したがって、$s^{n-1}$ の係数の符号を反転させることで、ただちに $\sum s_{j} = \frac{1}{2}n(n-1) - q_{1}(0)$ が得られる。
+\end{Q}
+
+\begin{Q}[【核心】なぜわざわざ、特異点における特性指数の「和」を計算したのか？これにはどのような大域的な意味があるのか？]
+\textbf{A.} この局所的な和こそが、リーマン球面 $\hat{\mathbb{C}}$ 全体における極めて強力な拘束条件「フックスの関係式（Fuchs' relation）」を導くためのパーツだからである。
+各特異点での $q_{1}(0)$ は、微分方程式の第2項の係数 $p_{1}(x)$ のその特異点における留数（Residue）に相当する。複素解析の留数定理により、リーマン球面上のすべての特異点（$\infty$ を含む）の留数を足し合わせると必ず $0$ になる。
+つまり、すべての特異点について\eqref{eq:sum-of-exponents}を足し合わせると $q_{1}(0)$ の寄与が完全にキャンセルされ、「全特異点の特性指数の総和は、空間のトポロジー（特異点の数と階数 $n$）だけで決まる一定の整数になる」という大域的な定理が成立する。パンルヴェ方程式などのモノドロミー保存変形を考える際、この関係式は系の自由度を落とす絶対的な土台として機能する。
+\end{Q}
+%#endregion
+%#region
+ここで
+\[
+f(u;s)=s(s-1)\cdots(s-n+1) + \sum_{j=1}^{n-1} q_{j}(u) s(s-1)\cdots(s-n+j+1) + q_{n}(u)
+\]
+とおく。
+\begin{proposition}
+    \eqref{eq:linear-ode-n}は
+    \[
+    f(u;D)y=0\quad D=u\frac{d}{du}
+    \]
+    と表せる。
+\end{proposition}
+
+\begin{proof}
+補題\ref{lem:falling_factorial}から従う。
+\end{proof}
+
+\begin{lemma}\label{lem:falling_factorial}
+    \[
+    u^{k}\frac{d^{k}}{du^{k}}=D(D-1)(D-2)\cdots(D-k+1)
+    \]
+\end{lemma}
+
+\begin{proof}
+$k=1$のとき、$u\frac{d}{du} = D$ であるため、成立する。
+$k>1$のとき、帰納法を用いる。$u^{k}\frac{d^{k}}{du^{k}} = u \cdot u^{k-1} \frac{d^{k-1}}{du^{k-1}} \cdot \frac{d}{du}$ と書ける。帰納法の仮定から、$u^{k-1} \frac{d^{k-1}}{du^{k-1}} = D(D-1)\cdots(D-k+2)$ であるため、
+\[
+u^{k}\frac{d^{k}}{du^{k}} = u \cdot D(D-1)\cdots(D-k+2) \cdot \frac{d}{du}
+\]
+となる。ここで、$(D-a)\frac{d}{du}=\frac{d}{du}(D-a-1)$ という関係を用いると、
+\[
+u^{k}\frac{d^{k}}{du^{k}} = u \cdot D(D-1)\cdots(D-k+2) \cdot \frac{d}{du} = u\frac{d}{du}(D-1)\cdots(D-k+2)(D-k+1) = D(D-1)(D-2)\cdots(D-k+1)
+\]
+となり、主張が成立する。
+\end{proof}
+
+\begin{definition}[フロベニウスの方法]
+このようにして、冪級数解を求める方法を\textbf{フロベニウスの方法}（Frobenius method）と呼ぶ。
+\end{definition}
+
+無限遠点 $x=\infty$ のまわりでの微分方程式の表現について、オイラー作用素（Euler operator）を用いてより代数的に洗練された表示を考える。
+方程式\eqref{eq:linear-ode-n}に $x^{n}$ を掛け、$q_{j}\left(\frac{1}{x}\right) = x^{j}p_{j}(x)$ とおくと、
+\begin{equation}\label{eq:ode-euler-x}
+x^{n}\frac{d^{n}y}{dx^{n}} + \sum_{j=1}^{n} q_{j}\left(\frac{1}{x}\right) x^{n-j}\frac{d^{n-j}y}{dx^{n-j}} = 0
+\end{equation}
+となる。ここで補題\ref{lem:falling_factorial}より、微分演算子 $D_{x} = x\frac{d}{dx}$ を用いると $x^{k}\frac{d^{k}}{dx^{k}} = D_{x}(D_{x}-1)\cdots(D_{x}-k+1)$ と表せるため、上式は次のような演算子の形で書ける。
+\[
+\left[ D_{x}(D_{x}-1)\cdots(D_{x}-n+1) + \sum_{j=1}^{n}q_{j}\left(\frac{1}{x}\right) D_{x}(D_{x}-1)\cdots(D_{x}-n+j+1) \right] y = 0
+\]
+
+ここで局所座標 $u = \frac{1}{x}$ を導入する。連鎖律より $\frac{d}{dx} = -u^{2}\frac{d}{du}$ であるから、オイラー作用素は
+\[
+D_{x} = x\frac{d}{dx} = \frac{1}{u}\left(-u^{2}\frac{d}{du}\right) = -u\frac{d}{du} = -D_{u}
+\]
+と極めてシンプルに変換される。ここで、2変数多項式 $f(u; t)$ を
+\[
+f(u; t) = t(t-1)\cdots(t-n+1) + \sum_{j=1}^{n} q_{j}(u) t(t-1)\cdots(t-n+j+1)
+\]
+と定義すれば、以下の命題が成り立つ。
+
+\begin{proposition}
+\eqref{eq:linear-ode-n}は、$x=\infty$ （すなわち $u=0$）のまわりでは、オイラー作用素 $D_{u} = u\frac{d}{du}$ を用いて
+\[
+f(u; -D_{u})y = 0
+\]
+と簡潔に表現できる。
+\end{proposition}
+
+\begin{Q}[【核心】$x=\frac{1}{u}$ という変換で生じるはずの「連鎖律による複雑な低階項の混ざり合い」は、どこへ消えたのか？]
+\textbf{A.} オイラー作用素 $D = x\frac{d}{dx}$ の持つ「スケール不変性」に吸収された。
+通常の微分演算子 $\frac{d}{dx}$ は座標変換に対して複雑に振る舞うが、オイラー作用素は $x \to x^{a}$ という変換に対して $D_{x} \to \frac{1}{a} D_{u}$ と振る舞う。特に $x = u^{-1}$ の反転変換に対しては単に符号が反転するだけ（$D_{x} = -D_{u}$）であり、微分の階数が混ざることは一切ない。方程式全体をあらかじめ $D_{x}$ の多項式として組み立てておくことで、座標反転の代数的な複雑さを「$-1$ を代入するだけ」という操作に還元できたのである。
+\end{Q}
+
+作用素 $f(u; -D_{u})$ を展開し、フックスの定理を適用できる標準形
+\[
+u^{n}\frac{d^{n}y}{du^{n}} + \sum_{k=1}^{n} r_{k}(u) u^{n-k}\frac{d^{n-k}y}{du^{n-k}} = 0
+\]
+に書き直すことを考える。
+ここで重要なのは、作用素 $(-D_{u})(-D_{u}-1)\cdots(-D_{u}-m+1)$ の最高階の微分が $(-1)^{m} u^{m} \frac{d^{m}}{du^{m}}$ となり、それ以下の階数の微分は定数係数の線形結合になるという事実である。
+
+\begin{proposition}\label{prop:infinity_fuchs_q}
+\eqref{eq:linear-ode-n}に対して、特異点 $x=\infty$ が確定特異点になるための必要十分条件は、各 $j = 1, 2, \dots, n$ について $q_{j}(u)$ が $u=0$ において正則になることである。
+またこのとき、$x=\infty$ における特性指数は、決定方程式 $f(0; -s) = 0$ の根 $s$ として得られる。
+\end{proposition}
+
+\begin{Q}[【核心】作用素を展開した後の係数 $r_{k}(u)$ の正則性と、元の $q_{j}(u)$ の正則性が完全に「同値」になるのはなぜか？]
+\textbf{A.} 両者の関係が、「最高階の微分から順番に決まる、三角行列の構造（帰納的構造）」を持っているからである。
+作用素 $f(u; -D_{u})$ における第 $j$ 項 $q_{j}(u) (-D_{u})\cdots(-D_{u}-n+j+1)$ は、最大で $n-j$ 階の微分までしか持たない。
+方程式全体を最高階の係数 $(-1)^{n}$ で割って標準形にしたとき、$(n-k)$ 階微分の係数 $r_{k}(u)$ を構成するのは以下の3つのみである。
+\begin{enumerate}
+    \item 第 $k$ 項から出る最高階の寄与： $(-1)^{-k} q_{k}(u)$
+    \item 第 $j < k$ 項から出る低階の寄与： $q_{1}(u), \dots, q_{k-1}(u)$ の定数倍
+    \item 先頭の作用素（$q$ が付かない項）から出る低階の寄与： 単なる定数
+\end{enumerate}
+つまり、$r_{k}(u) = (-1)^{-k} q_{k}(u) + \sum_{j=1}^{k-1} c_{k,j} q_{j}(u) + c_{k,0}$ という形になる。
+\begin{itemize}
+    \item $k=1$ のとき： $r_{1}(u) = -q_{1}(u) + c_{1,0}$ より、$r_{1}$ が正則 $\iff$ $q_{1}$ が正則。
+    \item $k=2$ のとき： $r_{2}(u) = q_{2}(u) + c_{2,1}q_{1}(u) + c_{2,0}$ となり、$q_{1}$ はすでに正則であるため、$r_{2}$ が正則 $\iff$ $q_{2}$ が正則。
+\end{itemize}
+このように、上から帰納的に連鎖していくため、すべての $r_{k}(u)$ が正則であること（確定特異点であること）と、すべての $q_{j}(u)$ が正則であることは、代数的に完全に同値となるのである。
+\end{Q}
+
+\begin{Q}[【核心】決定方程式が $f(0; s)=0$ ではなく $f(0; -s)=0$ となるのはなぜか。また、この根 $s$ は「$x=\infty$ における特性指数」とどう対応するのか？]
+\textbf{A.} 演算子が $D_{x} = -D_{u}$ と反転した結果、固有値も反転するからである。
+解を $u$ のフロベニウス級数 $y \sim u^{s}$ と仮定したとき、$D_{u} (u^{s}) = s u^{s}$ であるため、作用素 $f(u; -D_{u})$ を適用した最低次項は $f(0; -s) = 0$ となる。
+一方、$x=\infty$ における特性指数は通常、$x$ の級数 $y \sim x^{\rho}$ として定義される。$x^{\rho} = (1/u)^{\rho} = u^{-\rho}$ であるため、$s = -\rho$ の関係がある。
+つまり、特性指数 $\rho$ を直接求める決定方程式は $f(0; \rho) = 0$ となり、有限の特異点と全く同じ形の多項式 $f$ に $\rho$ を代入して解けばよい、という美しい結論が得られる。
+\end{Q}
+
+\begin{example}
+ガウスの超幾何微分方程式\eqref{eq:gauss_hypergeometric}において、局所座標 $u=\frac{1}{x}$ とオイラー作用素 $D_{u} = u\frac{d}{du}$ を用いると、無限遠点 $x=\infty$ の周りでの方程式は
+\[
+f(u; -D_{u})y = 0, \quad f(u; -D_{u}) = D_{u}(D_{u}+1) - \frac{cu-(a+b+1)}{u-1}D_{u} - \frac{ab}{u-1}
+\]
+と表される。このとき、$x=\infty$ での特性指数は $s=a, b$ となる。
+\end{example}
+
+\begin{proof}
+方程式\eqref{eq:gauss_hypergeometric}を、オイラー作用素 $D_{x} = x\frac{d}{dx}$ （$x^{2}\frac{d^{2}}{dx^{2}} = D_{x}(D_{x}-1)$ および $x\frac{d}{dx} = D_{x}$）を用いて書き換えるため、全体を $x$ で割ると、
+\[
+(1-x) \frac{1}{x} D_{x}(D_{x}-1)y + \left( \frac{c}{x} - (a+b+1) \right) D_{x}y - aby = 0
+\]
+となる。したがって、演算子 $f(u; D_{x})$ は（$u=1/x$ として）
+\[
+f(u; D_{x}) = (u-1)D_{x}(D_{x}-1) + (cu-(a+b+1))D_{x} - ab
+\]
+と書ける。ここに $D_{x} = -D_{u}$ を代入すると、
+\begin{align*}
+f(u; -D_{u}) &= (u-1)(-D_{u})(-D_{u}-1) + (cu-(a+b+1))(-D_{u}) - ab \\
+&= (u-1)D_{u}(D_{u}+1) - (cu-(a+b+1))D_{u} - ab
+\end{align*}
+全体を最高階の係数 $(u-1)$ で割って標準形にすると、
+\[
+D_{u}(D_{u}+1) - \frac{cu-(a+b+1)}{u-1}D_{u} - \frac{ab}{u-1}
+\]
+となる。
+決定方程式は $u=0$ とし、作用素 $D_{u}$ を $s$ に置き換える（$f(0; -s) = 0$）ことで得られる。
+\begin{align*}
+s(s+1) - \frac{-(a+b+1)}{-1}s - \frac{ab}{-1} &= s(s+1) - (a+b+1)s + ab \\
+&= s^{2} - (a+b)s + ab \\
+&= (s-a)(s-b) = 0
+\end{align*}
+したがって、$x=\infty$ における特性指数は $s=a, b$ である。
+\end{proof}
+
+\begin{Q}[【核心】ガウスの超幾何関数 $F(a,b,c; x)$ のパラメータ $a, b, c$ は、一見すると不規則に並んでいるように見えるが、これらは微分方程式の特異点とどのような関係にあるのか？]
+\textbf{A.} パラメータ $a, b, c$ は、まさに「各特異点における特性指数」そのものを指定するための変数である。
+ガウスの微分方程式は $x=0, 1, \infty$ の3点のみを確定特異点に持つ。それぞれの特性指数を計算すると、
+\begin{itemize}
+    \item $x=0$ での特性指数： $0, 1-c$
+    \item $x=1$ での特性指数： $0, c-a-b$
+    \item $x=\infty$ での特性指数： $a, b$
+\end{itemize}
+となる。つまり、$\infty$ での特性指数がそのまま関数の基本パラメータ $a, b$ として採用されているのである。
+（※ベルンハルト・リーマンは、この「3つの特異点とそれぞれの特性指数」を指定するだけで、微分方程式全体が大域的に一意に定まってしまうことを証明した。超幾何関数とは、パラメータの代数的な操作の産物ではなく、「リーマン球面上に3つの穴を開け、そこでの局所的な振る舞い（特性指数）を指定することで定義される幾何学的な関数」なのである。）
+\end{Q}
+したがって$x=\infty$における特性指数$s_{1}^{(\infty)},\cdots,s_{n}^{(\infty)}$に対して、解と係数の関係より
+\begin{equation}\label{eq:sum-of-infinity-exponents}
+\sum_{j=1}^{n} s_{j}^{(\infty)} = -\frac{1}{2}n(n-1) + q_{1}(0)
+\end{equation}
+が成り立つ。
+%#endregion
+%#region
+ところで、有限の確定特異点 $x=\xi_{j}$ （$j=1, \dots, m$）の条件から、微分方程式の第2項の係数 $p_{1}(x)$ は有理関数であり、各特異点での留数を $a_{j}$ とすると、部分分数分解により
+\[
+p_{1}(x) = \sum_{j=1}^{m} \frac{a_{j}}{x-\xi_{j}} + (x\text{の多項式})
+\]
+と表せる。
+
+\begin{Q}[【核心】有理関数 $p_{1}(x)$ に含まれるはずの「$x$の多項式」の部分は、なぜ完全に $0$ になると断言できるのか？]
+\textbf{A.} 無限遠点 $x=\infty$ も確定特異点であるという条件が、多項式部分を禁止するからである。
+命題\ref{prop:infinity_fuchs_q}より、$x=\infty$ が確定特異点であるためには $x p_{1}(x)$ が $x=\infty$ で正則、すなわち $x \to \infty$ において $p_{1}(x) = O(x^{-1})$ とならなければならない。もし $p_{1}(x)$ に定数項や $x$ の1次以上の項が含まれていれば、$x \to \infty$ で発散または $O(1)$ となり、この条件に反してしまう。したがって、多項式部分は恒等的に $0$ でなければならない。（※これはリュービルの定理の帰結でもある）。
+\end{Q}
+
+したがって、$p_{1}(x)$ は厳密に
+\[
+p_{1}(x) = \sum_{j=1}^{m} \frac{a_{j}}{x-\xi_{j}}
+\]
+となる。
+各有限特異点 $x=\xi_{l}$ の局所座標 $u = x-\xi_{l}$ において、$q_{1}^{(l)}(0) = \lim_{x \to \xi_{l}} (x-\xi_{l})p_{1}(x) = a_{l}$ である。よって、$x=\xi_{l}$ における $n$ 個の特性指数 $s_{1}^{(l)}, \dots, s_{n}^{(l)}$ に対して、\eqref{eq:sum-of-exponents}より
+\[
+\sum_{j=1}^{n} s_{j}^{(l)} = \frac{1}{2}n(n-1) - a_{l}
+\]
+が成り立つ。
+一方、$x=\infty$ における特性指数の和を求める。局所座標 $u=1/x$ を用いると、
+\[
+q_{1}^{(\infty)}(0) = \left. \frac{1}{u}p_{1}\left(\frac{1}{u}\right) \right|_{u=0} = \left. \sum_{j=1}^{m} a_{j}\frac{1}{1-u\xi_{j}} \right|_{u=0} = \sum_{j=1}^{m} a_{j}
+\]
+となる。
+
+\begin{Q}[【核心】有限特異点での特性指数の和は $\frac{1}{2}n(n-1) - a_{l}$ であったのに対し、無限遠点での和はなぜ符号が反転して $-\frac{1}{2}n(n-1) + \sum a_{j}$ となるのか？]
+\textbf{A.} 無限遠点における決定方程式が $f(0; -s) = 0$ であり、$s$ ではなく $-s$ が代入されることで「上昇階乗冪」が現れるからである。
+有限特異点の決定方程式には下降階乗冪 $s(s-1)\cdots(s-n+1) = s^{n} - \frac{1}{2}n(n-1)s^{n-1} + \cdots$ が現れた。
+一方、無限遠点では $(-s)(-s-1)\cdots(-s-n+1) = (-1)^{n} s(s+1)\cdots(s+n-1)$ となり、これを展開すると $(-1)^{n} (s^{n} + \frac{1}{2}n(n-1)s^{n-1} + \cdots)$ という上昇階乗冪になる。
+全体を $(-1)^{n}$ で割って最高次の係数を $1$ にすると、$s^{n-1}$ の係数が $-\frac{1}{2}n(n-1)$ から $+\frac{1}{2}n(n-1)$ に反転していることがわかる。したがって、解と係数の関係を用いた際にも和の符号が反転し、$\sum s^{(\infty)} = -\frac{1}{2}n(n-1) + q_{1}^{(\infty)}(0)$ となるのである。
+\end{Q}
+
+これより、$x=\infty$ における特性指数の和は
+\[
+\sum_{j=1}^{n}s_{j}^{(\infty)} = -\frac{1}{2}n(n-1) + \sum_{j=1}^{m} a_{j}
+\]
+となる。
+有限特異点と無限遠点のすべての特性指数の和をとると、$a_{j}$ の項が見事に相殺され、以下の極めて重要な大域的関係式が成立する。
+
+\begin{proposition}\label{prop:fuchs_relation}
+リーマン球面上の特異点がすべて確定特異点であるようなフックス型微分方程式\eqref{eq:linear-ode-n}の特性指数には、
+\begin{align*}
+\sum_{l=1}^{m}\sum_{j=1}^{n} s_{j}^{(l)} + \sum_{j=1}^{n} s_{j}^{(\infty)} &= \sum_{l=1}^{m} \left( \frac{1}{2}n(n-1) - a_{l} \right) + \left( -\frac{1}{2}n(n-1) + \sum_{j=1}^{m} a_{j} \right) \\
+&= \frac{1}{2}n(n-1)(m-1)
+\end{align*}
+という関係式が成立する。この方程式のパラメータを大域的に縛る拘束条件を\textbf{フックスの関係式（Fuchs' relation）}という。
+\end{proposition}
+%#endregion
+%#region
+
+%#endregion
+
 
 \begin{definition}[リーマン図式]%TODO(書き直す)
     % --- ここに数式 ---
@@ -1174,10 +1523,7 @@ p.128
 \end{Q}
 
 フックス型微分方程式
-\begin{equation}\label{eq:linear-ode-n}
-    \frac{d^{n}y}{dx^{n}}+\sum_{j=1}^{n} p_{j}(x,t)\frac{d^{n-j}y}{dx^{n-j}} = 0   
-\end{equation}
-を考える。\\
+\eqref{eq:linear-ode-n}を考える。\\
 \begin{equation}\label{eq:auxiliary-phi}
 \frac{d\phi(x)}{dx}+\frac{1}{n}p_{1}(x,t)\phi(x)=0
 \end{equation}
@@ -1248,11 +1594,7 @@ p.129
 %#endregion
 %#region
 \begin{theorem}[確定特異点まわりの解の基本系（フックスの定理）]\label{thm:fuchs}
-    $z=c$を微分方程式
-    \begin{equation}\label{eq:nth_order_linear_ode}
-    \frac{d^{n}w}{dz^{n}}+a_{1}(z)\frac{d^{n-1}w}{dz^{n-1}}+\cdots+a_{n-1}(z)\frac{dw}{dz}+a_{n}(z)w=0
-    \end{equation}
-    の確定特異点とする。このとき$z=c$の周りの解の基底として
+    $z=c$を微分方程式\eqref{eq:linear-ode-n}の確定特異点とする。このとき$z=c$の周りの解の基底として
     \[
     (z-c)^{\rho}P(z,\log(z-c))
     \]
@@ -1320,13 +1662,13 @@ p.129
 %#endregion
 %#region
 \begin{theorem}\label{thm:linear_ode_existence_and_continuation}
-    \eqref{eq:nth_order_linear_ode}の$a_{1}(z),\cdots,a_{n}(z)$を領域$D\subset\mathbb{C}$で正則とする。このとき\\
+    \eqref{eq:linear-ode-n}の$a_{1}(z),\cdots,a_{n}(z)$を領域$D\subset\mathbb{C}$で正則とする。このとき\\
     \textbf{(A).}任意の$p\in D,q^{0},\cdots,q^{n-1}\in\mathbb{C}$に対して初期条件
     \[
     w(p)=q^{0},\frac{dw(p)}{dz}=q^{1},\cdots,\frac{d^{n-1}w(p)}{dz^{n-1}}=q^{n-1}
     \]
-    を満たす\eqref{eq:nth_order_linear_ode}の正則な解がpの近傍でただ一つ存在する。\\
-    \textbf{(B).}\eqref{eq:nth_order_linear_ode}の局所解は、$D$内のすべての曲線に沿って解析接続可能である。\\
+    を満たす\eqref{eq:linear-ode-n}の正則な解がpの近傍でただ一つ存在する。\\
+    \textbf{(B).}\eqref{eq:linear-ode-n}の局所解は、$D$内のすべての曲線に沿って解析接続可能である。\\
     （\cite[p.127 定理25.3]{book:kimura} を参照。）
 \end{theorem}
 %#endregion
@@ -1636,7 +1978,7 @@ p.129
 %#endregion
 %#region
 \begin{theorem}\label{thm:solution_space_dimension}
-    $a$を中心とする開円板$B_{a}\subset D$において正則な\eqref{eq:nth_order_linear_ode}の解全体$V_{a}$は$n$次元複素線型空間をなす。
+    $a$を中心とする開円板$B_{a}\subset D$において正則な\eqref{eq:linear-ode-n}の解全体$V_{a}$は$n$次元複素線型空間をなす。
     （\cite[p.78 定理11.2]{book:takano}を参照）
 \end{theorem}
 %#endregion
@@ -1687,50 +2029,13 @@ p.129
 %#endregion
 %#region
 \begin{proposition}[アーベルの公式とロンスキアンによる独立性の判定]\label{prop:wronskian_independence}
-    $w_{0}(z),\cdots,w_{n-1}(z)$ を $B_{a}$ において正則な \eqref{eq:nth_order_linear_ode} の解とする。このとき、
+    $w_{0}(z),\cdots,w_{n-1}(z)$ を $B_{a}$ において正則な \eqref{eq:linear-ode-n} の解とする。このとき、
     \begin{enumerate}
         \item[(i)] ロンスキアン $W(w_{0}(z),\cdots,w_{n-1}(z))$ は、全ての $z\in B_{a}$ で恒等的に $0$ であるか、あるいは全ての $z\in B_{a}$ で $0$ でないかのどちらかである。
         \item[(ii)] $w_{0}(z),\cdots,w_{n-1}(z)$ が解空間 $V_{a}$ の基底である $\iff$ 全ての $z\in B_{a}$ に対して $W(w_{0}(z),\cdots,w_{n-1}(z)) \neq 0$
     \end{enumerate}
     （\cite[p.78 定理11.3]{book:takano}を参照）
 \end{proposition}
-%#endregion
-%#region
-\begin{proposition}[フックスの定理]\label{prop:fuchs_theorem_n}
-    $n$階線型常微分方程式
-    \begin{equation}
-        y^{(n)} + p_{1}(x)y^{(n-1)} + \cdots + p_{n}(x)y = 0 \label{eq:n-ode}
-    \end{equation}
-    の特異点 $x=\xi$ が確定特異点になる（すなわち任意の解が $x=\xi$ において確定増大度をもつ）ための必要十分条件は、各 $i=1,\dots,n$ について $(x-\xi)^{i}p_{i}(x)$ が $x=\xi$ で正則になることである。
-    これは$n$階でも成り立つ。
-    （\cite[定理13.4 p.128]{book:takano}）
-\end{proposition}
-
-\begin{Q}[$n$階のフックスの定理（命題\ref{prop:fuchs_theorem_n}）の証明は、どのような数学的アイデアに基づいているか？]
-\textbf{A.} 十分性（係数の正則性 $\implies$ 確定特異点）は「フロベニウスの方法」による解の直接構成で示し、必要性（確定特異点 $\implies$ 係数の正則性）は「ロンスキアンの増大度評価」を用いて示します。
-
-証明の骨格は以下の通り：
-\begin{itemize}
-    \item \textbf{十分性の証明（解の構成）：}\\
-    $(x-\xi)^{i}p_{i}(x)$ が正則であると仮定する。方程式 \eqref{eq:n-ode} の両辺に $(x-\xi)^n$ をかけると、一般化されたオイラーの微分方程式（$x^n y^{(n)} + \cdots = 0$ の形）の摂動系とみなせる。このとき、解をフロベニウス級数 $y = (x-\xi)^{\rho} \sum_{k=0}^{\infty} c_k (x-\xi)^k$ の形で仮定し、決定方程式（indicial equation）を解くことで、$n$個の線型独立な解（対数項を含む場合もある）を具体的に構成できる。これらはすべて高々多項式オーダーの増大度を持つため、確定特異点となる。
-
-    \item \textbf{必要性の証明（係数の逆算）：}\\
-    任意の解の基本系 $y_1, \dots, y_n$ がすべて確定増大度をもつと仮定する。方程式の係数 $p_i(x)$ は、基本系から作られるロンスキアン $W(x) = \det(y_j^{(k-1)})$ を用いてクラメルの公式から逆算できる（例えば $p_1(x) = -W'(x)/W(x)$）。解が確定増大度を持つことから各導関数の増大度も評価でき、結果として得られる $p_i(x)$ の極の位数が「高々 $i$ であること（すなわち $(x-\xi)^i p_i(x)$ が正則であること）」が導かれる。
-\end{itemize}
-\end{Q}
-
-\begin{Q}[フックスの定理の証明において、十分性（解の構成）に比べて、必要性（ロンスキアンを用いた逆算）の証明が圧倒的に「面倒」なのはなぜか？]
-\textbf{A.} 最大の理由は、複素領域特有の「モノドロミー（解の多価性）」の処理と、分母に現れる行列式の「零点の評価」が極めて繊細な作業を要求するから。
-
-それぞれの証明のアプローチの違いから、難易度に以下のような差が生じる：
-\begin{itemize}
-    \item \textbf{十分性（構成的で楽）：}\\
-    係数の形（極の位数）が既に与えられているため、フロベニウス級数（べき級数＋対数項）を代入し、決定方程式と漸化式を機械的に解くだけで済む。計算は長いものの、論理はアルゴリズム的で平坦である。
-    
-    \item \textbf{必要性（技巧的で面倒）：}\\
-    「すべての解が確定増大度を持つ」という解析的な仮定だけから、係数 $p_i(x)$ の極の位数を評価しなければならない。係数はロンスキアンを用いた分数の形で表されますが、特異点近傍で分母が $0$ に近づく際の挙動を正確に抑え込む必要がある。さらに、解が特異点の周りを回ったときの多価性を処理するため、「モノドロミー行列のジョルダン標準形」を用いて、評価しやすい特別な基本系（標準基本系）をわざわざ選び直すという、高度に技巧的なステップを踏むことになる。
-\end{itemize}
-\end{Q}
 %#endregion
 
 \section{補遺：定理・命題の厳密な証明}
