@@ -1,11 +1,11 @@
 # Fdb version 4
-["dvipdf"] 1775235369 "painleve.dvi" "painleve.pdf" "painleve" 1775235371 0
-  "painleve.dvi" 1775235369 305948 3b8b6ffb8ae5e8dc659f7e5868540a87 "latex"
+["dvipdf"] 1775271408 "main.dvi" "main.pdf" "main" 1775271410 0
+  "main.dvi" 1775271408 338504 9e4efc2281a3f5711b5af73760d65693 "latex"
   (generated)
-  "painleve.pdf"
+  "main.pdf"
   (rewritten before read)
-["latex"] 1775235366 "/Users/matsuurahikariyuu/Painleve/Painleve/painleve.tex" "painleve.dvi" "painleve" 1775235371 0
-  "/Users/matsuurahikariyuu/Painleve/Painleve/painleve.tex" 1775235363 148864 d69822dfb37d13c281ead3adf9699fb8 ""
+["latex"] 1775271407 "/Users/matsuurahikariyuu/Painleve/Painleve/main.tex" "main.dvi" "main" 1775271410 0
+  "/Users/matsuurahikariyuu/Painleve/Painleve/main.tex" 1775235428 3745 6d39fa5e9d05c3c70698a5e1248988a8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm" 1246382020 924 9904cf1d39e9767e7a3622f2a125a565 ""
@@ -132,14 +132,18 @@
   "/usr/local/texlive/2023/texmf-dist/web2c/texmf.cnf" 1677365944 40745 87bb86a62d462f93a1efc6b0c65c872e ""
   "/usr/local/texlive/2023/texmf-var/web2c/euptex/uplatex.fmt" 1687344860 7809408 e2602eb318b02f1455d77cdb7cdb2c64 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "painleve.aux" 1775235369 9371 595623005a227ce8b217c582660d9c79 "latex"
-  "painleve.out" 1775235369 2078 229c0dccf391c9519cef004acb22266a "latex"
-  "painleve.tex" 1775235363 148864 d69822dfb37d13c281ead3adf9699fb8 ""
-  "painleve.toc" 1775235369 1559 c45bc52a4daf721e2698ba420128b9e7 "latex"
+  "main.aux" 1775271408 9363 5c9a952f529b2eab4deb52aaa8e316f0 "latex"
+  "main.out" 1775271408 1796 4677e528f771231386c7fde2462a190a "latex"
+  "main.tex" 1775235428 3745 6d39fa5e9d05c3c70698a5e1248988a8 ""
+  "main.toc" 1775271408 1384 b30784fac8dd73fcf60e191fe62c633c "latex"
+  "sections/01_intro.tex" 1775235964 280 a904e7a6f1087868f736907e39e37274 ""
+  "sections/02_fuchs.tex" 1775271404 125576 156920d3cac818ecc33f6a8f8f7049ae ""
+  "sections/03_painleve.tex" 1775235940 3946 78e6101fcb97da067ea8357cb15a7dc7 ""
+  "sections/99_appendix.tex" 1775235958 34879 6891087bf531720f5a02558d4aad893b ""
   (generated)
-  "painleve.aux"
-  "painleve.dvi"
-  "painleve.log"
-  "painleve.out"
-  "painleve.toc"
+  "main.aux"
+  "main.dvi"
+  "main.log"
+  "main.out"
+  "main.toc"
   (rewritten before read)

@@ -1,0 +1,459 @@
+% !TEX root = ../main.tex
+
+\section{用いた定理}%TODO(それぞれの定理に証明つけてもいいかも　優先度:低)
+%#region
+\begin{theorem}[正則な解の存在と一意性]\label{thm:cauchy}
+    各$f^{j}(z,w),0\leq j\leq n-1$が$\mathbb{C}^{n-1}$内の領域$D$で正則ならば、任意の点$(a,b)\in D$に対して、$(a,b)$を通る
+    \begin{equation}\label{eq:cauchy_problem}
+    \frac{dw}{dz}=f(z,w)
+    \end{equation}
+    の正則な解$w=w(z)$が局所的にただ一つ存在する。
+    % \cite[オプション]{ラベル} で特定のページをスマートに引用できる
+    （\cite[p.50 定理8.1]{book:takano} を参照）
+\end{theorem}
+%#endregion
+%#region
+\begin{theorem}[確定特異点まわりの解の基本系（フックスの定理）]\label{thm:fuchs}
+    $z=c$を微分方程式\eqref{eq:linear-ode-n}の確定特異点とする。このとき$z=c$の周りの解の基底として
+    \[
+    (z-c)^{\rho}P(z,\log(z-c))
+    \]
+    という形のものが$n$個とれる。ここで$\rho\in \mathbb{C}$、$P(z,t)$は次数が$n-1$以下の$t$の多項式であり、その係数は$z=c$の周りで正則な関数である。特に、少なくとも1つの解として$\log(z-c)$を含まないものが存在する。
+    （\cite[p.119 定理13.1]{book:takano} を参照）
+\end{theorem}
+%#endregion
+%#region
+\begin{definition}[直接接続]
+    点 $a \in \mathbb{C}$ を中心とする収束冪級数を $f_a(z)$ とし、その収束半径を $r_a > 0$、収束円（定義域）を $D_a = \{z \in \mathbb{C} \mid |z - a| < r_a\}$ とする。
+    $D_a$ 内の点 $b \in D_a$ を任意にとる。$f_a(z)$ は $D_a$ 上で正則であるため、これを点 $b$ の周りでテイラー展開し直すことで、新しい収束冪級数 $f_b(z)$ を作ることができる。この $f_b(z)$ の収束円を $D_b$ とすると、共通の領域 $D_a \cap D_b$ において
+    \[
+    f_a(z) = f_b(z)
+    \]
+    が恒等的に成り立つ。
+    このようにして得られた新しい収束冪級数 $f_b(z)$ のことを、$f_a(z)$ の $b$ を中心とする\textbf{直接接続}という。
+    （\cite[p.101]{book:kimura} を参照）
+\end{definition}
+%#endregion
+%#region
+\begin{definition}[曲線に沿っての解析接続]
+    $a,b\in\mathbb{C}$とその間の連続曲線$\varphi:[0,1]\to\mathbb{C};t\mapsto \varphi(t)$をとる。$a$を中心とする収束冪級数$f_{a}(z)$が与えられたとする。$f_{a}(z)$が$\varphi$に沿って解析接続可能であるとは、各$t\in[0,1]$に対して、$\varphi(t)$を中心とする収束冪級数が定まって次の条件が満たされることをいう。\\
+    \textbf{条件} : 任意の$t_{0}\in[0,1]$に対して$\epsilon(t_{0})>0$が存在し、任意の$t\in[t_{0}-\epsilon,t_{0}+\epsilon]\bigcap[0,1]$に対して、$f(z;t)$は$f(z;t_{0})$の直接接続である。\\
+    この時、$f_{b}(z)=f(z;1)$を$f_{a}(z)$の\textbf{$\varphi$に沿っての解析接続}という。
+    （\cite[p.119 定義21.1]{book:kimura} を参照）
+\end{definition}
+%#endregion
+%#region
+\begin{proposition}[解析接続の線型性]\label{prop:analytic_linear}
+    関数 $f(z), g(z)$ が曲線 $\varphi$ に沿って解析接続可能であるとする。このとき、任意の複素定数 $c_1, c_2$ に対して、その線型結合 $h(z) = c_1f(z) + c_2g(z)$ も $\varphi$ に沿って解析接続可能であり、終端 $t=1$ での解析接続の結果をそれぞれ $f(z;1), g(z;1), h(z;1)$ とすると、
+    $$ h(z;1) = c_1f(z;1) + c_2g(z;1) $$
+    が成り立つ。
+\end{proposition}
+
+\begin{proof}[証明の概略]
+    曲線上の点 $\varphi(t)$ を中心とする $f, g$ の収束冪級数をそれぞれ
+    $$ f(z; t) = \sum a_n (z - \varphi(t))^n, \quad g(z; t) = \sum b_n (z - \varphi(t))^n $$
+    とする。このとき、定数倍の和（線型結合）である
+    $$ h(z; t) = c_1f(z; t) + c_2g(z; t) = \sum (c_1a_n + c_2b_n)(z - \varphi(t))^n $$
+    も、同じく $\varphi(t)$ を中心とする収束冪級数となる。
+    
+    解析接続の各ステップである「直接接続」とは、収束円内の新しい中心でテイラー展開を計算し直す操作に他ならない。新しい中心でのテイラー係数はその点での微分係数によって定まるが、微分の線型性より任意の階数 $k$ について
+    $$ h^{(k)}(z) = c_1f^{(k)}(z) + c_2g^{(k)}(z) $$
+    が成り立つ。すなわち、「足し合わせてから展開し直す」結果と「展開し直してから足し合わせる」結果は恒等的に一致する。
+    
+    この直接接続の連鎖を曲線 $\varphi$ に沿って $t=0$ から $t=1$ まで繰り返すことで、終着点 $t=1$ においても
+    $$ h(z; 1) = c_1f(z; 1) + c_2g(z; 1) $$
+    が成立する。したがって、解析接続の操作は定数係数の線型結合（および定数行列の掛け算）と交換可能である。
+\end{proof}
+%#endregion
+%#region
+\begin{definition}[ホモトープ]\label{def:homotope}
+    $X$:位相空間,$l,l':[0,1]\to X$を連続曲線とする。$l(0)=l'(0)=p,l(1)=l'(1)=q$とする。$l$と$l'$が\textbf{ホモトープ}であるとは、次の性質を持つ連続写像$H:[0,1]\times[0,1]\to X$が存在することである。\\
+    \textbf{(A).}$H(t,0)=l(t),H(t,1)=l'(t)\quad (\forall t \in[0,1])$\\
+    \textbf{(B).}$H(0,s)=p,H(1,s)=q \quad  (\forall s \in[0,1])$\\
+    このような$H$を\textbf{$l$から$l'$へのホモトピー}という
+    （\cite[p.121 定義9.1]{book:matsumoto} を参照）
+\end{definition}
+%#endregion
+%#region
+\begin{theorem}[一価性定理]\label{thm:monodromy}
+    $D$を$\mathbb{C}$内の領域とする。$a\in D$を中心とする収束冪級数$f_{a}(z)$が$a$を始点とする$D$内の任意の連続曲線に沿って解析接続可能とする。このとき、$a$を始点とし、$b\in D$を終点とする$D$内の連続曲線$L_{0},L_{1}$が$D$において始点と終点を固定してホモトープならば、$f_{a}(z)$の$L_{0},L_{1}$に沿っての解析接続は$b$において一致する。
+    （\cite[p.110 定理22.2]{book:kimura} を参照。証明付き）
+\end{theorem}
+%#endregion
+%#region
+\begin{theorem}\label{thm:linear_ode_existence_and_continuation}
+    \eqref{eq:linear-ode-n}の$a_{1}(z),\cdots,a_{n}(z)$を領域$D\subset\mathbb{C}$で正則とする。このとき\\
+    \textbf{(A).}任意の$p\in D,q^{0},\cdots,q^{n-1}\in\mathbb{C}$に対して初期条件
+    \[
+    w(p)=q^{0},\frac{dw(p)}{dz}=q^{1},\cdots,\frac{d^{n-1}w(p)}{dz^{n-1}}=q^{n-1}
+    \]
+    を満たす\eqref{eq:linear-ode-n}の正則な解がpの近傍でただ一つ存在する。\\
+    \textbf{(B).}\eqref{eq:linear-ode-n}の局所解は、$D$内のすべての曲線に沿って解析接続可能である。\\
+    （\cite[p.127 定理25.3]{book:kimura} を参照。）
+\end{theorem}
+%#endregion
+%#region
+\begin{theorem}[解の解析接続定理]\label{thm:ode_solution_continuation}
+   $f(z,w)$が領域$D\subset\mathbb{C}$において正則であるとする。$\varphi:[0,1]\to D$を連続とする。任意の$t\in[0,1]$に対して、$(\varphi(t),w(\varphi(t);t))\in D$であるとすると、各$t$に対して、$w(z;t)$は$z\in B_{z}(\varphi(t);r(t)), (z,w(z;t))\in D$なる限り、\eqref{eq:cauchy_problem}の解である。
+   （\cite[p.56 定理8.6]{book:takano} を参照。）
+\end{theorem}
+%#endregion
+%#region
+\begin{definition}[表現]\label{dfn:representation}
+    $G$を群、$V$を複素ベクトル空間とする。$G$の単位元を$e$と書くことにする。写像
+    \[
+    \pi:G\to GL_{\mathbb{C}}(V)
+    \]
+    が与えられて、\\
+    \textbf{(A).}$\pi(x)\pi(y)=\pi(xy)\quad(\forall x, \forall y\in G)$\\
+    \textbf{(B).}$\pi(e)=id_{V}$\\
+    を満たす時、$\pi$を\textbf{群$G$の$V$上の表現}といい$V$を\textbf{表現空間}という。
+    （\cite[p.10 定義1.12]{book:kobayashi} を参照。）
+\end{definition}
+%#endregion
+%#region
+\begin{theorem}[行列の微分]\label{thm:derivative-of-determinant}
+    $A(x)=(a_{ij}(x))$とする。$i$行目を微分した行列を$A_{i}$とおくと、
+    \[
+    \frac{d}{dx}(\det(A(x)))=\sum_{i=1}^{n}\det(A_{i}(x))
+    \]
+\end{theorem}
+
+\begin{proof}
+    \[
+    \det(A(x))=\sum_{\sigma\in S_{n}}a_{1\sigma(1)}(x)\cdots a_{n\sigma(n)}(x)
+    \]
+    と表せるが、微分すると、
+    \[
+    \frac{d}{dx}(\det(A(x)))=\sum_{\sigma\in S_{n}}\sum_{i=1}^{n}a_{1\sigma(1)}(x)\cdots a_{i\sigma_(i)}'(x)\cdots a_{n\sigma(n)}(x)
+    \]
+    \[
+    \therefore\quad
+    \frac{d}{dx}(\det(A(x)))=\sum_{i=1}^{n}\sum_{\sigma\in S_{n}}a_{1\sigma(1)}(x)\cdots a_{i\sigma(i)}'(x)\cdots a_{n\sigma(n)}(x)
+    \]
+    \[
+    \therefore\quad
+    \frac{d}{dx}(\det(A(x)))=\sum_{i=1}^{n}\det(A_{i}(x))
+    \]
+    
+\end{proof}
+%#endregion
+%#region
+\begin{proposition}[解析接続と微分は交換可能]\label{prop:interchange-ac-diff}
+    関数 $f(z)$ が曲線 $\varphi$ に沿って解析接続可能であるとする。このとき、任意の$n\geq 0$ に対して、その微分 $f^{(n)}(z)$ も $\varphi$ に沿って解析接続可能であり、終端 $t=1$ での解析接続の結果をそれぞれ $f(z;1), f^{(n)}(z;1)$ とすると、
+    \[
+    f^{(n)}(z;1) = \frac{d^{n}}{dz^{n}}f(z;1)
+    \]
+    が成り立つ。
+\end{proposition}
+
+\begin{proof}
+    $n=1$の時に証明すれば十分。また、直接接続の時に証明すれば十分。\\
+    $f(z)$の元の収束円盤を$D_{1}$とする。また、$f(z)$は解析接続可能なので、解析接続先の関数を$g(z)$、その収束円盤を$D_{2}$とすると、$z \in D_{1}\cap D_{2}$上で$f(z)=g(z)$である。\\
+    このとき、命題\ref{prop:convergence-radius-invariant}より、$f'(z)はD_{1}$上収束し、$g'(z)はD_{2}$上収束する。また、$z \in D_{1}\cap D_{2}$上では$f'(z)=g'(z)$より、$f'(z)$の$D_{2}$への解析接続は一致の定理から、$g'(z)$である。
+\end{proof}
+%#endregion
+%#region
+\begin{proposition}[解析関数を微分しても収束半径は不変]\label{prop:convergence-radius-invariant}
+    $a\in\mathbb{C}$とする。$f(z)=\sum_{n=0}^{\infty}a_{n}(z-a)^{n}$の収束半径を$R(>0)$とすると、f(z)は$B(a;R)$上の正則関数で
+    \[
+    f'(z)=\sum_{n=0}^{\infty}na_{n}(z-a)^{n-1}
+    \]
+    である。$f'(z)$の収束半径も$R$である。
+    （\cite[p.62 定理3.1.10]{book:noguchi} を参照。）
+\end{proposition}
+%#endregion
+%#region
+\begin{theorem}[正則関数は解析関数]\label{thm:holomorphic-is-analytic}
+    $D$上の正則関数$f$は$D$上解析的で、各点$a\in D$で、$f(z)=\sum_{n=0}^{\infty}a_{n}(z-a)^{n}, z\in B(a;d(a,\partial D))$と展開され、収束半径は$d(a;\partial D)$以上である。
+    （\cite[p.89 定理3.5.7]{book:noguchi} を参照。）
+\end{theorem}
+%#endregion
+%#region
+\begin{proposition}[一致の定理]\label{prop:identity_theorem}
+    $f$を領域$D$上の解析関数とする。部分集合$E\subset D$は$D$内に少なくとも$1$つ集積点を持つとする。もし$f$の$E$への制限$f|_{E}$が恒等的に$0$ならば、$f$は$D$上恒等的に$0$である。
+    （\cite[p.35 定理2.4.14]{book:noguchi} を参照。）
+\end{proposition}
+%#endregion
+%#region
+\begin{theorem}[ローラン展開]\label{thm:laurent_expansion}
+    $B=B(c;r)$とし、$f(z)$が$\bar{B}\setminus\{c\}$で正則であるとすると、$f(z)$は$B\setminus\{c\}$において
+    \[
+    f(z)=\sum_{n=-\infty}^{\infty}a_{n}(z-c)^{n}
+    \]
+    と展開される。ここで、
+    \[
+    a_{n}=\frac{1}{2\pi i}\int_{\partial B}\frac{f(\zeta)}{(\zeta-c)^{n+1}}d\zeta\quad (n=0,\pm1,\pm2,\cdots)
+    \]
+    であり、正べきの部分 $\sum_{n=0}^{\infty}a_{n}(z-c)^{n}$ は任意の $0<r'<r$ に対して $\overline{B(c;r')}$ で一様収束し、負べきの部分（主要部） $\sum_{n<0}a_{n}(z-c)^{n}$ は任意の $r''>0$ に対して $\mathbb{C}\setminus B(c;r'')$ において一様収束する。
+    （\cite[p.70 定理14.1]{book:kimura} を参照。）
+\end{theorem}
+
+\begin{Q}[なぜ特異点の周りでテイラー展開ではなくローラン展開を使うの？]
+\textbf{A.} テイラー展開は関数が正則な（特異点がない）場所でしか成り立たないためである。特異点 $z=c$ を持つ解の挙動を調べるには、「負の冪乗の項（主要部）」を許容するローラン展開を用いる必要がある。この負の冪の項が有限個で打ち止めになるかどうかが、確定特異点と不確定特異点を分ける決定的な基準となる。
+\end{Q}
+%#endregion
+%#region
+\begin{theorem}[ローラン展開の一意性]\label{thm:laurent_uniqueness}
+    関数 $f(z)$ が円環領域 $A = \{z \in \mathbb{C} \mid r_1 < |z-c| < r_2\}$ において、正負の冪級数
+    \[
+    f(z) = \sum_{n=-\infty}^{\infty} c_n (z-c)^n
+    \]
+    として表され、この級数が $A$ 内の任意のコンパクトな部分集合上で一様収束しているとする。このとき、この級数は $f(z)$ のローラン展開に他ならない。すなわち、係数 $c_n$ は
+    \[
+    c_n = \frac{1}{2\pi i} \int_{\gamma} \frac{f(\zeta)}{(\zeta-c)^{n+1}} d\zeta
+    \]
+    で一意に定まる。（ここで $\gamma$ は $A$ 内にある $c$ を囲む閉曲線）
+\end{theorem}
+
+\begin{proof}%TODO{理解が必要}
+    仮定より、級数 $f(\zeta) = \sum_{k=-\infty}^{\infty} c_k (\zeta-c)^k$ は積分路 $\gamma$ 上で一様収束している。
+    両辺を $(\zeta-c)^{n+1}$ で割り、$\gamma$ に沿って和と積分の順序を交換（項別積分）すると、
+    \[
+    \int_{\gamma} \frac{f(\zeta)}{(\zeta-c)^{n+1}} d\zeta = \sum_{k=-\infty}^{\infty} c_k \int_{\gamma} (\zeta-c)^{k-n-1} d\zeta
+    \]
+    ここで、コーシーの積分定理より
+    \[
+    \int_{\gamma} (\zeta-c)^{m} d\zeta =
+    \begin{cases}
+        2\pi i & (m = -1) \\
+        0 & (m \neq -1)
+    \end{cases}
+    \]
+    であるから、右辺の和の中で $k-n-1 = -1$、すなわち $k=n$ の項のみが生き残る。
+    よって、
+    \[
+    \int_{\gamma} \frac{f(\zeta)}{(\zeta-c)^{n+1}} d\zeta = 2\pi i \cdot c_n
+    \]
+    となり、係数 $c_n$ がローラン展開の定義式と完全に一致することが示された。
+\end{proof}
+%#endregion
+%#region
+\begin{theorem}[孤立特異点における極と増大度の同値性]\label{thm:growth_and_pole}
+    関数 $f(z)$ が $z=c$ を孤立特異点として持つとする。このとき、以下の2つの条件は互いに同値である。
+    \begin{enumerate}
+        \item[(P)] $f(z)$ が $z=c$ に高々 $N$ 位の極を持つ（ローラン展開の負べきが $N$ 次で打ち切られる）。
+        \item[(Q)] ある十分小さな半径 $R > 0$ と定数 $C > 0$ が存在して、$0 < |z-c| < R$ において
+        \[
+        |f(z)| \le \frac{C}{|z-c|^N}
+        \]
+        が成り立つ。
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \textbf{【(Q) $\implies$ (P) の証明（増大度 $\implies$ 極）】}\\
+    仮定(Q)より、ある半径 $R > 0$ と定数 $C > 0$ が存在して、$0 < |z-c| < R$ で $|f(z)| \le \frac{C}{|z-c|^N}$ が成り立つ。\\
+    ここで $g(z)=(z-c)^{N}f(z)$ とおけば、$|g(z)|\le C$ となる。よって $g(z)$ は $0<|z-c|<R$ で正則かつ有界である。
+    リーマンの除去可能特異点の定理より、$g(z)$ は特異点 $z=c$ を除去でき、円盤 $|z-c|<R$ 全体で正則な関数に延長できる。
+    したがって、$g(z)$ は $|z-c|<R$ においてテイラー展開可能であり、その級数 $g(z) = \sum_{k=0}^{\infty} b_k (z-c)^k$ は同領域で収束する。\\
+    ゆえに、$0 < |z-c| < R$ において、元の関数 $f(z)$ は両辺を $(z-c)^N$ で割ることで
+    \[
+    f(z) = \frac{g(z)}{(z-c)^N} = \sum_{k=0}^{\infty} b_k (z-c)^{k-N} = \frac{b_0}{(z-c)^N} + \frac{b_1}{(z-c)^{N-1}} + \cdots + b_N + b_{N+1}(z-c) + \cdots
+    \]
+    と展開される。ここでローラン展開の一意性（定理\ref{thm:laurent_uniqueness}）より、この広義一様収束する級数はまさに $f(z)$ のローラン展開に他ならない。この展開を見ると負のべき乗は $N$ 次までしか存在しないため、条件(P)が示された。
+
+    \vspace{1em}
+
+    \textbf{【(P) $\implies$ (Q) の証明（極 $\implies$ 増大度）】}\\
+    仮定(P)より、$f(z)$ のローラン展開は有限の負べきで打ち切られ、
+    \[
+    f(z) = \sum_{n=-N}^{\infty} b_n (z-c)^n
+    \]
+    と書ける。孤立特異点の定義より、この展開はある穴あき円盤 $0 < |z-c| < r$ で収束する。
+    ここで $g(z) = (z-c)^N f(z)$ とおくと、
+    \[
+    g(z) = (z-c)^N \sum_{n=-N}^{\infty} b_n (z-c)^n = \sum_{n=-N}^{\infty} b_n (z-c)^{n+N} = \sum_{k=0}^{\infty} b_{k-N} (z-c)^k
+    \]
+    となる（$k = n+N$ と置換した）。\\
+    元のローラン展開が $0 < |z-c| < r$ で収束することから、この級数も同領域で収束する。したがってアーベルの補題（定理\ref{thm:abels_lemma}）により、この負のべき乗を持たない冪級数は、特異点だった中心 $z=c$ を含めた円盤全体 $|z-c| < r$ で正則関数となり、広義一様（絶対）収束する。\\
+    $g(z)$ は $|z-c| < r$ 全体で正則関数（特に連続関数）となるため、境界を含まないある十分小さな閉円盤 $|z-c| \le r'$ （ただし $r' < r$）をとれば、その上で $|g(z)| \le C$ となる定数 $C > 0$ が存在する。\\
+    $g(z) = (z-c)^N f(z)$ であったから、両辺を $|z-c|^N$ で割ることで、$0 < |z-c| \le r'$ において
+    \[
+    |f(z)| \le \frac{C}{|z-c|^N}
+    \]
+    が得られる。ここで $R = r'$ とおけば、まさに条件(Q)を満たす半径 $R$ と定数 $C$ が存在することが示された。
+\end{proof}
+
+% ==========================================
+% 証明の補足・行間解説（Q&A）
+% ==========================================
+\begin{Q}[【補足】$\sum b_k (z-c)^{k-N}$ がローラン展開と完全に一致すると一言で断言できるのはなぜ？]
+\textbf{A.} テイラー級数 $\sum b_k (z-c)^k$ は収束円盤内のコンパクト集合上で広義一様収束し、有界な関数 $(z-c)^{-N}$ を掛けてもその一様収束性は保たれる。一様収束する正負の冪級数表現が得られれば、一意性により自動的にそれがローラン展開となるからである。
+\end{Q}
+
+\begin{Q}[【補足】$\Rightarrow$ の証明ではリーマンの定理を使い、$\Leftarrow$ の証明ではアーベルの補題を使ったのはなぜ？どちらも「穴あき円盤で値が定まっている」状況は同じではないか？]
+\textbf{A.} 対象となる関数 $g(z)$ が、最初から\textbf{「負のべき乗を持たない冪級数（テイラー級数）」の形をしていると確定しているか否か}、という決定的な違いがあるためである。
+\begin{itemize}
+    \item \textbf{$\Leftarrow$ の場合（アーベルの補題）：} $(z-c)^N$ を掛けた時点で負のべき乗が相殺され、「純粋な冪級数」であることが確定している。純粋な冪級数は、中心以外で収束すれば中心でも自動的に正則になるという強い性質を持つため、一気に中心を塞ぐことができる。
+    \item \textbf{$\Rightarrow$ の場合（リーマンの定理）：} スタート時点では $g(z)$ は単なる「有界な関数」であり、ローラン展開した際に負のべき乗が含まれていないかが未確定である。そのため、「有界ならば負のべき乗は存在しない」ことを保証してくれるリーマンの定理が必要になる。
+\end{itemize}
+\end{Q}
+
+\begin{Q}[この定理（極と増大度の同値性）は、確定特異点の理論において何が嬉しいのか？]
+\textbf{A.} 「解析的な条件」と「代数的な条件」を完全に橋渡ししてくれる点である。
+微分方程式の解が「確定特異点」を持つかどうかを判定する際、ローラン展開をすべて計算して有限の負べきで終わるか（代数的な条件）を確かめるのは非常に困難である。しかしこの定理のおかげで、解が特異点に近づくスピードが「多項式オーダーで抑えられるか」（解析的な条件）さえクリアすれば、自動的にローラン展開が打ち切られることが保証され、判定が劇的に簡単になるのである。
+\end{Q}
+%#endregion
+%#region
+\begin{theorem}[アーベルの補題]\label{thm:abels_lemma}
+    冪級数 $\sum_{n=0}^{\infty} a_n (z-c)^n$ が、ある点 $z = z_0$ （ただし $z_0 \neq c$）で収束すると仮定する。
+    このとき、以下の2つが成り立つ。
+    \begin{enumerate}
+        \item \textbf{絶対収束:} 開円板 $|z-c| < |z_0-c|$ 内の任意の点 $z$ において、この冪級数は絶対収束する。
+        \item \textbf{広義一様収束:} 任意の $0 < r < |z_0-c|$ に対して、閉円板 $|z-c| \le r$ 上で一様収束する。（したがって、開円板 $|z-c| < |z_0-c|$ 全体で正則関数を定める）
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}%TODO　(理解が必要)
+    （証明のスケッチ）級数 $\sum a_n (z_0-c)^n$ が収束するということは、その一般項は $0$ に収束する。したがって、ある定数 $M > 0$ が存在して、すべての $n$ について $|a_n (z_0-c)^n| \le M$ と有界になる。
+    任意の $z$ ($|z-c| < |z_0-c|$) に対して、
+    \[
+    |a_n (z-c)^n| = |a_n (z_0-c)^n| \left| \frac{z-c}{z_0-c} \right|^n \le M \rho^n \quad \left( \text{ただし } \rho = \left| \frac{z-c}{z_0-c} \right| < 1 \right)
+    \]
+    と評価できる。これは公比 $\rho < 1$ の等比級数で上から抑えられることを意味し、ワイエルシュトラスのM判定法より絶対収束（および閉円板上での一様収束）が直ちに導かれる。
+\end{proof}
+%#endregion
+%#region
+\begin{proposition}[冪級数展開の一意性]\label{prop:uniqueness_of_power_series}
+    正則関数 $f(z)$ のある点 $c$ を中心とする冪級数展開（テイラー展開）は一意に定まる。すなわち、ある開円板 $B(c, r)$ 上で $f(z) = \sum_{n=0}^{\infty} a_n (z-c)^n = \sum_{n=0}^{\infty} b_n (z-c)^n$ が成り立つならば、すべての $n \ge 0$ に対して $a_n = b_n$ である。
+\end{proposition}
+
+\begin{proof}
+    命題\ref{prop:convergence-radius-invariant}により、$\sum_{n=0}^{\infty} a_n (z-c)^n$ と $\sum_{n=0}^{\infty} b_n (z-c)^n$ は $B(c, r)$ 上で何度でも項別微分できる。
+    両辺を $i$ 回微分すると、$i-1$ 次以下の項は $0$ になるため、
+    $$
+    \sum_{n=i}^{\infty} a_n\frac{n!}{(n-i)!} (z-c)^{n-i} = \sum_{n=i}^{\infty} b_n\frac{n!}{(n-i)!} (z-c)^{n-i}
+    $$
+    となる。この両辺に $z=c$ を代入すると、$n > i$ の項はすべて $0$ となり、$n=i$ の項のみが残るため、
+    $$
+    i! a_i = i! b_i
+    $$
+    が得られる。両辺を $i!$ で割ることで $a_i = b_i$ がわかる。これが任意の $i \ge 0$ について成り立つため示された。
+\end{proof}
+
+\begin{Q}[【補足】なぜ冪級数展開（テイラー展開）の係数は一意に決まると一言で断言できるのか？]
+\textbf{A.} 収束冪級数は収束円内で項別微分が可能であり、$n$ 回微分して中心 $z=c$ を代入することで、各係数が元の関数の微係数 $f^{(n)}(c)/n!$ として完全に逆算・決定されるからである。
+\end{Q}
+%#endregion
+%#region
+\begin{proposition}\label{prop:singular_point_on_convergence_circle}
+    冪級数 $\sum_{n=0}^{\infty}a_{n}(z-c)^{n}$ の収束半径を $r>0$ とする。このとき、収束円の周 $|z-c|=r$ 上には、特異点が少なくとも1つ存在する。
+\end{proposition}
+
+\begin{proof}
+    背理法で示す。収束円の周 $|z-c|=r$ 上のすべての点が正則点であると仮定する。
+
+    仮定より、円周上の任意の点 $s$ に対して、ある半径 $r_s > 0$ が存在し、開円板 $B(s, r_s)$ 上へ冪級数を解析接続できる。
+    このとき、元の開円板 $B(c, r)$ とこれらの開円板の族 $\{B(s, r_s)\}_{|s-c|=r}$ は、コンパクトな閉円板 $\overline{B(c, r)} = \{z \in \mathbb{C} \mid |z-c| \le r\}$ の開被覆となる。
+
+    コンパクト性より有限部分被覆を選び出すことができ、それらの和集合はある少し大きな開円板 $B(c, r+\epsilon)$ ($\epsilon > 0$) を完全に含む。
+    拡張された領域 $B(c, r+\epsilon)$ は単連結であるため、一価性定理により解析接続の結果は経路に依存せず、全体で一意な一価の正則関数 $f(z)$ が定まる。
+
+    $f(z)$ は $B(c, r+\epsilon)$ で正則であるから、定理\ref{thm:holomorphic-is-analytic}により点 $c$ を中心とし、収束半径が少なくとも $r+\epsilon$ のテイラー展開 $\sum_{n=0}^{\infty}b_{n}(z-c)^{n}$ を持つ。
+    $B(c, r)$ 上では元の級数と一致するため、展開係数の一意性から $a_n = b_n$ となる。
+    しかし、これは元の冪級数の収束半径が $r$ であるという前提に矛盾する。
+
+    したがって、円周 $|z-c|=r$ 上には少なくとも1つの特異点が存在する。
+\end{proof}
+
+\begin{Q}[【補足】円周上がすべて正則であるとき、収束半径が $r$ より大きくなると一言で断言できるのはなぜ？]
+\textbf{A.} コンパクト性により半径 $r+\epsilon$ の大きな開円板上で正則な関数が構成でき、定理\ref{thm:holomorphic-is-analytic}（正則関数は解析関数）により、その開円板全体で収束するテイラー展開を持つことが保証されるからである。係数の一意性から元の級数と一致するため、自動的に収束半径も $r+\epsilon$ 以上となる。
+\end{Q}
+
+\begin{Q}[【補足】局所的な解析接続をつなぎ合わせた関数 $f(z)$ が、全体として矛盾なく一意に定まる（多価関数にならない）と言えるのはなぜ？]
+\textbf{A.} 拡張された領域 $B(c, r+\epsilon)$ が単連結であるためである。単連結領域内では任意の2点を結ぶ連続曲線が互いにホモトープとなり、一価性定理（モノドロミー定理）によって解析接続の結果が経路に依存せず、全体で一意な一価の正則関数として定まるからである。
+\end{Q}
+%#endregion
+%#region
+\begin{theorem}[線形微分方程式の解の存在円板]\label{thm:linear_existence}
+    \begin{equation}\label{eq:linear_ode}
+    \frac{dw}{dz}=A(z)w+g(z)
+    \end{equation}
+    $A(z), g(z)$ の各成分が複素平面の領域 $D$ において正則とする。このとき、任意の $a \in D, b \in \mathbb{C}^{n}$ に対して、$(a,b)$ を通る \eqref{eq:linear_ode} の正則な解が、$a$ を中心とする $D$ に含まれる任意の開円板 $B_{z}(a;r)$ においてただ1つ存在する。
+   （\cite[p.56 定理8.6]{book:takano} を参照。）
+\end{theorem}
+
+\begin{corollary}\label{cor:linear_maximal_disk}
+    \eqref{eq:linear_ode} の $(a,b)$ を通る $B_{z}(a;d(a,\partial D))$ 上正則な解が、ただ1つ存在する。
+\end{corollary}
+
+\begin{Q}[【核心】この系から読み取るべき、線形微分方程式の「強さ」（非線形方程式との決定的な違い）とは何か？]
+\textbf{A.} 線形微分方程式の特異点は係数のみに依存する「固定特異点」であり、係数が正則な限り境界 $\partial D$ まで解を延長できるのに対し、パンルヴェ方程式などの非線形方程式は初期値によって位置が変わる「動く特異点」を持つため、正則領域内でも解が爆発し得るからである。
+\end{Q}
+%#endregion
+%#region
+\begin{proposition}[収束半径の公式（ダランベールの判定法）]\label{prop:dalembert_radius}
+    冪級数 $\sum_{n=0}^{\infty}a_{n}z^{n}$ に対して、極限 $\lim_{n\to\infty}\left|\frac{a_{n}}{a_{n+1}}\right|$ が存在するならば（$+\infty$ に発散する場合も含む）、この冪級数の収束半径 $R$ は
+    \begin{equation}
+        R = \lim_{n\to\infty}\left|\frac{a_{n}}{a_{n+1}}\right|
+    \end{equation}
+    に等しい。
+    （\cite[p.33 定理2.4.4]{book:noguchi} を参照。）
+\end{proposition}
+
+\begin{Q}[【核心】常に成り立つコーシー・アダマールの公式（$\limsup$ を用いる公式）ではなく、なぜ微分方程式の学習においてこの「隣接項の比」の公式を重宝するのか？]
+\textbf{A.} 微分方程式の解を冪級数で仮定して元の方程式に代入すると、係数 $a_n$ は漸化式の形で得られることが多く、隣接項の比をとるこの公式の方が、漸化式から直接かつ容易に収束半径（特異点までの距離）を計算できるからである。
+\end{Q}
+%#endregion
+%#region
+\begin{theorem}\label{thm:solution_space_dimension}
+    $a$を中心とする開円板$B_{a}\subset D$において正則な\eqref{eq:linear-ode-n}の解全体$V_{a}$は$n$次元複素線型空間をなす。
+    （\cite[p.78 定理11.2]{book:takano}を参照）
+\end{theorem}
+%#endregion
+%#region
+\begin{proposition}[共通の経路に沿った解析接続による1次独立性の不変性]\label{prop:independence_branch_invariance}
+    ある単連結な領域 $D$ において、線形常微分方程式の1次独立な解の組 $(\varphi_1, \dots, \varphi_n)$ が与えられているとする。
+    このとき、$D$ を始点とする任意の道 $\gamma$ に沿って、これらの解を「同時に」解析接続して得られる新たな分枝の組 $(\varphi_1^\gamma, \dots, \varphi_n^\gamma)$ もまた、接続先の領域において1次独立である。
+    すなわち、解の組の1次独立性は、共通の道に沿ったリーマン面上の分枝の移行によらず恒久的に不変である。
+\end{proposition}
+
+\begin{proof}
+    ある単連結な領域 $D$ をとって正則な分枝の組を $(\varphi_{1}(x),\cdots,\varphi_{n}(x))$ とする。
+    $(C_{1},\cdots,C_{n})\in\mathbb{C}^{n}$ に対して $D$ 上で
+    \[
+    C_{1}\varphi_{1}(x)+\cdots+C_{n}\varphi_{n}(x) \equiv 0
+    \]
+    が成り立つとする。
+    
+    複素解析における完全解析関数の定義により、この解の組の任意の分枝は、領域 $D$ から出発する適当な道 $\gamma$ に沿って「すべての解を同時に」解析接続することによって得られる。
+    この道 $\gamma$ に沿った解析接続を等式全体に適用すると、$(C_{1},\cdots,C_{n})$ は定数であるため、一致の定理により解析接続先でも線形関係は保たれ、
+    \[
+    C_{1}\varphi_{1}^{\gamma}(x)+\cdots+C_{n}\varphi_{n}^{\gamma}(x) \equiv 0
+    \]
+    となる（逆向きの解析接続 $\gamma^{-1}$ を考えれば逆も成り立つ）。
+    
+    したがって、同じ道 $\gamma$ をたどる限り、解析接続前と後で上の線形関係式を満たす定数の組 $(C_{1},\cdots,C_{n})\in\mathbb{C}^{n}$ の集合は完全に一致する。
+    ゆえに、「式を満たす定数が $C_1=\dots=C_n=0$ のみである」という1次独立の条件は、解の組全体としてどのシート（分枝）へ移行しても不変である。
+\end{proof}
+
+\begin{Q}[【核心】「分枝の選び方」次第で独立性が変わるならば、「独立性は不変」という主張と矛盾しないか？]
+\textbf{A.} 矛盾しない。「基底の選択段階」では最初の選び方で独立・従属が変化するが、命題が主張するのは「一度独立なペアを選んだら、それらを共通の道 $\gamma$ で同時に解析接続（評価場所を変更）しても判定は裏返らない」という不変性である。関数ごとに別々の道を歩かせて分枝を混ぜる行為はルール違反である。
+\end{Q}
+
+\begin{Q}[【核心】大域的な多価関数から分枝（切断）を選んで局所基底を作る以上、多価関数同士の独立性は最初の選び方に完全に依存するのか？]
+\textbf{A.} 完全に依存する。誤って定数倍になる分枝同士を選べば1次従属となる。ただし、特異点における「漸近挙動（オーダー）」が決定的に異なる関数同士であれば、どのように分枝を選んでも必ず独立になることが保証される。
+\end{Q}
+
+\begin{Q}[【実践】特異点への極限（漸近挙動）を見る手法は、なぜ1次独立性の判定において強力なのか？]
+\textbf{A.} 一番小さなオーダーで割って極限をとる操作を繰り返すことで、線形結合の係数を一つずつ確実に $0$ に追い込めるからである。例えば「1価関数」と「多価関数」は性質が異なるため常に独立となる。3階以上の方程式では「互いに定数倍でない」ことだけでは独立と言えないため、この極限操作による証明が必須となる。
+\end{Q}
+
+\begin{Q}[【核心】漸近挙動を見るだけで独立性が証明できるなら、なぜ解析接続（モノドロミー）という概念が必要なのか？]
+\textbf{A.} 漸近挙動という局所ツールでは太刀打ちできない以下の3点で不可欠だからである。
+① 漸近挙動が重複する対数解の代数的構造（ジョルダン細胞）を解明するため。
+② 異なる特異点間の独立性を直接比較する「接続問題」を解くため。
+③ そもそも「局所の漸近挙動で独立なら、全域のどの分枝でも独立である」という大域的な理論的保証を与えるため。
+\end{Q}
+%#endregion
+%#region
+\begin{proposition}[アーベルの公式とロンスキアンによる独立性の判定]\label{prop:wronskian_independence}
+    $w_{0}(z),\cdots,w_{n-1}(z)$ を $B_{a}$ において正則な \eqref{eq:linear-ode-n} の解とする。このとき、
+    \begin{enumerate}
+        \item[(i)] ロンスキアン $W(w_{0}(z),\cdots,w_{n-1}(z))$ は、全ての $z\in B_{a}$ で恒等的に $0$ であるか、あるいは全ての $z\in B_{a}$ で $0$ でないかのどちらかである。
+        \item[(ii)] $w_{0}(z),\cdots,w_{n-1}(z)$ が解空間 $V_{a}$ の基底である $\iff$ 全ての $z\in B_{a}$ に対して $W(w_{0}(z),\cdots,w_{n-1}(z)) \neq 0$
+    \end{enumerate}
+    （\cite[p.78 定理11.3]{book:takano}を参照）
+\end{proposition}
+%#endregion

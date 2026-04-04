@@ -1,89 +1,8 @@
-\documentclass[paper=a4, fontsize=11pt]{jlreq} % 日本語用の標準的なクラス
-
-% --- パッケージ群 ---
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[margin=20mm]{geometry} % ★ 上下左右の余白を20mmに設定
-\usepackage{amsmath, amssymb, amsthm} % 数学の基本
-\usepackage{physics} % \ket{0}, \pdv{x} などが簡単に打てる
-\usepackage{bm} % 太字ベクトル \bm{v}
-\usepackage{graphicx}
-\usepackage{hyperref} % リンク・目次用
-\usepackage{cite} % 引用用
-\usepackage{etoolbox} % 環境の終わりに自動でマークを入れるために追加
-
-\newtheoremstyle{break}% スタイル名
-  {1em}% 上部のスペース（約1行分空ける）
-  {1em}% 下部のスペース（約1行分空ける）
-  {\normalfont}% 本文のフォント（日本語なので斜体にしない）
-  {}% インデント量
-  {\bfseries}% 見出しのフォント（太字）
-  {}% 見出し後の句読点（不要なら空に）
-  {\newline}% ★ここで改行を指定！★
-  {}% 見出しのカスタム指定（デフォルト）
-
-% --- 定理環境の設定 ---
-\theoremstyle{break}
-\newtheorem{theorem}{定理}[section]
-\newtheorem{definition}[theorem]{定義}
-\newtheorem{proposition}[theorem]{命題}
-\newtheorem{lemma}[theorem]{補題}
-\newtheorem{corollary}[theorem]{系}
-\newtheorem{example}[theorem]{例}
-\newtheorem{problem}[theorem]{問題} % 自作問題用
-
-% --- 環境の終わりにマークをつける設定 ---
-\newcommand{\myendmark}{\null\hfill$\diamondsuit$} % 既存のコマンドと被らないよう \myendmark に変更
-\AtEndEnvironment{theorem}{\myendmark}
-\AtEndEnvironment{definition}{\myendmark}
-\AtEndEnvironment{proposition}{\myendmark}
-\AtEndEnvironment{lemma}{\myendmark}
-\AtEndEnvironment{corollary}{\myendmark}
-\AtEndEnvironment{example}{\myendmark}
-\AtEndEnvironment{problem}{\myendmark}
-
-
-% --- Q&A（自問自答）用の専用スタイル ---
-\newtheoremstyle{qa}% スタイル名
-  {1ex}% 上部のスペース
-  {1ex}% 下部のスペース
-  {\normalfont}% 本文のフォント（日本語が崩れないようnormalfontを指定）
-  {}% インデント量
-  {\bfseries}% 見出しのフォント（太字）
-  {}% 見出し後の句読点
-  {\newline}% 見出しの後に改行を入れる
-  {\thmname{#1}\thmnote{：#3}}% カスタム指定（例：「Q&A：なぜ〜？」と出力）
-
-\theoremstyle{qa}
-\newtheorem*{Q}{Q}
-
-% --- 番号なしの環境（地の文の代わり） ---
-\theoremstyle{remark} % 見た目を少し控えめにするスタイル
-\newtheorem*{remark}{※}
-
-% --- 独自のショートカット (CFT/パンルヴェ用) ---
-\newcommand{\Virexp}[2]{[L_{#1}, L_{#2}]} % ヴィラソロの交換関係
-\newcommand{\taufunc}{\tau(z)} % タウ関数
-
-\title{パンルヴェ方程式に関する勉強ノート}
-\author{松浦光佑}
-\date{\today}
-
-\begin{document}
-
-%#region
-\maketitle
-\tableofcontents % 自動で目次を作成
-
-\section{はじめに}
-本ノートは、岡本『パンルヴェ方程式』に関する学習記録である。
-日々の学習を「AC（Accepted）」として記録し、GitHubでの進捗可視化を目的とする。%TODO (1章について書く)
+% !TEX root = ../main.tex
 
 \section{フックス型微分方程式}
 
 \subsection{2階線型常微分方程式}
-%#endregion
-
 %#region
 \begin{equation}\label{eq:2-ode}
 \frac{d^{2}y}{dx^{2}} + p_{1}(x)\frac{dy}{dx} + p_{2}(x)y = 0   
@@ -177,7 +96,6 @@ $n$階でも成り立つので以下$n$階で示す。
 \textbf{A.} 線形方程式では特異点の場所が初期値によらず係数のみで決まる（固定特異点）のに対し、パンルヴェ方程式のような「非線形」方程式では、初期値によって解の特異点の場所が動く（動く特異点）という決定的な違いを対比させるための基礎となるからである。
 \end{Q}
 %#endregion
-
 %#region
 \begin{definition}[線形微分方程式の特異点]\label{def:linear_equation_singularity}
     \textbf{線形微分方程式の特異点}とは、係数関数 $p_{1}(x), p_{2}(x)$ の特異点のことをいう。
@@ -203,8 +121,6 @@ $n$階でも成り立つので以下$n$階で示す。
 \end{definition}
 
 %#endregion
-
-
 %#region
 
 $\Xi$を\eqref{eq:2-ode}の特異点の集合とし、$\mathbb{X}=\mathbb{P}^{1}(\mathbb{C})\setminus\Xi$とする。解の基本系を$\vec{\varphi}(x)$とする。
@@ -334,9 +250,9 @@ $\Gamma(\gamma_{2}\cdot\gamma_{1})=\Gamma(\gamma_{2})\Gamma(\gamma_{1})$や、$\
 \end{definition}
 %TODO (例を書いてもいい)
 %#endregion
-%#region
-\subsection{確定特異点}
 
+\subsection{確定特異点}
+%#region
 2階微分方程式\eqref{eq:2-ode}を考える。$x=\xi$を\eqref{eq:2-ode}の特異点とする。\eqref{eq:2-ode}の特異点ではない点$x_{0}$を取り、$x_{0}$を始点・終点として、$\xi$の周りを1周する閉曲線$\gamma$をとる。
 
 \begin{Q}[そんな閉曲線$\gamma$は常にとれるの？]
@@ -585,9 +501,6 @@ S(\theta_{1},\theta_{2}) = \{u\,|\, 0<|x-\xi|<r, \theta_{1} < \arg u < \theta_{2
 \end{itemize}
 \end{proof}
 
-% ==========================================
-% 証明の補足・行間解説（Q&A）
-% ==========================================
 \begin{Q}[【補足】$\Phi(x)^{-1}$ を計算するとき、$\log u$ の逆数（$1/\log u$）のような扱いにくい項は出てこないの？]
 \textbf{A.} 全く出てこない。行列の逆行列計算の美しい性質により、$\log u$ は分子に留まる。
 $\alpha - \beta \in \mathbb{Z}$ でジョルダン細胞になる場合（最も複雑なケース）、$\Phi(x)$ は
@@ -627,7 +540,6 @@ u^N z_k(x) = a_{-N} + a_{-N+1}u + \cdots
 となり、これは $u \to 0$ で正則（有限の値 $a_{-N}$ に収束）である。したがって、$u$ が十分小さい領域では $|u^N z_k(x)| \le C$ (ある定数) と有界になり、両辺を割ることで $|z_k(x)| \le C|u|^{-N}$ という多項式オーダーの評価が直ちに得られる。無限に続く真性特異点（例：$e^{1/u}$）ではこの議論が破綻する。（※厳密な同値性の証明は定理\ref{thm:growth_and_pole}を参照）
 \end{Q}
 %#endregion
-
 %#region
 \begin{definition}[ガウスの微分方程式]
     複素パラメータ $a, b, c$ に対して、
@@ -711,7 +623,6 @@ u^N z_k(x) = a_{-N} + a_{-N+1}u + \cdots
 \textbf{A.} 天下りではなく、未定係数法による必然である。微分方程式の解を $y = \sum A_j x^j$ と仮定して代入し、各次数の係数がゼロになるように整理すると、$A_{j+1}$ と $A_j$ の間に $A_{j+1} = \frac{(a+j)(b+j)}{(c+j)(j+1)}A_j$ という2項間漸化式が必ず導かれる。これを $A_0 = 1$ から順次解き下した結果が、ポッホハマー記号を用いた $F(a,b,c;x)$ の係数に他ならない。
 \end{Q}
 %#endregion
-%#region
 %#region
 \begin{definition}[複素領域における解の「分枝」の1次独立性とロンスキアン]\label{def:linear_independence_complex}
     複素領域における2階線形微分方程式について、特異点を含まないある単連結な領域（例えば小さな開円板やスリット領域）$D$ 上で固定された\textbf{解の分枝のペア $(\varphi_1(x), \varphi_2(x))$} が\textbf{1次独立（線形独立）}であるとは、任意の複素定数 $C_1, C_2$ に対して $D$ 上で
@@ -828,7 +739,6 @@ u^N z_k(x) = a_{-N} + a_{-N+1}u + \cdots
     \eqref{eq:2-ode}の特異点$x=\xi$がすべて確定特異点である時、\eqref{eq:2-ode}を\textbf{フックス型微分方程式}という。
 \end{definition}
 %#endregion
-
 %#region
 \begin{example}
     ガウスの超幾何微分方程式 \eqref{eq:gauss_hypergeometric} はフックス型微分方程式である。
@@ -1390,12 +1300,98 @@ q_{1}^{(\infty)}(0) = \left. \frac{1}{u}p_{1}\left(\frac{1}{u}\right) \right|_{u
 \end{proposition}
 %#endregion
 %#region
+微分方程式を完全に決定するためには、その係数に含まれる独立なパラメータの数を数え上げればよい。
+$n$ 階フックス型微分方程式において、確定特異点の位置を $\Xi=\{\xi_{1}, \xi_{2}, \dots, \xi_{m}, \infty\}$ として考える。
 
+まず、各特異点における局所的な振る舞いを決定する「特性指数」の自由度について考える。
+特異点は全部で $m+1$ 個あり、各点に $n$ 個の特性指数が存在するため、特性指数の総数は $(m+1)n$ 個である。しかし、これらが満たすべき大域的な制約は命題\ref{prop:fuchs_relation}（フックスの関係式）の1つのみであるため、特性指数のうち自由に選ぶことができるパラメータの数は
+\begin{equation}
+E_{0}(n,m) = (m+1)n - 1
+\end{equation}
+個となる。
+
+次に、微分方程式の係数 $p_{i}(x)$ 全体に含まれるパラメータの総数を数え上げる。
+命題\ref{prop:fuchs_theorem_n}から、有限の特異点 $x=\xi_{l}$ における極の最大位数は $i$ であるため、$p_{i}(x)$ は $mi$ 個の未知定数 $a_{k}^{(l)}$ （$k=1,\dots,i$, $l=1,\dots,m$）を用いて、部分分数分解により
+\[
+p_{i}(x) = \sum_{l=1}^{m}\sum_{k=1}^{i} \frac{a_{k}^{(l)}}{(x-\xi_{l})^{k}} + (x\text{の多項式})
+\]
+と表される。
+さらに命題\ref{prop:infinity_fuchs_q}より、無限遠点 $x=\infty$ が確定特異点であるためには $x^{i}p_{i}(x)$ が $\infty$ で正則でなければならない。これにより、$p_{i}(x)$ は $x \to \infty$ で $O(x^{-i})$ となることが要求されるため、多項式部分は $0$ となり、
+\begin{equation}\label{eq:pi_fraction}
+p_{i}(x) = \sum_{l=1}^{m}\sum_{k=1}^{i} \frac{a_{k}^{(l)}}{(x-\xi_{l})^{k}}
+\end{equation}
+に制限される。さらに、$p_{i}(x) = O(x^{-i})$ という条件から、$a_{k}^{(l)}$ たちの間に一定の拘束条件が生じる。
+
+\begin{Q}[【核心】$p_{i}(x) = O(x^{-i})$ という無限遠点での条件は、具体的にいくつの独立なパラメータを奪う（束縛する）のか？]
+\textbf{A.} 厳密に $i-1$ 個の独立な自由度を奪う。
+局所座標 $u=1/x$ を用いて\eqref{eq:pi_fraction}を $u=0$ のまわりでテイラー展開する。
+\[
+\frac{1}{(x-\xi_{l})^{k}} = \frac{u^{k}}{(1-\xi_{l}u)^{k}} = u^{k} \left( 1 + k\xi_{l}u + \frac{k(k+1)}{2}\xi_{l}^{2}u^{2} + \cdots \right)
+\]
+これを $p_{i}(x)$ に代入して $u$ のべき級数として整理したとき、$u^{i}$ 以上のオーダー（$O(u^{i})$）にならなければならない。つまり、展開した際の $u^{1}, u^{2}, \dots, u^{i-1}$ の係数がすべて $0$ になる必要がある。
+これは未知定数 $a_{k}^{(l)}$ に対する $i-1$ 個の線形連立方程式となる。特異点の位置 $\xi_{l}$ はすべて相異なるため、この連立方程式の係数行列（ヴァンデルモンド行列の微分型）はフルランクとなる。したがって、これら $i-1$ 個の条件式は完全に独立であり、冗長なものは一つもない。
+\end{Q}
+
+これにより、$p_{i}(x)$ に含まれる独立なパラメータの数は、元の $mi$ 個から独立な制約 $i-1$ 個を引いて
+\[
+mi - (i-1) = m i - i + 1
+\]
+個となる。
+これを $i=1, 2, \dots, n$ について合計すれば、方程式全体に含まれるパラメータの総数が得られる。
+\begin{align*}
+\sum_{i=1}^{n} (mi - i + 1) &= (m-1)\sum_{i=1}^{n} i + \sum_{i=1}^{n} 1 \\
+&= (m-1)\frac{1}{2}n(n+1) + n \\
+&= \frac{1}{2}n \big( m(n+1) - (n-1) \big)
+\end{align*}
+
+以上の議論から、フックス型微分方程式のモジュライ空間の次元（パラメータ数）に関する以下の重要な命題を得る。
+
+\begin{proposition}\label{prop:fuchs_parameters}
+\eqref{eq:linear-ode-n}が $\Xi=\{\xi_{1}, \xi_{2}, \dots, \xi_{m}, \infty\}$ に確定特異点をもつフックス型微分方程式である時、この微分方程式の係数全体は、
+\[
+E(n,m) = \frac{1}{2}n \big( m(n+1) - (n-1) \big)
+\]
+個の独立なパラメータを含む。
+\end{proposition}
+
+命題\ref{prop:fuchs_parameters}より、方程式の係数に含まれる全パラメータ数は $E(n,m)$ である。一方、特性指数として自由に選べるパラメータ数は $E_{0}(n,m)$ であった。
+これらの差を計算すると、
+\begin{align*}
+E(n,m) - E_{0}(n,m) &= \frac{1}{2}n \big( m(n+1) - (n-1) \big) - \big( (m+1)n - 1 \big) \\
+&= \frac{1}{2}(n-1)(mn - n - 2)
+\end{align*}
+となる。$m \ge 2, n \ge 2$ のとき
+\[
+E(n,m) - E_{0}(n,m) \ge 0
+\]
+であるため、各特異点での特性指数をすべて指定したとしても、一般にはそれだけでは微分方程式を完全に決定するには至らないことがわかる。
+
+\begin{definition}
+このように、微分方程式の係数に含まれるパラメータのうち、特性指数の値に関係しない（特性指数を固定してもなお決定されない）独立なパラメータのことを\textbf{アクセサリー・パラメータ}（accessory parameter）という。その総数は $N_{acc} = \frac{1}{2}(n-1)(mn - n - 2)$ で与えられる。
+\end{definition}
+
+\begin{example}\label{ex:acc_parameter_zero}
+2階フックス型微分方程式で、確定特異点が3つ（有限に $m=2$ 個、および無限遠点 $\infty$）の場合について考える。
+このとき、$E(2,2) = 5$、$E_{0}(2,2) = 5$ であるため、$N_{acc} = 5 - 5 = 0$ となる。
+したがって、この場合にはアクセサリー・パラメータは存在しない。
+\end{example}
+
+\begin{Q}[【核心】特異点が3つの場合（$m=2$）にアクセサリー・パラメータが $0$ になることは、解析学的に何を意味しているのか？]
+\textbf{A.} 「特異点の位置」と「各特異点での特性指数（局所的な振る舞い）」を指定するだけで、微分方程式全体が大域的にただ1つに決定されてしまう（剛性を持つ）ことを意味している。
+特異点3つの2階方程式といえば「ガウスの超幾何微分方程式」である。超幾何関数が持つ数々の美しい変換則や積分表示は、この「アクセサリー・パラメータを持たない（特性指数だけで方程式が一意にロックされる）」という強烈な代数的性質の恩恵に他ならない。
+\end{Q}
+
+\begin{Q}[【核心】特異点を1つ増やして4つ（$m=3$）にした場合、何が起きるのか？また、それがパンルヴェ方程式とどう繋がるのか？]
+\textbf{A.} $n=2, m=3$ のとき、$N_{acc} = \frac{1}{2}(1)(6 - 2 - 2) = 1$ となり、アクセサリー・パラメータが初めて1つ出現する。これが「ホイン（Heun）の微分方程式」である。
+特性指数をすべて固定しても、未知のパラメータが1つ残るため、解のモノドロミー群はこのパラメータに依存して変化してしまう。
+岡本和夫の理論（モノドロミー保存変形）は、特異点の位置 $t$ を動かしたときに「モノドロミー群が変化しないように」このアクセサリー・パラメータをどう時間発展させればよいか、という非線形力学系を構築することである。その際、岡本はこの1次元のパラメータを直接扱うのではなく、あえて「見かけの特異点 $q$」と「その留数に由来する運動量 $p$」という新しい変数を導入することで、この変形方程式を美しいハミルトン系（パンルヴェVI型方程式）として見事に定式化したのである。
+\end{Q}
 %#endregion
+%#region
+ここで、\eqref{eq:linear-ode-n}の各特異点における特性指数を一覧として書き並べ、方程式の大域的な構造を視覚的に捉える記法を導入する。
 
-
-\begin{definition}[リーマン図式]%TODO(書き直す)
-    % --- ここに数式 ---
+\begin{definition}[リーマン図式]
+    確定特異点 $x = \xi_1, \xi_2, \dots, \xi_m, \infty$ を持つフックス型微分方程式\eqref{eq:linear-ode-n}に対し、各特異点での特性指数を列挙した表
     \[
     \left\{
     \begin{matrix}
@@ -1407,19 +1403,138 @@ q_{1}^{(\infty)}(0) = \left. \frac{1}{u}p_{1}\left(\frac{1}{u}\right) \right|_{u
     \end{matrix}
     \right\}
     \]
-    \begin{itemize}
-        \item[\textbf{Type:}] 確定特異点$\xi_{i}$と各確定特異点の特性指数$s_j^{(i)}$を書き並べたもの。
-        \item[\textbf{Insight:}] この表の数値（局所的な性質）を\textbf{一切変えずに}、特異点の位置 $\xi_i$ だけを時間発展させた時に、裏で満たされるべき非線形の方程式が「ガルニエ系」。つまり、モノドロミー保存変形において\textbf{「絶対に定数として保存したいターゲット」}がこれ。
-        \item[\textbf{Link:}] 岡本2.4節の(2.48)/p.81を参照。
-    \end{itemize}
+    を、その微分方程式の\textbf{リーマン図式}（Riemann scheme）という。（※記号 $P$ を冠してリーマンのP関数と呼ばれることもある。）
 \end{definition}
 
-\subsection{みかけの特異点}
+\begin{example}
+    ガウスの超幾何微分方程式\eqref{eq:gauss_hypergeometric}のリーマン図式は、以下のようになる。
+    \[
+    \left\{
+    \begin{matrix}
+        x = 0 & x = 1 & x = \infty \\
+        0 & 0 & a \\
+        1-c & c-a-b & b \\
+    \end{matrix}
+    \right\}
+    \]
+\end{example}
 
-\begin{equation}\label{eq:fuchs_n_order}
-    \frac{d^{n}y}{dx^{n}}+\sum_{j=1}^{n} p_{j}(x)\frac{d^{n-j}y}{dx^{n-j}} = 0   
+\begin{proof}
+    ガウスの超幾何微分方程式\eqref{eq:gauss_hypergeometric}は、$x=0, 1, \infty$ の3点に確定特異点を持つフックス型微分方程式である。
+    それぞれの特異点における特性指数は、これまでの計算により
+    \begin{itemize}
+        \item $x=0$ での特性指数： $0, 1-c$
+        \item $x=\infty$ での特性指数： $a, b$
+    \end{itemize}
+    であることが既にわかっている。残る $x=1$ での特性指数を求める。
+    局所座標を $u = x-1$ とすると $x = u+1$ であり、$x(1-x) = (u+1)(-u) = -u(u+1)$ となる。方程式全体を $-u(u+1)$ で割って標準形にすると、
+    \[
+    \frac{d^{2}y}{du^{2}} - \frac{c - (a+b+1)(u+1)}{u(u+1)} \frac{dy}{du} + \frac{ab}{u(u+1)} y = 0
+    \]
+    となる。フックスの定理の条件に従い、$q_{1}(u), q_{2}(u)$ を計算して $u=0$ を代入する。
+    \begin{align*}
+        q_{1}(0) &= \left. u \left( - \frac{c - (a+b+1)(u+1)}{u(u+1)} \right) \right|_{u=0} = \left. - \frac{c - (a+b+1)(u+1)}{u+1} \right|_{u=0} = -c + a + b + 1 \\
+        q_{2}(0) &= \left. u^{2} \left( \frac{ab}{u(u+1)} \right) \right|_{u=0} = \left. u \frac{ab}{u+1} \right|_{u=0} = 0
+    \end{align*}
+    したがって、$x=1$（すなわち $u=0$）における決定方程式は $s(s-1) + q_{1}(0)s + q_{2}(0) = 0$ より、
+    \[
+    s(s-1) + (a+b+1-c)s = s^{2} + (a+b-c)s = s(s - (c-a-b)) = 0
+    \]
+    となり、特性指数は $0, c-a-b$ であることが示された。
+\end{proof}
+
+\begin{Q}[【核心】この超幾何微分方程式のリーマン図式に対して、先ほど証明した「フックスの関係式」は本当に成り立っているか？]
+\textbf{A.} 完璧に成り立っている。
+特異点の数は $m+1 = 3$（有限が $m=2$）、階数は $n=2$ である。
+フックスの関係式（命題\ref{prop:fuchs_relation}）の右辺は、$\frac{1}{2}n(n-1)(m-1) = \frac{1}{2}(2)(1)(1) = 1$ となる。
+一方、左辺（リーマン図式に現れる全6個の特性指数の総和）を計算すると、
+\[
+0 + (1-c) + 0 + (c-a-b) + a + b = 1
+\]
+となり、パラメータ $a, b, c$ の値にいかなる依存もせず、見事に両辺が $1$ で一致する。空間のトポロジーが特性指数を大域的に縛っていることの美しい実例である。
+\end{Q}
+
+\begin{Q}[【核心】なぜわざわざ、特性指数をこのような「表（リーマン図式）」の形式で記述するのか？]
+\textbf{A.} 前段で示した通り、$x=0, 1, \infty$ の3点のみを確定特異点に持つ2階方程式（$m=2, n=2$）は「アクセサリー・パラメータを持たない」からである。
+アクセサリー・パラメータが $0$ 個であるということは、「特異点の位置」と「各特異点の特性指数」さえ決めれば、元の微分方程式が一意に完全に復元できる（剛性を持つ）ことを意味する。つまり、このリーマン図式は単なるパラメータのメモ書きではなく、これ自体が「ガウスの超幾何関数」という対象を完全に過不足なく定義する「関数記号（リーマンのP関数）」そのものとして機能するのである。
+\end{Q}
+%#endregion
+%#region
+ここで、フックス型微分方程式\eqref{eq:linear-ode-n}の特性指数を操作する基本的な変換について述べる。
+任意の定数 $\alpha_{1}, \dots, \alpha_{m}$ を用い、未知関数 $y$ を
+\begin{equation}\label{eq:gauge_transform}
+y = \left( \prod_{l=1}^{m} (x-\xi_{l})^{\alpha_{l}} \right) z
 \end{equation}
-の解の基本系 $\vec{\varphi}(x)$ をとる。確定特異点の集合 $\Xi$ を通らない閉曲線 $\gamma$ について解析接続を考えると、回路行列 $\Gamma(\gamma)$ を用いて
+によって新しい未知関数 $z$ に変数変換しても、微分方程式はフックス型のままである。
+\begin{Q}[【核心】$y = \left( \prod_{l=1}^{m} (x-\xi_{l})^{\alpha_{l}} \right) z$ という変換を行っても、微分方程式が「フックス型（確定特異点のみを持つ）」であるという性質は本当に壊れないのか？]
+\textbf{A.} 本当である。その理由は、変換因子 $\Phi(x) = \prod_{l=1}^{m} (x-\xi_{l})^{\alpha_{l}}$ の「対数微分」が、各特異点において高々1位の極しか生み出さないからである。
+簡単なため2階のフックス型方程式 $y'' + p_{1}y' + p_{2}y = 0$ で確認する。
+$y = \Phi z$ とおいて微分すると、
+\begin{align*}
+y' &= \Phi z' + \Phi' z \\
+y'' &= \Phi z'' + 2\Phi' z' + \Phi'' z
+\end{align*}
+となる。これらを元の方程式に代入して $\Phi$ で割ると、$z$ についての微分方程式は
+\[
+z'' + \left( p_{1} + 2\frac{\Phi'}{\Phi} \right) z' + \left( p_{2} + p_{1}\frac{\Phi'}{\Phi} + \frac{\Phi''}{\Phi} \right) z = 0
+\]
+となる。新しい係数を $\tilde{p}_{1}(x), \tilde{p}_{2}(x)$ とおく。
+ここで、$\Phi(x)$ の対数微分 $\frac{\Phi'}{\Phi}$ を計算すると、
+\[
+\frac{\Phi'(x)}{\Phi(x)} = \frac{d}{dx} \log \Phi(x) = \frac{d}{dx} \sum_{l=1}^{m} \alpha_{l} \log(x-\xi_{l}) = \sum_{l=1}^{m} \frac{\alpha_{l}}{x-\xi_{l}}
+\]
+となり、これは各 $x=\xi_{l}$ において「ちょうど1位の極」を持つ有理関数となる。
+さらに、$\frac{\Phi''}{\Phi} = \left(\frac{\Phi'}{\Phi}\right)' + \left(\frac{\Phi'}{\Phi}\right)^{2}$ であるため、1位の極の微分（2位の極）と平方（2位の極）の和となり、これも「高々2位の極」しか持たない。
+元の $p_{1}$ が1位の極、$p_{2}$ が2位の極を持つため、足し合わせた新しい係数 $\tilde{p}_{1}$ は依然として1位の極を、$\tilde{p}_{2}$ は依然として2位の極を持つにとどまる。
+無限遠点に関しても同様のオーダー計算が成り立つため、このゲージ変換はフックス型の条件（極の位数制限）を一切破壊しないのである。
+\end{Q}
+このとき、変換後の微分方程式（$z$ の方程式）のリーマン図式は、元の図式から以下のように特性指数がシフトする。
+\begin{itemize}
+    \item 有限の特異点 $x=\xi_{l}$ における特性指数は、$s_{j}^{(l)} - \alpha_{l}$ となる。
+    \item 無限遠点 $x=\infty$ における特性指数は、$s_{j}^{(\infty)} + \sum_{l=1}^{m} \alpha_{l}$ となる。
+\end{itemize}
+
+\begin{Q}[【核心】有限特異点では特性指数が $-\alpha_{l}$ と引き算されるのに、なぜ無限遠点の特性指数だけ $+\sum \alpha_{l}$ と足し算になるのか？]
+\textbf{A.} 無限遠点の局所座標 $u=1/x$ で変換式を展開すれば明らかになる。
+変換の因子を $x \to \infty$ （すなわち $u \to 0$）で展開すると、
+\[
+\prod_{l=1}^{m} (x-\xi_{l})^{\alpha_{l}} = \prod_{l=1}^{m} \left( \frac{1}{u} - \xi_{l} \right)^{\alpha_{l}} = u^{-\sum \alpha_{l}} \prod_{l=1}^{m} (1 - \xi_{l}u)^{\alpha_{l}} \sim u^{-\sum \alpha_{l}}
+\]
+となる。
+解 $y$ が無限遠点で $u^{s^{(\infty)}}$ のオーダーで振る舞うとすれば、$u^{s^{(\infty)}} \sim u^{-\sum \alpha_{l}} z$ となるため、新しい未知関数 $z$ は $u^{s^{(\infty)} + \sum \alpha_{l}}$ のオーダーで振る舞うことになる。
+（※これによって、有限特異点でのシフトの合計 $-n\sum \alpha_{l}$ と無限遠点でのシフトの合計 $+n\sum \alpha_{l}$ が見事に相殺し、フックスの関係式が保たれるという極めて美しい代数幾何学的構造になっている。）
+\end{Q}
+
+この特性指数のシフトを利用することで、方程式を標準形に帰着させることができる。
+各有限特異点において $\alpha_{l} = s_{1}^{(l)}$ と選べば、変換後の有限特異点における特性指数のうち1つを
+\[
+s_{1}^{(1)} - \alpha_{1} = s_{1}^{(2)} - \alpha_{2} = \cdots = s_{1}^{(m)} - \alpha_{m} = 0
+\]
+と、すべて $0$ に揃えることができる。
+
+特に $n=2, m=2$ （確定特異点が全体で3つ）のときは、アクセサリー・パラメータを持たない（$N_{acc}=0$）。
+さらに、複素平面上の任意の相異なる3点は、一次分数変換（メビウス変換）によって必ず $x=0, 1, \infty$ の3点に写すことができる。
+したがって、特異点を $0, 1, \infty$ に移動させた後、上記の\eqref{eq:gauge_transform}の変換を行って $x=0, 1$ の特性指数の1つを $0$ に揃えれば、リーマン図式は以下の非常にシンプルな形に帰着される。
+\[
+    \left\{
+    \begin{matrix}
+        x = 0 & x = 1 & x = \infty \\
+        0 & 0 & s_{1}^{(\infty)} + s_{1}^{(1)} + s_{1}^{(2)} \\
+        s_{2}^{(1)} - s_{1}^{(1)} & s_{2}^{(2)} - s_{1}^{(2)} & s_{2}^{(\infty)} + s_{1}^{(1)} + s_{1}^{(2)} \\
+    \end{matrix}
+    \right\}
+\]
+この図式の形は、パラメータを適当に $a, b, c$ と置き直せば、まさにガウスの超幾何微分方程式のリーマン図式と完全に一致する。
+
+\begin{Q}[【核心】これらの一連の変換によって、「ガウスの超幾何微分方程式」の数学的な位置づけはどう変わるか？]
+\textbf{A.} 「数ある特殊関数の1つ」から、「3つの確定特異点を持つすべての2階線形微分方程式の、普遍的な標準形（Universal normal form）」へと昇華される。
+アクセサリー・パラメータが $0$ であるため、リーマン図式が一致すれば、背後にある微分方程式も完全に一致する（剛性）。つまり、物理学や幾何学のあらゆる問題で「3つの確定特異点を持つ方程式」が現れた瞬間、それはメビウス変換と冪関数の掛け算という「自明な操作」を除いて、すべてガウスの超幾何関数に他ならないことが保証されるのである。（※これはベルンハルト・リーマンがその驚異的な洞察力で到達した結論である。）
+\end{Q}
+%#endregion
+
+\subsection{みかけの特異点}
+%#region
+\eqref{eq:linear-ode-n}の解の基本系 $\vec{\varphi}(x)$ をとる。確定特異点の集合 $\Xi$ を通らない閉曲線 $\gamma$ について解析接続を考えると、回路行列 $\Gamma(\gamma)$ を用いて
 \[
 \vec{\varphi}^{\gamma}(x) = \vec{\varphi}(x)\Gamma(\gamma)
 \]
@@ -1438,7 +1553,7 @@ q_{1}^{(\infty)}(0) = \left. \frac{1}{u}p_{1}\left(\frac{1}{u}\right) \right|_{u
 より、$C\Gamma(\gamma)C^{-1}$ となる。
 
 \begin{definition}[リーマンデータ]\label{def:riemann_data}
-    フックス型微分方程式 \eqref{eq:fuchs_n_order} に対して、定義域 $\mathbb{P}^{1}(\mathbb{C})$、確定特異点の集合 $\Xi$、およびモノドロミー $\hat{\rho}$ の3つ組
+    フックス型微分方程式 \eqref{eq:linear-ode-n} に対して、定義域 $\mathbb{P}^{1}(\mathbb{C})$、確定特異点の集合 $\Xi$、およびモノドロミー $\hat{\rho}$ の3つ組
     \[
     (\mathbb{P}^{1}(\mathbb{C}), \Xi, \hat{\rho})
     \]
@@ -1449,7 +1564,41 @@ q_{1}^{(\infty)}(0) = \left. \frac{1}{u}p_{1}\left(\frac{1}{u}\right) \right|_{u
 \textbf{A.} $\cdot$ 閉曲線に対して回路行列を対応させる写像のようなもの。\\
 \phantom{\textbf{A.}} $\cdot$ これは基本群 $\pi_1(X)$ から行列群への表現とみなすことができ、微分方程式の解の「多価性」を調べるための中心的な道具となる。(定義\ref{def:monodromy}を参照)\\
 \end{Q}
+%#endregion
+%#region
+ここで、モノドロミー群を決定するために必要なパラメータの数を考えたい。
+基点 $x_{0}$ をうまく取ることによって、全ての有限の特異点が異なる偏角を持つようにでき、特に $\arg(\xi_{1}-x_{0}) < \arg(\xi_{2}-x_{0}) < \cdots < \arg(\xi_{m}-x_{0})$ となるように並べることができる。
+ここで、それぞれの特異点 $\xi_{l}$ を反時計回りに一周だけして基点に戻ってくる閉道を $\gamma_{l}$ とし、$x=\infty$ を反時計回り（無限遠点から見て反時計回り）に一周して戻ってくる閉道を $\gamma_{\infty}$ とすると、空間の位相的な構造から
+\[
+[\gamma_{\infty}] = ([\gamma_{1}] \cdot [\gamma_{2}] \cdots [\gamma_{m}])^{-1} = [\gamma_{m}]^{-1} \cdots [\gamma_{2}]^{-1} \cdot [\gamma_{1}]^{-1}
+\]
+というホモトピー同値の関係が成り立つ。
+よって、各閉道に沿った解析接続から定まるモノドロミー行列を $\Gamma(\gamma)$ とすれば、
+\[
+\Gamma(\gamma_{\infty}) = \Gamma(\gamma_{m})^{-1} \cdots \Gamma(\gamma_{2})^{-1} \Gamma(\gamma_{1})^{-1}
+\]
+となり、無限遠点でのモノドロミー行列は、有限特異点のモノドロミー行列の組から完全に決定される。
+したがって、モノドロミー群の生成元全体を決定するには、$m$ 個の $n \times n$ 行列 $\Gamma(\gamma_{1}), \dots, \Gamma(\gamma_{m})$、すなわち $mn^{2}$ 個のパラメータを決めれば良いことがわかる。
 
+さらに、モノドロミー表現は解の基本系の取り替え（$GL(n, \mathbb{C})$ による全体の相似変換）という冗長な自由度を持つ。
+相似変換に用いる正則行列が持つ $n^{2}$ 個の自由度のうち、変換に寄与しない定数倍（群の中心 $Z(GL(n, \mathbb{C}))$）の $1$ 次元分を除いた「実質的な相似変換の自由度」は $n^{2}-1$ である。この分を差し引いて、次の命題を得る。
+
+\begin{proposition}\label{prop:monodromy_parameters}
+    フックス型微分方程式\eqref{eq:linear-ode-n}のモノドロミー表現のモジュライ空間は、
+    \[
+    mn^{2} - (n^{2}-1) = (m-1)n^{2} + 1
+    \]
+    個の独立なパラメータを含む。
+\end{proposition}
+
+\begin{Q}[【核心】微分方程式自体のパラメータ数 $E(n,m)$ と、モノドロミー表現のパラメータ数 $(m-1)n^{2} + 1$ を比較すると、常に微分方程式の方がパラメータが多くなる（自由度が高い）。これは何を意味しているのか？]
+\textbf{A.} 「同じモノドロミー群を持つフックス型微分方程式が、無数に存在する」ということである。
+実際に差を計算してみると、特異点の数 $m$ や階数 $n$ が大きくなるにつれて、方程式の自由度 $E(n,m)$ の方が圧倒的に大きくなる。（※唯一の例外が、両者が一致するガウスの超幾何方程式 $E(2,2)=5$ である）。
+「与えられたモノドロミー表現を持つフックス型方程式を構成せよ」という問題をヒルベルトの第21問題（リーマン・ヒルベルト問題）と呼ぶ。パラメータ数にギャップがあるため、モノドロミーを指定するだけでは方程式は一意に定まらず、余剰な自由度（アクセサリー・パラメータ）が生じてしまう。
+そこで、この余剰な自由度をあえて「見かけの特異点」として幾何学的に配置し、本質的な特異点 $t$ を動かしたときに「モノドロミー群が一定に保たれるように」見かけの特異点を時間発展させる、という壮大なアイデアが生まれた。これが岡本和夫らによるモノドロミー保存変形の理論であり、パンルヴェ方程式のハミルトニアン構造の起源なのである。
+\end{Q}
+%#endregion
+%#region
 \begin{definition}[みかけの特異点]%TODO(書き直す)
   % --- ここに数式 ---
     $\Xi$の元を確定特異点としてもつ微分方程式を考える。
@@ -1464,6 +1613,7 @@ q_{1}^{(\infty)}(0) = \left. \frac{1}{u}p_{1}\left(\frac{1}{u}\right) \right|_{u
         \item[\textbf{Link:}] 岡本2.5節/p.86を参照。
     \end{itemize}
 \end{definition}
+%#endregion
 
 \subsection{連立微分方程式系と単独高階微分方程式}
 
@@ -1472,6 +1622,7 @@ q_{1}^{(\infty)}(0) = \left. \frac{1}{u}p_{1}\left(\frac{1}{u}\right) \right|_{u
 \subsection{フックスの問題}
 
 \begin{definition}[モノドロミー保存変形]\label{mono_deform}
+%#region
 %FIXME(書き直す。)
 %FIXME(確定特異点を理解する。) 
     \begin{equation}\label{eq:before}
@@ -1493,570 +1644,5 @@ q_{1}^{(\infty)}(0) = \left. \frac{1}{u}p_{1}\left(\frac{1}{u}\right) \right|_{u
         \item[\textbf{Insight:}] 方程式のパラメータ $t$ を動かしても、基本群の表現（モノドロミー）が変化しないような変形。Schlesinger系やPainlevé方程式の導出における出発点となる。
         \item[\textbf{Link:}] 岡本2.8節の定義2.14/p.105を参照。
     \end{itemize}
+%#endregion
 \end{definition}
-
-\section{パンルヴェ方程式の基礎}
-
-\subsection{変形微分方程式系}
-
-%FIXME (証明とかを書き足す)
-\subsection{2階フックス型微分方程式のラックス方程式}
-
-\begin{equation}\label{eq1}
-\frac{d^{2}z}{dx^{2}}=r(x,t)z
-\end{equation}
-
-\begin{equation}\label{eq2}
-\frac{d\phi}{dx}+\frac{1}{2}p_{1}(x,t)\phi=0
-\end{equation}
-
-\begin{proposition}
-    2階フックス型微分方程式\eqref{eq:2-ode}のモノドロミー保存変形と2階フックス型微分方程式\eqref{eq1}のモノドロミー保存変形とは、1階フックス型微分方程式\eqref{eq2}がモノドロミー保存変形を許すという条件のもとで同値である。
-\end{proposition}
-
-\subsection{変形微分方程式の解}
-
-p.128
-\begin{Q}[なぜ$n$階の変形微分方程式系を考えるのか？]
-\textbf{A.} $\cdot$ $n=2$だけでやるよりも見通しがいいから。\\
-\phantom{\textbf{A.} }$\cdot$ 線型微分方程式のモノドロミー保存変形によって非線形な関係が浮かび上がるから。
-\end{Q}
-
-フックス型微分方程式
-\eqref{eq:linear-ode-n}を考える。\\
-\begin{equation}\label{eq:auxiliary-phi}
-\frac{d\phi(x)}{dx}+\frac{1}{n}p_{1}(x,t)\phi(x)=0
-\end{equation}
-で定まる解をとって、
-\[
-y=\phi(x,t)z
-\]
-とすると、\eqref{eq:fuchs_n_order}は
-\begin{equation}\label{eq:reduced-fuchsian}
-\frac{d^{n}z}{dx^{n}}+\sum_{j=2}^{n} q_{j}(x,t)\frac{d^{n-j}z}{dx^{n-j}} = 0
-\end{equation}
-となる。ここで、$q_{j}(x)$は$\phi(x,t)(i)\,(i=0,1,\cdots,j)$と$p_{i}(x,t)\,(i=1,\cdots,j)$の多項式である。\eqref{eq:reduced-fuchsian}のリーマンデータを
-\[
-(\mathbb{X}',\Xi',\rho')
-\]
-としておく。
-ここで、\eqref{eq:reduced-fuchsian}の解の基本系を$\vec{\varphi}(x)$とする。解析接続をして、
-\[
-W(\vec{\varphi}^{\gamma})=W(\vec{\varphi})\Gamma(\gamma)
-\]
-命題\ref{prop:wronskian-ode}より、$w(\vec{\varphi})$は$x$によらないので、$w(\vec{\varphi}^{\gamma})=w(\vec{\varphi})$であるからdetをとって
-\[
-\det(\Gamma(\gamma))=1
-\]
-がわかる。よって、\eqref{eq:reduced-fuchsian}のモノドロミー群は$SL(n,\mathbb{C})$の部分群であることがわかった。すなわち、
-\[
-\rho':\pi(x_{0},\mathbb{X}')\to SL(n,\mathbb{C})
-\]
-である。ここで$\mathbb{X}'=\mathbb{P}^{1}(\mathbb{C})\setminus \Xi'$である。
-
-\begin{definition}
-    上のように、モノドロミー群が$SL(n,\mathbb{C})$の部分群であるような微分方程式を\textbf{SL型}という
-\end{definition}
-
-p.129
-\begin{Q}[\eqref{eq:auxiliary-phi}に解はあるの？]
-\textbf{A.} $\cdot$ $p_1(x,t)$が正則な$x$の周りではコーシーの存在定理（定理\ref{thm:cauchy}を参照）より必ず存在し、特異点の周りでも (複素べき)$\times$(正則関数とlogの多項式) の形で解を展開できる。(定理\ref{thm:fuchs}を参照)\\
-\phantom{\textbf{A.} }$\cdot$ 【目的】この解 $\phi$ を使って元の変数を変換し、方程式から邪魔な $n-1$ 階微分の項を消し去る（正規化する）ため。
-\end{Q}
-
-\begin{Q}[リーマンデータって何？]
-\textbf{A.} $\cdot$ 微分方程式の定義域、確定特異点の位置の集合、モノドロミーの組のこと。(定義\ref{def:riemann_data}を参照)\\
-\end{Q}
-
-\begin{Q}[解析接続と微分は交換可能？]
-\textbf{A.} 可能。(定義\ref{prop:interchange-ac-diff}を参照)\\
-\end{Q}
-
-\begin{proposition}
-    $n$階フックス型微分方程式\eqref{eq:linear-ode-n}のモノドロミー保存変形と、$n$階フックス型微分方程式\eqref{eq:reduced-fuchsian}のモノドロミー保存変形とは$1$階フックス型微分方程式\eqref{eq:auxiliary-phi}がモノドロミー保存変形を許すという条件のもとで同値である。
-\end{proposition}%FIXME(証明したい)
-%FIXME(モノドロミー保存変形とは)
-
-%#endregion
-\appendix
-
-\section{用いた定理}%TODO(それぞれの定理に証明つけてもいいかも　優先度:低)
-%#region
-\begin{theorem}[正則な解の存在と一意性]\label{thm:cauchy}
-    各$f^{j}(z,w),0\leq j\leq n-1$が$\mathbb{C}^{n-1}$内の領域$D$で正則ならば、任意の点$(a,b)\in D$に対して、$(a,b)$を通る
-    \begin{equation}\label{eq:cauchy_problem}
-    \frac{dw}{dz}=f(z,w)
-    \end{equation}
-    の正則な解$w=w(z)$が局所的にただ一つ存在する。
-    % \cite[オプション]{ラベル} で特定のページをスマートに引用できる
-    （\cite[p.50 定理8.1]{book:takano} を参照）
-\end{theorem}
-%#endregion
-%#region
-\begin{theorem}[確定特異点まわりの解の基本系（フックスの定理）]\label{thm:fuchs}
-    $z=c$を微分方程式\eqref{eq:linear-ode-n}の確定特異点とする。このとき$z=c$の周りの解の基底として
-    \[
-    (z-c)^{\rho}P(z,\log(z-c))
-    \]
-    という形のものが$n$個とれる。ここで$\rho\in \mathbb{C}$、$P(z,t)$は次数が$n-1$以下の$t$の多項式であり、その係数は$z=c$の周りで正則な関数である。特に、少なくとも1つの解として$\log(z-c)$を含まないものが存在する。
-    （\cite[p.119 定理13.1]{book:takano} を参照）
-\end{theorem}
-%#endregion
-%#region
-\begin{definition}[直接接続]
-    点 $a \in \mathbb{C}$ を中心とする収束冪級数を $f_a(z)$ とし、その収束半径を $r_a > 0$、収束円（定義域）を $D_a = \{z \in \mathbb{C} \mid |z - a| < r_a\}$ とする。
-    $D_a$ 内の点 $b \in D_a$ を任意にとる。$f_a(z)$ は $D_a$ 上で正則であるため、これを点 $b$ の周りでテイラー展開し直すことで、新しい収束冪級数 $f_b(z)$ を作ることができる。この $f_b(z)$ の収束円を $D_b$ とすると、共通の領域 $D_a \cap D_b$ において
-    \[
-    f_a(z) = f_b(z)
-    \]
-    が恒等的に成り立つ。
-    このようにして得られた新しい収束冪級数 $f_b(z)$ のことを、$f_a(z)$ の $b$ を中心とする\textbf{直接接続}という。
-    （\cite[p.101]{book:kimura} を参照）
-\end{definition}
-%#endregion
-%#region
-\begin{definition}[曲線に沿っての解析接続]
-    $a,b\in\mathbb{C}$とその間の連続曲線$\varphi:[0,1]\to\mathbb{C};t\mapsto \varphi(t)$をとる。$a$を中心とする収束冪級数$f_{a}(z)$が与えられたとする。$f_{a}(z)$が$\varphi$に沿って解析接続可能であるとは、各$t\in[0,1]$に対して、$\varphi(t)$を中心とする収束冪級数が定まって次の条件が満たされることをいう。\\
-    \textbf{条件} : 任意の$t_{0}\in[0,1]$に対して$\epsilon(t_{0})>0$が存在し、任意の$t\in[t_{0}-\epsilon,t_{0}+\epsilon]\bigcap[0,1]$に対して、$f(z;t)$は$f(z;t_{0})$の直接接続である。\\
-    この時、$f_{b}(z)=f(z;1)$を$f_{a}(z)$の\textbf{$\varphi$に沿っての解析接続}という。
-    （\cite[p.119 定義21.1]{book:kimura} を参照）
-\end{definition}
-%#endregion
-%#region
-\begin{proposition}[解析接続の線型性]\label{prop:analytic_linear}
-    関数 $f(z), g(z)$ が曲線 $\varphi$ に沿って解析接続可能であるとする。このとき、任意の複素定数 $c_1, c_2$ に対して、その線型結合 $h(z) = c_1f(z) + c_2g(z)$ も $\varphi$ に沿って解析接続可能であり、終端 $t=1$ での解析接続の結果をそれぞれ $f(z;1), g(z;1), h(z;1)$ とすると、
-    $$ h(z;1) = c_1f(z;1) + c_2g(z;1) $$
-    が成り立つ。
-\end{proposition}
-
-\begin{proof}[証明の概略]
-    曲線上の点 $\varphi(t)$ を中心とする $f, g$ の収束冪級数をそれぞれ
-    $$ f(z; t) = \sum a_n (z - \varphi(t))^n, \quad g(z; t) = \sum b_n (z - \varphi(t))^n $$
-    とする。このとき、定数倍の和（線型結合）である
-    $$ h(z; t) = c_1f(z; t) + c_2g(z; t) = \sum (c_1a_n + c_2b_n)(z - \varphi(t))^n $$
-    も、同じく $\varphi(t)$ を中心とする収束冪級数となる。
-    
-    解析接続の各ステップである「直接接続」とは、収束円内の新しい中心でテイラー展開を計算し直す操作に他ならない。新しい中心でのテイラー係数はその点での微分係数によって定まるが、微分の線型性より任意の階数 $k$ について
-    $$ h^{(k)}(z) = c_1f^{(k)}(z) + c_2g^{(k)}(z) $$
-    が成り立つ。すなわち、「足し合わせてから展開し直す」結果と「展開し直してから足し合わせる」結果は恒等的に一致する。
-    
-    この直接接続の連鎖を曲線 $\varphi$ に沿って $t=0$ から $t=1$ まで繰り返すことで、終着点 $t=1$ においても
-    $$ h(z; 1) = c_1f(z; 1) + c_2g(z; 1) $$
-    が成立する。したがって、解析接続の操作は定数係数の線型結合（および定数行列の掛け算）と交換可能である。
-\end{proof}
-%#endregion
-%#region
-\begin{definition}[ホモトープ]\label{def:homotope}
-    $X$:位相空間,$l,l':[0,1]\to X$を連続曲線とする。$l(0)=l'(0)=p,l(1)=l'(1)=q$とする。$l$と$l'$が\textbf{ホモトープ}であるとは、次の性質を持つ連続写像$H:[0,1]\times[0,1]\to X$が存在することである。\\
-    \textbf{(A).}$H(t,0)=l(t),H(t,1)=l'(t)\quad (\forall t \in[0,1])$\\
-    \textbf{(B).}$H(0,s)=p,H(1,s)=q \quad  (\forall s \in[0,1])$\\
-    このような$H$を\textbf{$l$から$l'$へのホモトピー}という
-    （\cite[p.121 定義9.1]{book:matsumoto} を参照）
-\end{definition}
-%#endregion
-%#region
-\begin{theorem}[一価性定理]\label{thm:monodromy}
-    $D$を$\mathbb{C}$内の領域とする。$a\in D$を中心とする収束冪級数$f_{a}(z)$が$a$を始点とする$D$内の任意の連続曲線に沿って解析接続可能とする。このとき、$a$を始点とし、$b\in D$を終点とする$D$内の連続曲線$L_{0},L_{1}$が$D$において始点と終点を固定してホモトープならば、$f_{a}(z)$の$L_{0},L_{1}$に沿っての解析接続は$b$において一致する。
-    （\cite[p.110 定理22.2]{book:kimura} を参照。証明付き）
-\end{theorem}
-%#endregion
-%#region
-\begin{theorem}\label{thm:linear_ode_existence_and_continuation}
-    \eqref{eq:linear-ode-n}の$a_{1}(z),\cdots,a_{n}(z)$を領域$D\subset\mathbb{C}$で正則とする。このとき\\
-    \textbf{(A).}任意の$p\in D,q^{0},\cdots,q^{n-1}\in\mathbb{C}$に対して初期条件
-    \[
-    w(p)=q^{0},\frac{dw(p)}{dz}=q^{1},\cdots,\frac{d^{n-1}w(p)}{dz^{n-1}}=q^{n-1}
-    \]
-    を満たす\eqref{eq:linear-ode-n}の正則な解がpの近傍でただ一つ存在する。\\
-    \textbf{(B).}\eqref{eq:linear-ode-n}の局所解は、$D$内のすべての曲線に沿って解析接続可能である。\\
-    （\cite[p.127 定理25.3]{book:kimura} を参照。）
-\end{theorem}
-%#endregion
-%#region
-\begin{theorem}[解の解析接続定理]\label{thm:ode_solution_continuation}
-   $f(z,w)$が領域$D\subset\mathbb{C}$において正則であるとする。$\varphi:[0,1]\to D$を連続とする。任意の$t\in[0,1]$に対して、$(\varphi(t),w(\varphi(t);t))\in D$であるとすると、各$t$に対して、$w(z;t)$は$z\in B_{z}(\varphi(t);r(t)), (z,w(z;t))\in D$なる限り、\eqref{eq:cauchy_problem}の解である。
-   （\cite[p.56 定理8.6]{book:takano} を参照。）
-\end{theorem}
-%#endregion
-%#region
-\begin{definition}[表現]\label{dfn:representation}
-    $G$を群、$V$を複素ベクトル空間とする。$G$の単位元を$e$と書くことにする。写像
-    \[
-    \pi:G\to GL_{\mathbb{C}}(V)
-    \]
-    が与えられて、\\
-    \textbf{(A).}$\pi(x)\pi(y)=\pi(xy)\quad(\forall x, \forall y\in G)$\\
-    \textbf{(B).}$\pi(e)=id_{V}$\\
-    を満たす時、$\pi$を\textbf{群$G$の$V$上の表現}といい$V$を\textbf{表現空間}という。
-    （\cite[p.10 定義1.12]{book:kobayashi} を参照。）
-\end{definition}
-%#endregion
-%#region
-\begin{theorem}[行列の微分]\label{thm:derivative-of-determinant}
-    $A(x)=(a_{ij}(x))$とする。$i$行目を微分した行列を$A_{i}$とおくと、
-    \[
-    \frac{d}{dx}(\det(A(x)))=\sum_{i=1}^{n}\det(A_{i}(x))
-    \]
-\end{theorem}
-
-\begin{proof}
-    \[
-    \det(A(x))=\sum_{\sigma\in S_{n}}a_{1\sigma(1)}(x)\cdots a_{n\sigma(n)}(x)
-    \]
-    と表せるが、微分すると、
-    \[
-    \frac{d}{dx}(\det(A(x)))=\sum_{\sigma\in S_{n}}\sum_{i=1}^{n}a_{1\sigma(1)}(x)\cdots a_{i\sigma_(i)}'(x)\cdots a_{n\sigma(n)}(x)
-    \]
-    \[
-    \therefore\quad
-    \frac{d}{dx}(\det(A(x)))=\sum_{i=1}^{n}\sum_{\sigma\in S_{n}}a_{1\sigma(1)}(x)\cdots a_{i\sigma(i)}'(x)\cdots a_{n\sigma(n)}(x)
-    \]
-    \[
-    \therefore\quad
-    \frac{d}{dx}(\det(A(x)))=\sum_{i=1}^{n}\det(A_{i}(x))
-    \]
-    
-\end{proof}
-%#endregion
-%#region
-\begin{proposition}[解析接続と微分は交換可能]\label{prop:interchange-ac-diff}
-    関数 $f(z)$ が曲線 $\varphi$ に沿って解析接続可能であるとする。このとき、任意の$n\geq 0$ に対して、その微分 $f^{(n)}(z)$ も $\varphi$ に沿って解析接続可能であり、終端 $t=1$ での解析接続の結果をそれぞれ $f(z;1), f^{(n)}(z;1)$ とすると、
-    \[
-    f^{(n)}(z;1) = \frac{d^{n}}{dz^{n}}f(z;1)
-    \]
-    が成り立つ。
-\end{proposition}
-
-\begin{proof}
-    $n=1$の時に証明すれば十分。また、直接接続の時に証明すれば十分。\\
-    $f(z)$の元の収束円盤を$D_{1}$とする。また、$f(z)$は解析接続可能なので、解析接続先の関数を$g(z)$、その収束円盤を$D_{2}$とすると、$z \in D_{1}\cap D_{2}$上で$f(z)=g(z)$である。\\
-    このとき、命題\ref{prop:convergence-radius-invariant}より、$f'(z)はD_{1}$上収束し、$g'(z)はD_{2}$上収束する。また、$z \in D_{1}\cap D_{2}$上では$f'(z)=g'(z)$より、$f'(z)$の$D_{2}$への解析接続は一致の定理から、$g'(z)$である。
-\end{proof}
-%#endregion
-%#region
-\begin{proposition}[解析関数を微分しても収束半径は不変]\label{prop:convergence-radius-invariant}
-    $a\in\mathbb{C}$とする。$f(z)=\sum_{n=0}^{\infty}a_{n}(z-a)^{n}$の収束半径を$R(>0)$とすると、f(z)は$B(a;R)$上の正則関数で
-    \[
-    f'(z)=\sum_{n=0}^{\infty}na_{n}(z-a)^{n-1}
-    \]
-    である。$f'(z)$の収束半径も$R$である。
-    （\cite[p.62 定理3.1.10]{book:noguchi} を参照。）
-\end{proposition}
-%#endregion
-%#region
-\begin{theorem}[正則関数は解析関数]\label{thm:holomorphic-is-analytic}
-    $D$上の正則関数$f$は$D$上解析的で、各点$a\in D$で、$f(z)=\sum_{n=0}^{\infty}a_{n}(z-a)^{n}, z\in B(a;d(a,\partial D))$と展開され、収束半径は$d(a;\partial D)$以上である。
-    （\cite[p.89 定理3.5.7]{book:noguchi} を参照。）
-\end{theorem}
-%#endregion
-%#region
-\begin{proposition}[一致の定理]\label{prop:identity_theorem}
-    $f$を領域$D$上の解析関数とする。部分集合$E\subset D$は$D$内に少なくとも$1$つ集積点を持つとする。もし$f$の$E$への制限$f|_{E}$が恒等的に$0$ならば、$f$は$D$上恒等的に$0$である。
-    （\cite[p.35 定理2.4.14]{book:noguchi} を参照。）
-\end{proposition}
-%#endregion
-%#region
-\begin{theorem}[ローラン展開]\label{thm:laurent_expansion}
-    $B=B(c;r)$とし、$f(z)$が$\bar{B}\setminus\{c\}$で正則であるとすると、$f(z)$は$B\setminus\{c\}$において
-    \[
-    f(z)=\sum_{n=-\infty}^{\infty}a_{n}(z-c)^{n}
-    \]
-    と展開される。ここで、
-    \[
-    a_{n}=\frac{1}{2\pi i}\int_{\partial B}\frac{f(\zeta)}{(\zeta-c)^{n+1}}d\zeta\quad (n=0,\pm1,\pm2,\cdots)
-    \]
-    であり、正べきの部分 $\sum_{n=0}^{\infty}a_{n}(z-c)^{n}$ は任意の $0<r'<r$ に対して $\overline{B(c;r')}$ で一様収束し、負べきの部分（主要部） $\sum_{n<0}a_{n}(z-c)^{n}$ は任意の $r''>0$ に対して $\mathbb{C}\setminus B(c;r'')$ において一様収束する。
-    （\cite[p.70 定理14.1]{book:kimura} を参照。）
-\end{theorem}
-
-\begin{Q}[なぜ特異点の周りでテイラー展開ではなくローラン展開を使うの？]
-\textbf{A.} テイラー展開は関数が正則な（特異点がない）場所でしか成り立たないためである。特異点 $z=c$ を持つ解の挙動を調べるには、「負の冪乗の項（主要部）」を許容するローラン展開を用いる必要がある。この負の冪の項が有限個で打ち止めになるかどうかが、確定特異点と不確定特異点を分ける決定的な基準となる。
-\end{Q}
-%#endregion
-%#region
-\begin{theorem}[ローラン展開の一意性]\label{thm:laurent_uniqueness}
-    関数 $f(z)$ が円環領域 $A = \{z \in \mathbb{C} \mid r_1 < |z-c| < r_2\}$ において、正負の冪級数
-    \[
-    f(z) = \sum_{n=-\infty}^{\infty} c_n (z-c)^n
-    \]
-    として表され、この級数が $A$ 内の任意のコンパクトな部分集合上で一様収束しているとする。このとき、この級数は $f(z)$ のローラン展開に他ならない。すなわち、係数 $c_n$ は
-    \[
-    c_n = \frac{1}{2\pi i} \int_{\gamma} \frac{f(\zeta)}{(\zeta-c)^{n+1}} d\zeta
-    \]
-    で一意に定まる。（ここで $\gamma$ は $A$ 内にある $c$ を囲む閉曲線）
-\end{theorem}
-
-\begin{proof}%TODO{理解が必要}
-    仮定より、級数 $f(\zeta) = \sum_{k=-\infty}^{\infty} c_k (\zeta-c)^k$ は積分路 $\gamma$ 上で一様収束している。
-    両辺を $(\zeta-c)^{n+1}$ で割り、$\gamma$ に沿って和と積分の順序を交換（項別積分）すると、
-    \[
-    \int_{\gamma} \frac{f(\zeta)}{(\zeta-c)^{n+1}} d\zeta = \sum_{k=-\infty}^{\infty} c_k \int_{\gamma} (\zeta-c)^{k-n-1} d\zeta
-    \]
-    ここで、コーシーの積分定理より
-    \[
-    \int_{\gamma} (\zeta-c)^{m} d\zeta =
-    \begin{cases}
-        2\pi i & (m = -1) \\
-        0 & (m \neq -1)
-    \end{cases}
-    \]
-    であるから、右辺の和の中で $k-n-1 = -1$、すなわち $k=n$ の項のみが生き残る。
-    よって、
-    \[
-    \int_{\gamma} \frac{f(\zeta)}{(\zeta-c)^{n+1}} d\zeta = 2\pi i \cdot c_n
-    \]
-    となり、係数 $c_n$ がローラン展開の定義式と完全に一致することが示された。
-\end{proof}
-%#endregion
-%#region
-\begin{theorem}[孤立特異点における極と増大度の同値性]\label{thm:growth_and_pole}
-    関数 $f(z)$ が $z=c$ を孤立特異点として持つとする。このとき、以下の2つの条件は互いに同値である。
-    \begin{enumerate}
-        \item[(P)] $f(z)$ が $z=c$ に高々 $N$ 位の極を持つ（ローラン展開の負べきが $N$ 次で打ち切られる）。
-        \item[(Q)] ある十分小さな半径 $R > 0$ と定数 $C > 0$ が存在して、$0 < |z-c| < R$ において
-        \[
-        |f(z)| \le \frac{C}{|z-c|^N}
-        \]
-        が成り立つ。
-    \end{enumerate}
-\end{theorem}
-
-\begin{proof}
-    \textbf{【(Q) $\implies$ (P) の証明（増大度 $\implies$ 極）】}\\
-    仮定(Q)より、ある半径 $R > 0$ と定数 $C > 0$ が存在して、$0 < |z-c| < R$ で $|f(z)| \le \frac{C}{|z-c|^N}$ が成り立つ。\\
-    ここで $g(z)=(z-c)^{N}f(z)$ とおけば、$|g(z)|\le C$ となる。よって $g(z)$ は $0<|z-c|<R$ で正則かつ有界である。
-    リーマンの除去可能特異点の定理より、$g(z)$ は特異点 $z=c$ を除去でき、円盤 $|z-c|<R$ 全体で正則な関数に延長できる。
-    したがって、$g(z)$ は $|z-c|<R$ においてテイラー展開可能であり、その級数 $g(z) = \sum_{k=0}^{\infty} b_k (z-c)^k$ は同領域で収束する。\\
-    ゆえに、$0 < |z-c| < R$ において、元の関数 $f(z)$ は両辺を $(z-c)^N$ で割ることで
-    \[
-    f(z) = \frac{g(z)}{(z-c)^N} = \sum_{k=0}^{\infty} b_k (z-c)^{k-N} = \frac{b_0}{(z-c)^N} + \frac{b_1}{(z-c)^{N-1}} + \cdots + b_N + b_{N+1}(z-c) + \cdots
-    \]
-    と展開される。ここでローラン展開の一意性（定理\ref{thm:laurent_uniqueness}）より、この広義一様収束する級数はまさに $f(z)$ のローラン展開に他ならない。この展開を見ると負のべき乗は $N$ 次までしか存在しないため、条件(P)が示された。
-
-    \vspace{1em}
-
-    \textbf{【(P) $\implies$ (Q) の証明（極 $\implies$ 増大度）】}\\
-    仮定(P)より、$f(z)$ のローラン展開は有限の負べきで打ち切られ、
-    \[
-    f(z) = \sum_{n=-N}^{\infty} b_n (z-c)^n
-    \]
-    と書ける。孤立特異点の定義より、この展開はある穴あき円盤 $0 < |z-c| < r$ で収束する。
-    ここで $g(z) = (z-c)^N f(z)$ とおくと、
-    \[
-    g(z) = (z-c)^N \sum_{n=-N}^{\infty} b_n (z-c)^n = \sum_{n=-N}^{\infty} b_n (z-c)^{n+N} = \sum_{k=0}^{\infty} b_{k-N} (z-c)^k
-    \]
-    となる（$k = n+N$ と置換した）。\\
-    元のローラン展開が $0 < |z-c| < r$ で収束することから、この級数も同領域で収束する。したがってアーベルの補題（定理\ref{thm:abels_lemma}）により、この負のべき乗を持たない冪級数は、特異点だった中心 $z=c$ を含めた円盤全体 $|z-c| < r$ で正則関数となり、広義一様（絶対）収束する。\\
-    $g(z)$ は $|z-c| < r$ 全体で正則関数（特に連続関数）となるため、境界を含まないある十分小さな閉円盤 $|z-c| \le r'$ （ただし $r' < r$）をとれば、その上で $|g(z)| \le C$ となる定数 $C > 0$ が存在する。\\
-    $g(z) = (z-c)^N f(z)$ であったから、両辺を $|z-c|^N$ で割ることで、$0 < |z-c| \le r'$ において
-    \[
-    |f(z)| \le \frac{C}{|z-c|^N}
-    \]
-    が得られる。ここで $R = r'$ とおけば、まさに条件(Q)を満たす半径 $R$ と定数 $C$ が存在することが示された。
-\end{proof}
-
-% ==========================================
-% 証明の補足・行間解説（Q&A）
-% ==========================================
-\begin{Q}[【補足】$\sum b_k (z-c)^{k-N}$ がローラン展開と完全に一致すると一言で断言できるのはなぜ？]
-\textbf{A.} テイラー級数 $\sum b_k (z-c)^k$ は収束円盤内のコンパクト集合上で広義一様収束し、有界な関数 $(z-c)^{-N}$ を掛けてもその一様収束性は保たれる。一様収束する正負の冪級数表現が得られれば、一意性により自動的にそれがローラン展開となるからである。
-\end{Q}
-
-\begin{Q}[【補足】$\Rightarrow$ の証明ではリーマンの定理を使い、$\Leftarrow$ の証明ではアーベルの補題を使ったのはなぜ？どちらも「穴あき円盤で値が定まっている」状況は同じではないか？]
-\textbf{A.} 対象となる関数 $g(z)$ が、最初から\textbf{「負のべき乗を持たない冪級数（テイラー級数）」の形をしていると確定しているか否か}、という決定的な違いがあるためである。
-\begin{itemize}
-    \item \textbf{$\Leftarrow$ の場合（アーベルの補題）：} $(z-c)^N$ を掛けた時点で負のべき乗が相殺され、「純粋な冪級数」であることが確定している。純粋な冪級数は、中心以外で収束すれば中心でも自動的に正則になるという強い性質を持つため、一気に中心を塞ぐことができる。
-    \item \textbf{$\Rightarrow$ の場合（リーマンの定理）：} スタート時点では $g(z)$ は単なる「有界な関数」であり、ローラン展開した際に負のべき乗が含まれていないかが未確定である。そのため、「有界ならば負のべき乗は存在しない」ことを保証してくれるリーマンの定理が必要になる。
-\end{itemize}
-\end{Q}
-
-\begin{Q}[この定理（極と増大度の同値性）は、確定特異点の理論において何が嬉しいのか？]
-\textbf{A.} 「解析的な条件」と「代数的な条件」を完全に橋渡ししてくれる点である。
-微分方程式の解が「確定特異点」を持つかどうかを判定する際、ローラン展開をすべて計算して有限の負べきで終わるか（代数的な条件）を確かめるのは非常に困難である。しかしこの定理のおかげで、解が特異点に近づくスピードが「多項式オーダーで抑えられるか」（解析的な条件）さえクリアすれば、自動的にローラン展開が打ち切られることが保証され、判定が劇的に簡単になるのである。
-\end{Q}
-%#endregion
-%#region
-\begin{theorem}[アーベルの補題]\label{thm:abels_lemma}
-    冪級数 $\sum_{n=0}^{\infty} a_n (z-c)^n$ が、ある点 $z = z_0$ （ただし $z_0 \neq c$）で収束すると仮定する。
-    このとき、以下の2つが成り立つ。
-    \begin{enumerate}
-        \item \textbf{絶対収束:} 開円板 $|z-c| < |z_0-c|$ 内の任意の点 $z$ において、この冪級数は絶対収束する。
-        \item \textbf{広義一様収束:} 任意の $0 < r < |z_0-c|$ に対して、閉円板 $|z-c| \le r$ 上で一様収束する。（したがって、開円板 $|z-c| < |z_0-c|$ 全体で正則関数を定める）
-    \end{enumerate}
-\end{theorem}
-
-\begin{proof}%TODO　(理解が必要)
-    （証明のスケッチ）級数 $\sum a_n (z_0-c)^n$ が収束するということは、その一般項は $0$ に収束する。したがって、ある定数 $M > 0$ が存在して、すべての $n$ について $|a_n (z_0-c)^n| \le M$ と有界になる。
-    任意の $z$ ($|z-c| < |z_0-c|$) に対して、
-    \[
-    |a_n (z-c)^n| = |a_n (z_0-c)^n| \left| \frac{z-c}{z_0-c} \right|^n \le M \rho^n \quad \left( \text{ただし } \rho = \left| \frac{z-c}{z_0-c} \right| < 1 \right)
-    \]
-    と評価できる。これは公比 $\rho < 1$ の等比級数で上から抑えられることを意味し、ワイエルシュトラスのM判定法より絶対収束（および閉円板上での一様収束）が直ちに導かれる。
-\end{proof}
-%#endregion
-%#region
-\begin{proposition}[冪級数展開の一意性]\label{prop:uniqueness_of_power_series}
-    正則関数 $f(z)$ のある点 $c$ を中心とする冪級数展開（テイラー展開）は一意に定まる。すなわち、ある開円板 $B(c, r)$ 上で $f(z) = \sum_{n=0}^{\infty} a_n (z-c)^n = \sum_{n=0}^{\infty} b_n (z-c)^n$ が成り立つならば、すべての $n \ge 0$ に対して $a_n = b_n$ である。
-\end{proposition}
-
-\begin{proof}
-    命題\ref{prop:convergence-radius-invariant}により、$\sum_{n=0}^{\infty} a_n (z-c)^n$ と $\sum_{n=0}^{\infty} b_n (z-c)^n$ は $B(c, r)$ 上で何度でも項別微分できる。
-    両辺を $i$ 回微分すると、$i-1$ 次以下の項は $0$ になるため、
-    $$
-    \sum_{n=i}^{\infty} a_n\frac{n!}{(n-i)!} (z-c)^{n-i} = \sum_{n=i}^{\infty} b_n\frac{n!}{(n-i)!} (z-c)^{n-i}
-    $$
-    となる。この両辺に $z=c$ を代入すると、$n > i$ の項はすべて $0$ となり、$n=i$ の項のみが残るため、
-    $$
-    i! a_i = i! b_i
-    $$
-    が得られる。両辺を $i!$ で割ることで $a_i = b_i$ がわかる。これが任意の $i \ge 0$ について成り立つため示された。
-\end{proof}
-
-\begin{Q}[【補足】なぜ冪級数展開（テイラー展開）の係数は一意に決まると一言で断言できるのか？]
-\textbf{A.} 収束冪級数は収束円内で項別微分が可能であり、$n$ 回微分して中心 $z=c$ を代入することで、各係数が元の関数の微係数 $f^{(n)}(c)/n!$ として完全に逆算・決定されるからである。
-\end{Q}
-%#endregion
-%#region
-\begin{proposition}\label{prop:singular_point_on_convergence_circle}
-    冪級数 $\sum_{n=0}^{\infty}a_{n}(z-c)^{n}$ の収束半径を $r>0$ とする。このとき、収束円の周 $|z-c|=r$ 上には、特異点が少なくとも1つ存在する。
-\end{proposition}
-
-\begin{proof}
-    背理法で示す。収束円の周 $|z-c|=r$ 上のすべての点が正則点であると仮定する。
-
-    仮定より、円周上の任意の点 $s$ に対して、ある半径 $r_s > 0$ が存在し、開円板 $B(s, r_s)$ 上へ冪級数を解析接続できる。
-    このとき、元の開円板 $B(c, r)$ とこれらの開円板の族 $\{B(s, r_s)\}_{|s-c|=r}$ は、コンパクトな閉円板 $\overline{B(c, r)} = \{z \in \mathbb{C} \mid |z-c| \le r\}$ の開被覆となる。
-
-    コンパクト性より有限部分被覆を選び出すことができ、それらの和集合はある少し大きな開円板 $B(c, r+\epsilon)$ ($\epsilon > 0$) を完全に含む。
-    拡張された領域 $B(c, r+\epsilon)$ は単連結であるため、一価性定理により解析接続の結果は経路に依存せず、全体で一意な一価の正則関数 $f(z)$ が定まる。
-
-    $f(z)$ は $B(c, r+\epsilon)$ で正則であるから、定理\ref{thm:holomorphic-is-analytic}により点 $c$ を中心とし、収束半径が少なくとも $r+\epsilon$ のテイラー展開 $\sum_{n=0}^{\infty}b_{n}(z-c)^{n}$ を持つ。
-    $B(c, r)$ 上では元の級数と一致するため、展開係数の一意性から $a_n = b_n$ となる。
-    しかし、これは元の冪級数の収束半径が $r$ であるという前提に矛盾する。
-
-    したがって、円周 $|z-c|=r$ 上には少なくとも1つの特異点が存在する。
-\end{proof}
-
-\begin{Q}[【補足】円周上がすべて正則であるとき、収束半径が $r$ より大きくなると一言で断言できるのはなぜ？]
-\textbf{A.} コンパクト性により半径 $r+\epsilon$ の大きな開円板上で正則な関数が構成でき、定理\ref{thm:holomorphic-is-analytic}（正則関数は解析関数）により、その開円板全体で収束するテイラー展開を持つことが保証されるからである。係数の一意性から元の級数と一致するため、自動的に収束半径も $r+\epsilon$ 以上となる。
-\end{Q}
-
-\begin{Q}[【補足】局所的な解析接続をつなぎ合わせた関数 $f(z)$ が、全体として矛盾なく一意に定まる（多価関数にならない）と言えるのはなぜ？]
-\textbf{A.} 拡張された領域 $B(c, r+\epsilon)$ が単連結であるためである。単連結領域内では任意の2点を結ぶ連続曲線が互いにホモトープとなり、一価性定理（モノドロミー定理）によって解析接続の結果が経路に依存せず、全体で一意な一価の正則関数として定まるからである。
-\end{Q}
-%#endregion
-%#region
-\begin{theorem}[線形微分方程式の解の存在円板]\label{thm:linear_existence}
-    \begin{equation}\label{eq:linear_ode}
-    \frac{dw}{dz}=A(z)w+g(z)
-    \end{equation}
-    $A(z), g(z)$ の各成分が複素平面の領域 $D$ において正則とする。このとき、任意の $a \in D, b \in \mathbb{C}^{n}$ に対して、$(a,b)$ を通る \eqref{eq:linear_ode} の正則な解が、$a$ を中心とする $D$ に含まれる任意の開円板 $B_{z}(a;r)$ においてただ1つ存在する。
-   （\cite[p.56 定理8.6]{book:takano} を参照。）
-\end{theorem}
-
-\begin{corollary}\label{cor:linear_maximal_disk}
-    \eqref{eq:linear_ode} の $(a,b)$ を通る $B_{z}(a;d(a,\partial D))$ 上正則な解が、ただ1つ存在する。
-\end{corollary}
-
-\begin{Q}[【核心】この系から読み取るべき、線形微分方程式の「強さ」（非線形方程式との決定的な違い）とは何か？]
-\textbf{A.} 線形微分方程式の特異点は係数のみに依存する「固定特異点」であり、係数が正則な限り境界 $\partial D$ まで解を延長できるのに対し、パンルヴェ方程式などの非線形方程式は初期値によって位置が変わる「動く特異点」を持つため、正則領域内でも解が爆発し得るからである。
-\end{Q}
-%#endregion
-%#region
-\begin{proposition}[収束半径の公式（ダランベールの判定法）]\label{prop:dalembert_radius}
-    冪級数 $\sum_{n=0}^{\infty}a_{n}z^{n}$ に対して、極限 $\lim_{n\to\infty}\left|\frac{a_{n}}{a_{n+1}}\right|$ が存在するならば（$+\infty$ に発散する場合も含む）、この冪級数の収束半径 $R$ は
-    \begin{equation}
-        R = \lim_{n\to\infty}\left|\frac{a_{n}}{a_{n+1}}\right|
-    \end{equation}
-    に等しい。
-    （\cite[p.33 定理2.4.4]{book:noguchi} を参照。）
-\end{proposition}
-
-\begin{Q}[【核心】常に成り立つコーシー・アダマールの公式（$\limsup$ を用いる公式）ではなく、なぜ微分方程式の学習においてこの「隣接項の比」の公式を重宝するのか？]
-\textbf{A.} 微分方程式の解を冪級数で仮定して元の方程式に代入すると、係数 $a_n$ は漸化式の形で得られることが多く、隣接項の比をとるこの公式の方が、漸化式から直接かつ容易に収束半径（特異点までの距離）を計算できるからである。
-\end{Q}
-%#endregion
-%#region
-\begin{theorem}\label{thm:solution_space_dimension}
-    $a$を中心とする開円板$B_{a}\subset D$において正則な\eqref{eq:linear-ode-n}の解全体$V_{a}$は$n$次元複素線型空間をなす。
-    （\cite[p.78 定理11.2]{book:takano}を参照）
-\end{theorem}
-%#endregion
-%#region
-\begin{proposition}[共通の経路に沿った解析接続による1次独立性の不変性]\label{prop:independence_branch_invariance}
-    ある単連結な領域 $D$ において、線形常微分方程式の1次独立な解の組 $(\varphi_1, \dots, \varphi_n)$ が与えられているとする。
-    このとき、$D$ を始点とする任意の道 $\gamma$ に沿って、これらの解を「同時に」解析接続して得られる新たな分枝の組 $(\varphi_1^\gamma, \dots, \varphi_n^\gamma)$ もまた、接続先の領域において1次独立である。
-    すなわち、解の組の1次独立性は、共通の道に沿ったリーマン面上の分枝の移行によらず恒久的に不変である。
-\end{proposition}
-
-\begin{proof}
-    ある単連結な領域 $D$ をとって正則な分枝の組を $(\varphi_{1}(x),\cdots,\varphi_{n}(x))$ とする。
-    $(C_{1},\cdots,C_{n})\in\mathbb{C}^{n}$ に対して $D$ 上で
-    \[
-    C_{1}\varphi_{1}(x)+\cdots+C_{n}\varphi_{n}(x) \equiv 0
-    \]
-    が成り立つとする。
-    
-    複素解析における完全解析関数の定義により、この解の組の任意の分枝は、領域 $D$ から出発する適当な道 $\gamma$ に沿って「すべての解を同時に」解析接続することによって得られる。
-    この道 $\gamma$ に沿った解析接続を等式全体に適用すると、$(C_{1},\cdots,C_{n})$ は定数であるため、一致の定理により解析接続先でも線形関係は保たれ、
-    \[
-    C_{1}\varphi_{1}^{\gamma}(x)+\cdots+C_{n}\varphi_{n}^{\gamma}(x) \equiv 0
-    \]
-    となる（逆向きの解析接続 $\gamma^{-1}$ を考えれば逆も成り立つ）。
-    
-    したがって、同じ道 $\gamma$ をたどる限り、解析接続前と後で上の線形関係式を満たす定数の組 $(C_{1},\cdots,C_{n})\in\mathbb{C}^{n}$ の集合は完全に一致する。
-    ゆえに、「式を満たす定数が $C_1=\dots=C_n=0$ のみである」という1次独立の条件は、解の組全体としてどのシート（分枝）へ移行しても不変である。
-\end{proof}
-
-\begin{Q}[【核心】「分枝の選び方」次第で独立性が変わるならば、「独立性は不変」という主張と矛盾しないか？]
-\textbf{A.} 矛盾しない。「基底の選択段階」では最初の選び方で独立・従属が変化するが、命題が主張するのは「一度独立なペアを選んだら、それらを共通の道 $\gamma$ で同時に解析接続（評価場所を変更）しても判定は裏返らない」という不変性である。関数ごとに別々の道を歩かせて分枝を混ぜる行為はルール違反である。
-\end{Q}
-
-\begin{Q}[【核心】大域的な多価関数から分枝（切断）を選んで局所基底を作る以上、多価関数同士の独立性は最初の選び方に完全に依存するのか？]
-\textbf{A.} 完全に依存する。誤って定数倍になる分枝同士を選べば1次従属となる。ただし、特異点における「漸近挙動（オーダー）」が決定的に異なる関数同士であれば、どのように分枝を選んでも必ず独立になることが保証される。
-\end{Q}
-
-\begin{Q}[【実践】特異点への極限（漸近挙動）を見る手法は、なぜ1次独立性の判定において強力なのか？]
-\textbf{A.} 一番小さなオーダーで割って極限をとる操作を繰り返すことで、線形結合の係数を一つずつ確実に $0$ に追い込めるからである。例えば「1価関数」と「多価関数」は性質が異なるため常に独立となる。3階以上の方程式では「互いに定数倍でない」ことだけでは独立と言えないため、この極限操作による証明が必須となる。
-\end{Q}
-
-\begin{Q}[【核心】漸近挙動を見るだけで独立性が証明できるなら、なぜ解析接続（モノドロミー）という概念が必要なのか？]
-\textbf{A.} 漸近挙動という局所ツールでは太刀打ちできない以下の3点で不可欠だからである。
-① 漸近挙動が重複する対数解の代数的構造（ジョルダン細胞）を解明するため。
-② 異なる特異点間の独立性を直接比較する「接続問題」を解くため。
-③ そもそも「局所の漸近挙動で独立なら、全域のどの分枝でも独立である」という大域的な理論的保証を与えるため。
-\end{Q}
-%#endregion
-%#region
-\begin{proposition}[アーベルの公式とロンスキアンによる独立性の判定]\label{prop:wronskian_independence}
-    $w_{0}(z),\cdots,w_{n-1}(z)$ を $B_{a}$ において正則な \eqref{eq:linear-ode-n} の解とする。このとき、
-    \begin{enumerate}
-        \item[(i)] ロンスキアン $W(w_{0}(z),\cdots,w_{n-1}(z))$ は、全ての $z\in B_{a}$ で恒等的に $0$ であるか、あるいは全ての $z\in B_{a}$ で $0$ でないかのどちらかである。
-        \item[(ii)] $w_{0}(z),\cdots,w_{n-1}(z)$ が解空間 $V_{a}$ の基底である $\iff$ 全ての $z\in B_{a}$ に対して $W(w_{0}(z),\cdots,w_{n-1}(z)) \neq 0$
-    \end{enumerate}
-    （\cite[p.78 定理11.3]{book:takano}を参照）
-\end{proposition}
-%#endregion
-
-\section{補遺：定理・命題の厳密な証明}
-
-% --- 今後の課題（TODOリスト） ---
-
-\section{Next Step / To-Do}
-\begin{itemize}
-    \item [-] 一旦ガウスの超幾何微分方程式をかくのがいいかな
-\end{itemize}
-
-% --- 参考文献 ---
-\begin{thebibliography}{99}
-    % \bibitem{参照用ラベル} 本に表示される書誌情報
-    \bibitem{book:okamoto} 岡本和夫, 『パンルヴェ方程式』, 岩波書店, 1999.
-    \bibitem{book:takano} 高野恭一, 『常微分方程式』, 朝倉出版, 1994.
-    \bibitem{book:kimura} 木村俊房・高野恭一, 『関数論』, 朝倉出版, 1991.
-    \bibitem{book:matsumoto} 松本幸夫, 『トポロジー入門』, 岩波書店, 1985.
-    \bibitem{book:kobayashi} 小林俊行・大島利雄, 『リー群と表現論』, 岩波書店, 2005.
-    \bibitem{book:noguchi} 野口潤次郎, 『複素解析概論』, 裳華房, 1993.
-\end{thebibliography}
-%#endregion
-
-\end{document}
