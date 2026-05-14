@@ -392,6 +392,7 @@ $Y(x,t) = \Phi(x,t)x^{-A_\infty}$ とおく。ここで $\Phi(x,t) = I_n + \Phi_
 \begin{equation*}
   A^{(l)}(x,t) = - \frac{A_l}{x-t_l}
 \end{equation*}
+となることがわかる．
 
 \begin{Q}[テキストの「上の2つの式から、結局…」の部分にはどのような論理の飛躍があり、どうやって $A^{(l)}(x,t)$ の大域的な形を決定しているのか？]
 \textbf{A.} 複素解析における強力な定理である「リウヴィルの定理（拡張版）」を暗黙に適用している。
@@ -404,7 +405,8 @@ $Y(x,t) = \Phi(x,t)x^{-A_\infty}$ とおく。ここで $\Phi(x,t) = I_n + \Phi_
 これらをつなぎ合わせることで、大域的な形が $A^{(l)}(x,t) = - \frac{A_l}{x-t_l}$ に一意に定まるのである。
 \end{Q}
 
-となることがわかる．詳しい説明は省略したが，上で述べたような考察により次の命題が得られる．
+\begin{story}
+詳しい説明は省略したが，上で述べたような考察により次の命題が得られる．
 
 \begin{proposition}\label{prop:3.4_Schleginger_deformation_system}
 シュレジンガー型微分方程式\eqref{eq:3.4_Schleginger}の変形微分方程式は以下で与えられる．
@@ -425,6 +427,7 @@ $Y(x,t) = \Phi(x,t)x^{-A_\infty}$ とおく。ここで $\Phi(x,t) = I_n + \Phi_
   \sum_{h=1(h \neq l)}^L \frac{[A_h, A_l]}{t_h - t_l} \left( \frac{1}{x-t_h} - \frac{1}{x-t_l} \right)
 \]
 を得る．
+\end{story}
 
 \begin{Q}[「右辺を丁寧に変形すると」とあるが、交換子の計算と部分分数分解の具体的なプロセスはどうなっているか？]
 \textbf{A.} 右辺の交換子は双線形性により和の外に出せる。各項は
@@ -435,6 +438,8 @@ $\frac{1}{(x-t_l)(x-t_h)} = \frac{1}{t_h - t_l} \left( \frac{1}{x-t_h} - \frac{1
 となるため、これを代入することでテキストの展開式が厳密に得られる。
 \end{Q}
 
+\begin{story}
+
 ここで，$\frac{1}{x-t_h}$ の係数を比較すれば，$A_h$ に関する微分方程式系
 
 \begin{align}
@@ -442,6 +447,8 @@ $\frac{1}{(x-t_l)(x-t_h)} = \frac{1}{t_h - t_l} \left( \frac{1}{x-t_h} - \frac{1
   \frac{\partial A_l}{\partial t_l} &= - \sum_{h=1(h \neq l)}^L \frac{[A_h, A_l]}{t_h - t_l}\label{eq:3.4_compatibility_ll}
 \end{align}
 が成立することがわかる．
+
+\end{story}
 
 \begin{Q}[左辺と右辺の係数比較から、なぜ $h \neq l$ の場合\eqref{eq:eq:3.4_compatibility_hl}と $h=l$ の場合\eqref{eq:3.4_compatibility_ll}の2つの異なる方程式が抽出されるのか？]
 \textbf{A.} 左辺は $\sum_{h=1}^L \frac{\partial A_h / \partial t_l}{x-t_h}$ であり、すべての極 $x=t_k$ $(k=1,\dots,L)$ に独立した係数を持っている。

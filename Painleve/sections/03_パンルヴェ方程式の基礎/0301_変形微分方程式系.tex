@@ -103,6 +103,7 @@ a_{1}^{(l)}(x,t), a_{2}^{(l)}(x,t), \cdots, a_{n}^{(l)}(x,t) \quad (l=1,2,\cdots
 \textbf{A.} 可逆な基本解行列 $Y(x,t)$ が大域的に存在するということは、変数 $x$ に関する特異点の周りを回る解析接続（モノドロミー表現）が、パラメータ $t$ の変動に対して滑らかに追従し、位相的な不変量として一定に保たれることを意味する。つまり、「方程式の係数 $P(x,t)$ は $t$ によって変形されるが、その解の大域的な多価性の構造（特異点の性質など）は変化しない」という強い制約（ホロノミック性）を満たしているからである。
 \end{Q}
 
+\begin{story}
 フックス型微分方程式系\eqref{eq:3.1_x_ODE_matrix}のモノドロミー保存変形を決定するためには，変形微分方程式系\eqref{eq:3.1_deformation_system_matrix}を調べればよいことがわかった.まず命題3.3を使いやすい形に書き直そう。ここでは、2つの行列 $A, B$ の交換子を $[A, B] = AB - BA$ と書く．
 
 \begin{proposition}\label{prop:3.1_compatibility}
@@ -151,6 +152,7 @@ a_{1}^{(l)}(x,t), a_{2}^{(l)}(x,t), \cdots, a_{n}^{(l)}(x,t) \quad (l=1,2,\cdots
   \tilde{Y}(x_0,t) = I
 \]
 により定める．$I=I_n$ は $n$ 次の単位行列である．
+
 
 \begin{Q}[なぜここで $\tilde{Y}(x,t)$ という新たな解を導入し、さらに次式で $W^{(l)}(x,t)$ を定義するのか？]
 \textbf{A.} 最終的に欲しいのは、$x$ 方向と $t$ 方向の両方の微分方程式を満たす $Y(x,t)$ である。まず $x$ 方向の方程式を満たす $\tilde{Y}$ を作ったが、これが $t$ 方向の方程式（$\partial_t \tilde{Y} = A\tilde{Y}$）をも満たすとは限らない。そこで、その「ズレ（誤差）」を測る行列 $W^{(l)}$ を定義し、完全積分可能条件\eqref{eq:3.1_compatibility_PA}を用いれば「このズレ自体がコントロール可能である」ことを示すためである。
@@ -209,6 +211,8 @@ $W^{(l)}(x_0,t) = A^{(l)}(x_0,t)I - \frac{\partial I}{\partial t_l} = E^{(l)}(t)
 \end{align*}
 より，\eqref{eq:3.1_t_ODE_matrix}も満足する。この計算では、\eqref{eq:W_def}と\eqref{eq:W_rel}から得られる関係式 $\frac{\partial \tilde{Y}}{\partial t_l} = A^{(l)}\tilde{Y} - \tilde{Y}E^{(l)}$ を用いた。以上により命題\ref{prop:3.1_compatibility}が示された。
 \end{proof}
+
+\end{story} 
 
 %#endregion
 %#region

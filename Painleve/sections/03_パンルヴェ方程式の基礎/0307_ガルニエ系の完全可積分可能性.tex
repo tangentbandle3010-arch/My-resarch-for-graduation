@@ -1,0 +1,333 @@
+% !TEX root = ../main.tex
+
+
+\begin{story}
+定理3.2の証明を完了するために，次の事実が成り立つことを確認しなくてはいけない．
+
+\begin{lemma}[3.12]
+(3.91)は完全積分可能である．
+\end{lemma}
+
+この結果をひとまず認めておこう．そうすると，以上によってSL型の方程式のモノドロミー保存変形は，完全積分可能ハミルトン系(3.91)で与えられることがわかった．定理3.2は，これからただちに従う．すなわち，$\lambda, \mu$についての方程式は(3.91)から，変換(3.87)を経由することによって得られる．
+\end{story}
+Lem 3.9 より
+\begin{align*}
+    \frac{\partial \lambda_k}{\partial t_l} = \frac{\partial K_l}{\partial \nu_k}, \quad \frac{\partial \nu_k}{\partial t_l} = - \frac{\partial K_l}{\partial \lambda_k}
+\end{align*}
+から，
+\begin{align*}
+    K_l = H_l + \frac{1-\theta_l}{2} W_l, \quad \nu_k = \mu_k + \frac{1}{2} \omega_k
+\end{align*}
+よって， $\displaystyle \frac{\partial}{\partial \nu_k} = \frac{\partial}{\partial \mu_k}$ より，
+\[
+\begin{cases}
+    \displaystyle \frac{\partial \lambda_k}{\partial t_l} = \frac{\partial H_l}{\partial \mu_k} + \frac{1-\theta_l}{2} \frac{\partial W_l}{\partial \mu_k} \\
+    \displaystyle \frac{\partial \mu_k}{\partial t_l} + \frac{1}{2} \frac{\partial \omega_k}{\partial t_l} = - \frac{\partial H_l}{\partial \lambda_k} - \frac{1-\theta_l}{2} \frac{\partial W_l}{\partial \lambda_k}
+\end{cases}
+\]
+ここで，
+\[
+\begin{cases}
+    \displaystyle W_l = \frac{1-\kappa_0}{t_l} + \frac{1-\kappa_1}{t_l-1} + \sum_{m \neq l} \frac{1-\theta_m}{t_l-t_m} + \sum_{k=1}^g \frac{1}{\lambda_k-t_l} \\
+    \displaystyle \omega_k = \frac{1-\kappa_0}{\lambda_k} + \frac{1-\kappa_1}{\lambda_k-1} + \sum_{l=1}^g \frac{1-\theta_l}{\lambda_k-t_l} - \sum_{m \neq k} \frac{1}{\lambda_k-\lambda_m}
+\end{cases}
+\]
+より，
+\begin{align*}
+    \frac{\partial W_l}{\partial \mu_k} &= 0 \\
+    \frac{\partial W_l}{\partial \lambda_k} &= - \frac{1}{(\lambda_k-t_l)^2} \\
+    \frac{\partial \omega_k}{\partial t_l} &= \frac{1-\theta_l}{(\lambda_k-t_l)^2}
+\end{align*}
+よって，
+\[
+\begin{cases}
+    \displaystyle \frac{\partial \lambda_k}{\partial t_l} = \frac{\partial H_l}{\partial \mu_k} \\
+    \displaystyle \frac{\partial \mu_k}{\partial t_l} = - \frac{\partial H_l}{\partial \lambda_k}
+\end{cases}
+\]
+\begin{story}
+一方これは，補題3.7で見たように，正準変換である．したがって求めるガルニエ系，すなわち$H=(H_1, \cdots, H_g)$をハミルトニアンとするハミルトン系$G_g$が得られる．以上のような筋道で，証明が完了する．
+
+以下本節の残りの部分では，$g$-次ガルニエ系
+\begin{equation*}
+    G_g \qquad \frac{\partial \lambda_k}{\partial t_l} = \frac{\partial H_l}{\partial \mu_k}, \quad \frac{\partial \mu_k}{\partial t_l} = - \frac{\partial H_l}{\partial \lambda_k}
+\end{equation*}
+の完全積分可能性を確認する．まず$G_g$が次の全微分方程式系で表されることに注意する．
+
+\begin{equation}
+    d\lambda_k = \sum_{l=1}^g \frac{\partial H_l}{\partial \mu_k} dt_l, \quad d\mu_k = - \sum_{l=1}^g \frac{\partial H_l}{\partial \lambda_k} dt_l \qquad (k=1, \cdots, g) \tag{3.94}
+\end{equation}
+
+\end{story}
+実際、
+\begin{align*}
+    d\lambda_k &= \sum_{l=1}^g \frac{\partial \lambda_k}{\partial t_l} dt_l = \sum_{l=1}^g \frac{\partial H_l}{\partial \mu_k} dt_l \\
+    d\mu_k &= \sum_{l=1}^g \frac{\partial \mu_k}{\partial t_l} dt_l = -\sum_{l=1}^g \frac{\partial H_l}{\partial \lambda_k} dt_l
+\end{align*}
+
+\begin{story}
+
+我々はこの全微分方程式系(3.94)も$g$-次ガルニエ系と呼び，同じ記号$G_g$で表す．このとき，$G_g$ が完全積分可能であるための条件は
+\begin{equation}
+    d\left( \sum_{l=1}^g \frac{\partial H_l}{\partial \mu_k} dt_l \right) = d\left( \sum_{l=1}^g \frac{\partial H_l}{\partial \lambda_k} dt_l \right) = 0 \tag{3.95}
+\end{equation}
+が成り立つことである．さて，一般に$\lambda, \mu$と$t$の関数$F, G$のポアソン括弧式を
+\begin{equation*}
+    \{F, G\} = \sum_{k=1}^g \left[ \frac{\partial F}{\partial \lambda_k} \frac{\partial G}{\partial \mu_k} - \frac{\partial F}{\partial \mu_k} \frac{\partial G}{\partial \lambda_k} \right]
+\end{equation*}
+で定義しよう．次に，$g$個のハミルトニアン$H=(H_1, \cdots, H_g)$に対し
+\begin{equation*}
+    \Phi = \sum_{l=1}^g H_l dt_l
+\end{equation*}
+という1型式を考える．ここで，関数$F$と1型式$\Phi$のポアソン括弧式を
+\begin{equation*}
+    \{F, \Phi\} = \sum_{l=1}^g \{F, H_l\} dt_l
+\end{equation*}
+により定める．このとき，$g$-次ガルニエ系$G_g$は次の形に書かれる．
+\begin{equation*}
+    d\lambda_k = \{\lambda_k, \Phi\}, \quad d\mu_k = \{\mu_k, \Phi\}
+\end{equation*}
+
+$\Omega$を基本2次型式(3.88)とする．$g=1$のときは$\Omega$にハミルトン系(3.64)の解を代入すると$\Omega=0$となる．
+\end{story}
+\begin{align*}
+    \Omega &= d\mu \wedge d\lambda - dH \wedge dt \\
+    &= \left( \frac{d\mu}{dt} + \frac{dH}{d\lambda} \right) dt \wedge d\lambda
+\end{align*}
+より，$g=1$ のときは，(3.64)の解を代入すると $\Omega = 0$．
+\begin{story}
+一般の多時間ハミルトン系については，$g>1$のとき，(3.94)が完全積分可能であるための条件は(3.95)であり，ハミルトン系が完全積分可能であったとしても，$\Omega$に(3.94)を代入して$\Omega=0$が得られるとは限らない．ただし，我々が考察している$g$-次ガルニエ系の場合には，$\Omega$に(3.94)の解を代入すると$\Omega=0$となる．
+
+上の(3.95)から，多時間ハミルトン系
+\begin{equation}
+    \frac{\partial \lambda_k}{\partial t_l} = \frac{\partial H_l}{\partial \mu_k}, \quad \frac{\partial \mu_k}{\partial t_l} = - \frac{\partial H_l}{\partial \lambda_k} \tag{3.96}
+\end{equation}
+が，偏微分方程式系として完全積分可能であるための条件は，$h, k, l=1, \cdots, g$に対して，次式が成り立つことである．
+\begin{equation}
+    \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \mu_k} \right) - \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \mu_k} \right) = 0 \tag{3.97}
+\end{equation}
+
+\begin{equation}
+    \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \lambda_k} \right) - \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \lambda_k} \right) = 0 \tag{3.98}
+\end{equation}
+
+\end{story}
+実際、
+
+\begin{align*}
+    d \left( \sum_{l=1}^g \frac{\partial H_l}{\partial \mu_k} dt_l \right) &= \sum_{l=1}^g \left( \sum_{h=1}^g \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \mu_k} \right) dt_h \right) \wedge dt_l + \left( \sum_{l=1}^g \frac{\partial H_l}{\partial \mu_k} \right) \underbrace{d(dt_l)}_{=0} \\
+    &= \sum_{l=1}^g \sum_{h=1}^g \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \mu_k} \right) dt_h \wedge dt_l \\
+    &= \sum_{h < l} \left( \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \mu_k} \right) - \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \mu_k} \right) \right) dt_h \wedge dt_l = 0
+\end{align*}
+
+\vspace{1em}
+\noindent
+線型独立性から，
+\begin{equation*}
+    \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \mu_k} \right) - \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \mu_k} \right) = 0
+\end{equation*}
+
+\vspace{1em}
+\noindent
+$\lambda_k$ も同様。
+
+\begin{story}
+
+この条件について少し詳しく調べてみよう．まず，$\lambda_k, \mu_k, t_l$の関数である$F$に対し，$\lambda_k, \mu_k$が方程式系(3.96)の解であるとして$F$を$t_l$で微分すると
+\begin{equation*}
+    \frac{\partial F}{\partial t_l} = \sum_{k=1}^g \frac{\partial \lambda_k}{\partial t_l} \frac{\partial F}{\partial \lambda_k} + \sum_{k=1}^g \frac{\partial \mu_k}{\partial t_l} \frac{\partial F}{\partial \mu_k} + \left( \frac{\partial}{\partial t_l} \right) F
+\end{equation*}
+となる．ここで$\left( \frac{\partial}{\partial t_l} \right)$は，$\lambda_k, \mu_k$等も定数とみて，$t_l$で偏微分する，という意味である．(3.96)を用いて、ポアソン括弧式を使ってこの計算結果を書き直すと
+\begin{equation}
+    \frac{\partial F}{\partial t_l} = \{F, H_l\} + \left( \frac{\partial}{\partial t_l} \right) F \tag{3.99}
+\end{equation}
+が得られる．このことを用いて，完全積分可能条件(3.97)を計算する．実際
+\begin{equation}
+    \Omega_{hl} = \{H_h, H_l\} + \left( \frac{\partial}{\partial t_l} \right) H_h - \left( \frac{\partial}{\partial t_h} \right) H_l \tag{3.100}
+\end{equation}
+とおくと，(3.97)の左辺について
+\begin{equation*}
+    \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \mu_k} \right) - \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \mu_k} \right) + \left( \frac{\partial}{\partial \mu_k} \right) \Omega_{hl} = 0
+\end{equation*}
+が成り立つ．
+\end{story}
+\begin{align*}
+    \left( \frac{\partial}{\partial \mu_k} \right) \Omega_{hl} &= \frac{\partial}{\partial \mu_k} \{H_h, H_l\} + \frac{\partial}{\partial \mu_k} \left( \frac{\partial}{\partial t_l} \right) H_h - \frac{\partial}{\partial \mu_k} \left( \frac{\partial}{\partial t_h} \right) H_l
+\end{align*}
+
+\begin{align*}
+    \frac{\partial}{\partial a} (\{F, G\}) &= \frac{\partial}{\partial a} \sum_{k=1}^g \left( \frac{\partial F}{\partial \lambda_k} \cdot \frac{\partial G}{\partial \mu_k} - \frac{\partial F}{\partial \mu_k} \cdot \frac{\partial G}{\partial \lambda_k} \right) \\
+    &= \sum_{k=1}^g \left\{ \frac{\partial}{\partial \lambda_k} \left( \frac{\partial F}{\partial a} \right) \cdot \frac{\partial G}{\partial \mu_k} - \frac{\partial}{\partial \mu_k} \left( \frac{\partial F}{\partial a} \right) \cdot \frac{\partial G}{\partial \lambda_k} \right\} \\
+    &\quad + \left\{ \frac{\partial F}{\partial \lambda_k} \cdot \frac{\partial}{\partial \mu_k} \left( \frac{\partial G}{\partial a} \right) - \frac{\partial F}{\partial \mu_k} \cdot \frac{\partial}{\partial \lambda_k} \left( \frac{\partial G}{\partial a} \right) \right\} \\
+    &= \left\{ \frac{\partial F}{\partial a}, G \right\} + \left\{ F, \frac{\partial G}{\partial a} \right\}
+\end{align*}
+
+\begin{align*}
+    \therefore \left( \frac{\partial}{\partial \mu_k} \right) \Omega_{hl} &= \left[ \left\{ \frac{\partial H_h}{\partial \mu_k}, H_l \right\} + \left( \frac{\partial}{\partial t_l} \right) \frac{\partial H_h}{\partial \mu_k} \right] + \left\{ H_h, \frac{\partial H_l}{\partial \mu_k} \right\} - \left( \frac{\partial}{\partial t_h} \right) \frac{\partial H_l}{\partial \mu_k} \\
+    &= \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \mu_k} \right) - \left[ \left\{ \frac{\partial H_l}{\partial \mu_k}, H_h \right\} + \left( \frac{\partial}{\partial t_h} \right) \frac{\partial H_l}{\partial \mu_k} \right] \\
+    &= \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \mu_k} \right) - \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \mu_k} \right) \\
+    \therefore \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \mu_k} \right) &- \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \mu_k} \right) + \left( \frac{\partial}{\partial \mu_k} \right) \Omega_{hl} = 0
+\end{align*}
+
+\begin{story}
+同様に(3.98)の左辺から
+\begin{equation*}
+    \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \lambda_k} \right) - \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \lambda_k} \right) + \left( \frac{\partial}{\partial \lambda_k} \right) \Omega_{hl} = 0
+\end{equation*}
+となる．
+\end{story}
+\begin{align*}
+    \left( \frac{\partial}{\partial \lambda_k} \right) \Omega_{hl} &= \left[ \left\{ \frac{\partial H_h}{\partial \lambda_k}, H_l \right\} + \left( \frac{\partial}{\partial t_l} \right) \frac{\partial H_h}{\partial \lambda_k} \right] + \left\{ H_h, \frac{\partial H_l}{\partial \lambda_k} \right\} - \left( \frac{\partial}{\partial t_h} \right) \frac{\partial H_l}{\partial \lambda_k} \\
+    &= \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \lambda_k} \right) - \left[ \left\{ \frac{\partial H_l}{\partial \lambda_k}, H_h \right\} + \left( \frac{\partial}{\partial t_h} \right) \frac{\partial H_l}{\partial \lambda_k} \right] \\
+    &= \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \lambda_k} \right) - \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \lambda_k} \right) \\
+    \therefore \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \lambda_k} \right) &- \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \lambda_k} \right) + \left( \frac{\partial}{\partial \lambda_k} \right) \Omega_{hl} = 0 \quad ,,
+\end{align*}
+\begin{story}
+すなわち，完全積分可能条件(3.95)は
+\begin{equation}
+    \sum_{h,l=1}^g \left( \frac{\partial}{\partial \mu_k} \right) \Omega_{hl} dt_h \wedge dt_l = \sum_{h,l=1}^g \left( \frac{\partial}{\partial \lambda_k} \right) \Omega_{hl} dt_h \wedge dt_l = 0 \tag{3.101}
+\end{equation}
+と書かれる．
+\end{story}
+\vspace{1em}
+\noindent
+よって，(3.97), (3.98) と比べて，
+\begin{equation*}
+    \begin{cases}
+        \displaystyle \left( \frac{\partial}{\partial \mu_k} \right) \Omega_{hl} = 0 \\[1.5em]
+        \displaystyle \left( \frac{\partial}{\partial \lambda_k} \right) \Omega_{hl} = 0
+    \end{cases}
+\end{equation*}
+が可積分条件である．
+\begin{story}
+ここで，基本2次型式(3.88)を$\Omega_{hl}$を使って表す．
+
+\begin{lemma}[3.13]
+次の式が成り立つ．
+\begin{equation*}
+    \Omega = \sum_{h<l} \Omega_{hl} dt_h \wedge dt_l
+\end{equation*}
+\end{lemma}
+
+一般には，$H_l$ は $\lambda_k, \mu_k, t_h$ の関数であるから $\Omega_{hl}$ もそうである．もし，$\Omega_{hl}$ が $\lambda_k, \mu_k$ に依らないように $H_l$ が与えられていれば，$H_l$ をハミルトニアンとする多時間ハミルトン系(3.94)は(3.101)より，完全積分可能となる．
+
+\begin{proof}$\Omega_{hl}$ を補題が成り立つように定めたとして，(3.94)や
+\begin{equation*}
+    dH_l = \sum_{h=1}^g \frac{\partial H_l}{\partial t_h} dt_h
+\end{equation*}
+などを使って丁寧に計算すると
+\begin{equation*}
+    \Omega_{hl} = \{H_l, H_h\} - \frac{\partial H_l}{\partial t_h} + \frac{\partial H_h}{\partial t_l}
+\end{equation*}
+を得る．実際
+\begin{align*}
+    \Omega &= \sum_{k=1}^g d\mu_k \wedge d\lambda_k - \sum_{l=1}^g dH_l \wedge dt_l \\
+    &= \sum_{k=1}^g \left( \sum_{h=1}^g \sum_{l=1}^g \frac{\partial \mu_k}{\partial t_h} \frac{\partial \lambda_k}{\partial t_l} dt_h \wedge dt_l \right) - \sum_{l=1}^g \left( \sum_{h=1}^g \frac{\partial H_l}{\partial t_h} \right) dt_h \wedge dt_l \\
+    &= \sum_{h<l} \left( \sum_{k=1}^g \left( \frac{\partial \mu_k}{\partial t_h} \frac{\partial \lambda_k}{\partial t_l} - \frac{\partial \lambda_k}{\partial t_h} \frac{\partial \mu_k}{\partial t_l} \right) - \left( \frac{\partial H_l}{\partial t_h} - \frac{\partial H_h}{\partial t_l} \right) \right) dt_h \wedge dt_l \\
+    &= \sum_{h<l} \left( \sum_{k=1}^g \left( -\frac{\partial H_h}{\partial \lambda_k} \frac{\partial H_l}{\partial \mu_k} + \frac{\partial H_h}{\partial \mu_k} \frac{\partial H_l}{\partial \lambda_k} \right) - \left( \frac{\partial H_l}{\partial t_h} - \frac{\partial H_h}{\partial t_l} \right) \right) dt_h \wedge dt_l \\
+    &= \sum_{h<l} \left( \lbrace H_l, H_h \rbrace - \frac{\partial H_l}{\partial t_h} + \frac{\partial H_h}{\partial t_l} \right) dt_h \wedge dt_l
+\end{align*}
+より，
+\begin{align*}
+    \lbrace H_l, H_h \rbrace - \frac{\partial H_l}{\partial t_h} + \frac{\partial H_h}{\partial t_l} &= \lbrace H_l, H_h \rbrace - \lbrace H_l, H_h \rbrace - \left( \frac{\partial}{\partial t_h} \right) H_l + \lbrace H_h, H_l \rbrace + \left( \frac{\partial}{\partial t_l} \right) H_h \\
+    &= \lbrace H_h, H_l \rbrace + \left( \frac{\partial}{\partial t_l} \right) H_h - \left( \frac{\partial}{\partial t_h} \right) H_l = \Omega_{hl}
+\end{align*}
+ここで，(3.99)を使うと確かに(3.100)が得られる．さらに，次の式が成り立つこともわかる．
+\begin{equation}
+    2\Omega_{hl} = \frac{\partial H_l}{\partial t_h} - \frac{\partial H_h}{\partial t_l} + \left( \frac{\partial}{\partial t_h} \right) H_l - \left( \frac{\partial}{\partial t_l} \right) H_h \tag{3.102}
+\end{equation}
+実際、
+\begin{align*}
+    \Omega_{hl} &= - \lbrace H_h, H_l \rbrace - \frac{\partial H_l}{\partial t_h} + \frac{\partial H_h}{\partial t_l}
+\end{align*}
+よって，
+\begin{align*}
+    2\Omega_{hl} &= \frac{\partial H_h}{\partial t_l} - \frac{\partial H_l}{\partial t_h} + \left( \frac{\partial}{\partial t_l} \right) H_h - \left( \frac{\partial}{\partial t_h} \right) H_l
+\end{align*}
+\end{proof}
+
+これまでの考察は一般的な多時間ハミルトン系に関することであるが，ガルニエ系について補題の主張が正しいことを見るためには，ハミルトニアン$H_l$あるいは$K_l$の具体形が必要である．もちろん，正準変換により基本2次型式$\Omega$は不変であるから，補題3.12は，$K_l$か$H_l$のどちらかについて確かめればよい．(3.73), (3.86)などを使って計算すると，ガルニエ系について
+\begin{equation*}
+    \Omega_{hl} = 0
+\end{equation*}
+となっていることがわかる。実際、前節補題3.8によれば，変形方程式の係数$a_2^{(l)} = a_2^{(l)}(x,t)$は，$x=t_h \ (h \neq l)$のまわりで次のような展開をもつ．
+\begin{equation*}
+    a_2^{(l)} = M_l u(a_0^{l,h} + a_1^{l,h}u + \cdots), \quad u = x - t_h
+\end{equation*}
+\begin{equation*}
+    a_0^{l,h} = \frac{1}{M_h(t_l - t_h)}, \quad a_1^{l,h} = - \sum_{k=1}^g \frac{M^{k,l}}{(\lambda_k - t_h)^3}
+\end{equation*}
+\end{story}
+実際、
+\begin{align*}
+    a_2^{(l)} (x,t) &= - M_l \cdot \frac{T(x)}{L(x)(x-t_l)} \\
+    &= - M_l \cdot \frac{x(x-1)\prod_{k \neq h}(x-t_k)}{L(x)(x-t_l)} u \\
+    \therefore \quad a_0^{l,h} &= - M_l \cdot \frac{T'(t_h)}{L(t_h)} \cdot \frac{1}{t_h - t_l} = \frac{M_l}{M_h} \cdot \frac{1}{t_l - t_h}
+\end{align*}
+$F_{(x)} = \displaystyle - M_l \cdot \frac{x(x-1)\prod_{k \neq h}(x-t_k)}{L(x)(x-t_l)}$ として．
+\begin{align*}
+    F_{(x)} &= - M_l \cdot \left( \sum_{j=1}^g \frac{1}{x-\lambda_j} \frac{T(\lambda_j)}{L'(\lambda_j) (\lambda_j-t_l) (\lambda_j-t_h)} + c \right) \\
+    &= - M_l \cdot \left( \sum_{j=1}^g \frac{M^{j,l}}{(\lambda_j-t_h)(x-\lambda_j)} + c \right) \\
+    F'_{(x)} &= M_l \cdot \left( - \sum_{j=1}^g \frac{M^{j,l}}{(t_h-\lambda_j)(x-\lambda_j)^2} \right) \\
+    \therefore \quad a_1^{l,h} &= - M_l \cdot \sum_{j=1}^g \frac{M^{j,l}}{(t_h-\lambda_j)^3}
+\end{align*}
+\begin{story}
+このとき，補題3.11で考察した有理関数$A_l = A_l(x)$については，当然
+\begin{equation*}
+    A_l(t_h) = 0, \quad h \neq l
+\end{equation*}
+である．
+\end{story}
+実際、
+\[
+A_l(x) = \frac{W_l}{x-t_l} + \sum_{k=1}^g \sum_{q=1}^4 \frac{W_q^{k,l}}{(x-\lambda_k)^q}
+\]
+であり、
+\begin{equation} \tag{3.93}
+W_q^{k,l} = 0 \qquad (k, l = 1, \cdots, g), \quad (q = 1, 2, 3, 4)
+\end{equation}
+と3.91が特異点が非対数的であるという仮定の下で同値であったので、
+\[
+A_l(x) = \frac{W_l}{x-t_l}
+\]
+であり、$A_l$が$x=\infty$で2位の零点を持つことから
+\[
+A_{l}(x)\equiv 0
+\]
+である。
+\begin{story}
+この条件を，線型常微分方程式(3.25)の係数$r = r(x,t)$が
+\begin{equation*}
+    r = \frac{\beta_h}{u^2} + \frac{K_h}{u} + \cdots, \quad u = x - t_h
+\end{equation*}
+と書かれることを使って具体的に書き表すと
+\begin{equation*}
+    \frac{\partial K_h}{\partial t_l} = M_l \left[ a_0^{l,h} K_h + 2 a_1^{l,h} \beta_h \right]
+\end{equation*}
+となる．
+\end{story}
+実際
+\begin{align*}
+    r(x,t) &= \frac{\alpha_0}{x^2} + \frac{\alpha_1}{(x-1)^2} + \frac{\alpha_\infty}{x(x-1)} \nonumber \\
+    &\quad + \sum_{l=1}^g \left[ \frac{\beta_l}{(x-t_l)^2} + \frac{t_l(t_l-1)K_l}{x(x-1)(x-t_l)} \right]\\
+    &\quad + \sum_{k=1}^g \left[ \frac{3}{4(x-\lambda_k)^2} - \frac{\lambda_k(\lambda_k-1)\nu_k}{x(x-1)(x-\lambda_k)} \right] 
+\end{align*}
+より、
+\begin{equation*}
+    r = \frac{\beta_h}{u^2} + \frac{K_h}{u} + \cdots, \quad u = x - t_h
+\end{equation*}
+とかけて、 $\beta_h$ は特性指数の関数で$t$によらないので、
+\begin{align*}
+    0 = A_l(x) &= \frac{1}{2} a_2^{(l)} \frac{\partial^3 a_2^{(l)}}{\partial x^3} - \frac{\partial}{\partial x} \left( r(x,t) (a_2^{(l)})^2 \right) + a_2^{(l)} \frac{\partial r}{\partial t_l}(x,t) \\
+    &= \frac{1}{2} M_l \mathcal{O}(u) \cdot \mathcal{O}(1) - \frac{\partial}{\partial x} \left( \frac{\beta_h}{u^2} + \frac{K_h}{u} + \mathcal{O}(1) \right) M_l^2 u^2 (a_0^{l,h} + a_1^{l,h} u + \mathcal{O}(u^2))^2 \\
+    &\quad + M_l u (a_0^{l,h} + a_1^{l,h} u + \mathcal{O}(u^2)) \left( \frac{\partial K_h}{\partial t_l} \frac{1}{u} + \mathcal{O}(1) \right) \\
+    &= \frac{M_l}{2} \mathcal{O}(u) - \frac{\partial}{\partial x} \left( \beta_h + K_h u + \mathcal{O}(u^2) \right) M_l^2 \left( (a_0^{l,h})^2 + 2 a_0^{l,h} a_1^{l,h} u + \mathcal{O}(u^2) \right) \\
+    &\quad + M_l (a_0^{l,h} + a_1^{l,h} u + \mathcal{O}(u^2)) \left( \frac{\partial K_h}{\partial t_l} + \mathcal{O}(u) \right) \\
+    &= \mathcal{O}(u) - M_l^2 \left( K_h (a_0^{l,h})^2 + 2 a_0^{l,h} a_1^{l,h} \beta_h \right) + \mathcal{O}(u) + M_l \frac{\partial K_h}{\partial t_l} a_0^{l,h} + \mathcal{O}(u) \\
+    &= M_l a_0^{l,h} \left( \frac{\partial K_h}{\partial t_l} - M_l \left( K_h a_0^{l,h} + 2 a_1^{l,h} \beta_h \right) \right) \\
+    \frac{\partial K_h}{\partial t_l} &= M_l \left( K_h a_0^{l,h} + 2 a_1^{l,h} \beta_h \right)
+\end{align*}
+\begin{story}
+これを使って(3.102)の右辺が$K_l$について恒等的に0となることを確かめる．細かい計算は省略する．
+\end{story}
+本当に面倒

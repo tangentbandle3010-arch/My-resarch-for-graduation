@@ -110,6 +110,52 @@ $$ \frac{\partial^2}{\partial x^2} \left( -\frac{1}{2} \frac{\partial b_2^{(l)}}
 \end{Q}
 
 \begin{story}
+上で調べたラックスの方程式に加えて，積分可能条件
+\begin{equation*}
+    \frac{\partial}{\partial t_h}\left(\frac{\partial \vec{\psi}}{\partial t_l}\right) = \frac{\partial}{\partial t_l}\left(\frac{\partial \vec{\psi}}{\partial t_h}\right) \quad (l, h = 1, \cdots, L)
+\end{equation*}
+がある．この $t_h, t_l$ に関する積分可能条件を，(3.26)を使って計算すると
+\begin{equation*}
+    c_1^{(l,h)}\vec{\psi} + c_2^{(l,h)}\frac{\partial \vec{\psi}}{\partial x} = 0 \quad (l, h = 1, \cdots, L)
+\end{equation*}
+という形の方程式が得られるが，$\vec{\psi}$ は解の基本系であり，ロンスキー行列 $W(\vec{\psi})$ は可逆行列であるから，$c_1^{(l,h)} = c_2^{(l,h)} = 0$ となる．この式を具体的に書き下したのが次の条件である．
+\begin{align}
+    \left( \frac{\partial}{\partial t_h} - b_2^{(h)}\frac{\partial}{\partial x} \right) b_1^{(l)} &= \left( \frac{\partial}{\partial t_l} - b_2^{(l)}\frac{\partial}{\partial x} \right) b_1^{(h)} \nonumber \\
+    \left( \frac{\partial}{\partial t_h} - b_2^{(h)}\frac{\partial}{\partial x} \right) b_2^{(l)} &= \left( \frac{\partial}{\partial t_l} - b_2^{(l)}\frac{\partial}{\partial x} \right) b_2^{(h)} \label{eq:3.30}
+\end{align}
+ところが，第2の条件(3.30)の両辺を $x$ で微分し，(3.27)を使うと，第1の条件が従うことはすぐわかる．したがって，(3.26)の完全積分可能条件は，$b_2^{(l)}$ に関するラックスの方程式(3.29)と条件(3.30)に帰着する．
+
+再び，変形方程式系(3.20)の考察に戻る．(3.27)と(3.28)から $b_1^{(l)}$ を消去したように，(3.21)と
+\begin{align}
+    & 2\frac{\partial^2 a_1^{(l)}}{\partial x^2} - 4p_2\frac{\partial a_2^{(l)}}{\partial x} - 2\frac{\partial p_2}{\partial x}a_2^{(l)} + 2\frac{\partial p_2}{\partial t_l} \nonumber \\
+    &= p_1\frac{\partial^2 a_2^{(l)}}{\partial x^2} - p_1^2\frac{\partial a_2^{(l)}}{\partial x} - p_1\frac{\partial p_1}{\partial x}a_2^{(l)} + p_1\frac{\partial p_1}{\partial t_l} \label{eq:3.31}
+\end{align}
+から $a_1^{(l)}$ を消去しよう．この式は，(3.22)を(3.21)により書き直したものである．少し面倒な計算の後，次の結果を得る．
+
+\begin{proposition}[3.6]
+$a_2^{(l)} = a_2^{(l)}(x,t)$ は，次式で定義される，$x$ の有理関数 $r = r(x,t)$ について，微分方程式(3.29)を満たす．
+\begin{equation}
+    r(x,t) = -p_2(x,t) + \frac{1}{4}p_1(x,t)^2 + \frac{1}{2}\frac{\partial}{\partial x}p_1(x,t) \label{eq:3.32}
+\end{equation}
+\end{proposition}
+\end{story}
+
+\vspace{2em}
+
+\begin{Q}[【核心】式(3.32)の $r(x,t)$ は一体どこから湧いてきたのか？]
+\textbf{A.} これは魔法でも何でもなく、微分方程式論における古典的な定石**「リウヴィル変換（Liouville transformation）」**の帰結です。
+元の複雑な方程式 $y'' + p_1 y' + p_2 y = 0$ において、$y' \to y$ へのスケール変換（ゲージ変換）である $y = \phi(x) z$ を代入し、$z$ についての微分方程式を整理してみてください。
+もし $\phi$ を $\frac{\phi'}{\phi} = -\frac{1}{2}p_1$ となるようにうまく選んであげると、$z'$ の係数が奇跡的にゼロになり、$z'' = r z$ という美しい形に帰着します。そのときに残る右辺の係数を真面目に計算すると、**一言一句違わず (3.32) の $r(x,t)$ になります。**
+\end{Q}
+
+\begin{Q}[【深掘り】この122ページと、一緒にアップロードされた123ページはどう繋がるのか？]
+\textbf{A.} 122ページ（命題3.6）は、**「元の複雑な方程式（変数 $y, p_1, p_2$）の変形ルール $a_2^{(l)}$ は、そのままSL型方程式（変数 $z, r$）の変形ルール(3.29)を満たす」**という代数的な計算結果を述べています。
+しかし、これだけでは「変形ルールが同じ形になったね」というだけで、肝心の「モノドロミーがどうなるか」には言及していません。
+そこを引き継ぐのが、123ページ（命題3.7）です。「変形ルールが同じなのは分かった。じゃあリウヴィル変換 $y = \phi z$ をしたとき、両者のモノドロミーのズレはどうなる？ ズレは $\phi$ のモノドロミーだけだ。そして $P^1(\mathbb{C})$ 上なら $\phi$ のモノドロミーは留数で決まるから自動的に保存される！」と論理を接続しています。
+この2ページが揃うことで、「計算上も、幾何学上（モノドロミー）も、SL型方程式だけ考えれば完全である」という理論の基礎工事が完璧に完了したのです。
+\end{Q}
+
+\begin{story}
 一方，2階線型常微分方程式
 \begin{equation}
     \frac{d^2 y}{dx^2} + p_1(x,t)\frac{dy}{dx} + p_2(x,t)y = 0 \label{eq:3.33}

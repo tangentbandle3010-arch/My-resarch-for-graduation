@@ -5,7 +5,7 @@
 \begin{definition}[ガルニエ系を導くフックス型常微分方程式とリーマン図式]
 この節以下で考察する2階フックス型線型常微分方程式の形を以下のように定める。
 \begin{equation}
-\frac{d^2 y}{dx^2} + p_1(x, t) \frac{dy}{dx} + p_2(x, t) y = 0 \label{eq:3.33}
+\frac{d^2 y}{dx^2} + p_1(x, t) \frac{dy}{dx} + p_2(x, t) y = 0
 \end{equation}
 ここで対象となる微分方程式 \eqref{eq:3.33} のリーマン図式は、次のように与えられる。
 \begin{equation}
@@ -315,7 +315,6 @@ $u=0$ における決定方程式 $\rho(\rho-1) + uP_1(0)\rho + u^2P_2(0) = 0$ �
 \mathrm{L}'(\lambda_k) = \prod_{p=1 \, (p \neq k)}^g (\lambda_k - \lambda_p)
 \end{equation*}
 である．次の完全積分可能非線型偏微分方程式系をガルニエ系という．
-\end{story}
 
 \begin{definition}[ガルニエ系 (Garnier system)]
 \begin{align}
@@ -334,7 +333,6 @@ I_{k,l} &= \kappa_\infty^2 + \frac{\mathrm{T}'(0)}{\mathrm{L}(0)}\frac{\kappa_0^
 とおいた．
 \end{definition}
 
-\begin{story}
 これを見ただけで，R.Garnierの計算がどんなに精緻を極めたものであったかがわかるであろう．ガルニエ系はパンルヴェ $\mathrm{VI}$ 型方程式の $g$ 変数への拡張であり，確かに $g=1$ とすると $\mathrm{P_{VI}}$ になる．
 
 我々の目的は，線型常微分方程式(3.33), (3.67), (3.68)のモノドロミー保存変形を再考察し，ガルニエ系をハミルトン系に書き直すことである．これは，パンルヴェ $\mathrm{VI}$ 型方程式のハミルトン系表示を与える定理3.1の拡張である．
@@ -389,7 +387,6 @@ M^{k,l} &= \frac{\mathrm{T}(\lambda_k)}{\mathrm{L}'(\lambda_k)(\lambda_k - t_l)}
 とおいた．上の有理式 $M_l, M^{k,l}$ は我々の計算において重要な役割を果たす．
 
 以上の準備のもとで定理を書く．この定理は，2階線型常微分方程式のホロノミックな変形を考察するときの指導原理となる．
-\end{story}
 
 \begin{theorem}[ガルニエ系のハミルトン系表示]
 線型常微分方程式(3.33), (3.67), (3.68)に関するフックスの問題は，完全積分可能な多時間ハミルトン系
@@ -402,13 +399,7 @@ G_g \quad \frac{\partial \lambda_k}{\partial t_l} = \frac{\partial H_l}{\partial
 \begin{definition}[$g$-次ガルニエ系]
 ハミルトニアン(3.73)に関する多時間ハミルトン系 $G_g$ を $g$-次ガルニエ系という．
 \end{definition}
-
-\begin{story}
-定理3.1は，定理3.2で $g=1$ の場合である．とくに $G_g$ は(3.64)に帰着する．
-\end{story}
-
-\begin{story}
-る．多時間ハミルトン系 $G_g$ から $\mu_k$ を消去すれば，ガルニエ系，すなわち上に書いた長い2階偏微分方程式系，が得られることになる．
+定理3.1は，定理3.2で $g=1$ の場合である．とくに $G_g$ は(3.64)に帰着する．多時間ハミルトン系 $G_g$ から $\mu_k$ を消去すれば，ガルニエ系，すなわち上に書いた長い2階偏微分方程式系，が得られることになる．
 
 定理3.2 は，微分方程式(3.33)を同値な SL 型微分方程式
 \begin{equation}

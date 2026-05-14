@@ -1,0 +1,38 @@
+% !TEX root = ../main.tex
+\begin{story}
+本章を締めくくるにあたり, $g$-次ガルニエ系 $G_g$ と $2 \times 2$ シュレジンガー系との関係について調べておこう.
+
+$$
+\vec{y} = \begin{pmatrix} y_1 \\ y_2 \end{pmatrix}
+$$
+
+についての, シュレジンガー型方程式
+\begin{equation} \tag{3.103}
+    \frac{d\vec{y}}{dx} = \left( \frac{B_0}{x} + \frac{B_1}{x-1} + \sum_{l=1}^g \frac{A_l}{x-t_l} \right) \vec{y}
+\end{equation}
+を考える. このフックス型方程式について次のような仮定をおく.
+
+$$
+\det B_\Delta = \det A_l = 0 \qquad (\Delta = 0, 1, \quad l = 1, \cdots, g)
+$$
+
+\begin{equation} \tag{3.104}
+    B_0 + B_1 + \sum_{l=1}^g A_l = - \begin{pmatrix} \chi_\infty & 0 \\ 0 & \chi_\infty + \kappa_\infty - 1 \end{pmatrix}
+\end{equation}
+
+前述のように, これは一般性を失わない. また
+
+$$
+\mathrm{Trace}\, B_\Delta = \kappa_\Delta, \qquad \mathrm{Trace}\, A_l = \theta_l
+$$
+
+とおく. これらのパラメータの間には, フックスの関係式
+
+$$
+\kappa_0 + \kappa_1 + \sum_{l=1}^g \theta_l + 2\chi_\infty + \kappa_\infty = 1
+$$
+
+が成り立っている.
+
+ここで(3.103)のモノドロミー保存変形を考えると, シュレジンガー系
+\end{story}

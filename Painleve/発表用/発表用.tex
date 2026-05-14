@@ -79,315 +79,1477 @@
 \begin{document}
 
 \begin{story}
-以下、前節から考察している2階フックス型線型常微分方程式
-\begin{equation}
-    \frac{d^2 y}{dx^2} + p_1(x,t) \frac{dy}{dx} + p_2(x,t)y = 0 \label{eq:3.33}
-\end{equation}
-のモノドロミー保存変形の計算に戻ろう．係数は
-\end{story}
-\begin{align}
-p_1(x,t) &= \frac{1-\kappa_0}{x} + \frac{1-\kappa_1}{x-1} + \sum_{l=1}^g \frac{1-\theta_l}{x-t_l} - \sum_{k=1}^g \frac{1}{x-\lambda_k} \label{eq:3.67} \\
-p_2(x,t) &= \frac{\kappa}{x(x-1)} + \sum_{k=1}^g \frac{\lambda_k(\lambda_k-1)\mu_k}{x(x-1)(x-\lambda_k)} - \sum_{l=1}^g \frac{t_l(t_l-1)H_l}{x(x-1)(x-t_l)} \label{eq:3.68}
-\end{align}
-\begin{story}
-により与えられていた．我々は，$x=\lambda_k$ が見かけの特異点である，という仮定を使って，$H_l$ を他の変数の有理関数として具体的に求めた。
-\end{story}
-\begin{align}
-H_l &= M_l \left[ \sum_{k=1}^g M^{k,l} \left\{ \mu_k^2 - A_{k,l}\mu_k + \frac{\kappa}{\lambda_k(\lambda_k-1)} \right\} \right] \label{eq:3.73}\\
-A_{k,l} &= \frac{\kappa_0}{\lambda_k} + \frac{\kappa_1}{\lambda_k-1} + \sum_{h=1}^g \frac{\theta_h - \delta_{hl}}{\lambda_k - t_h}\\
-M_l &= - \frac{\mathrm{L}(t_l)}{\mathrm{T}'(t_l)} \label{eq:3.74} \\
-M^{k,l} &= \frac{\mathrm{T}(\lambda_k)}{\mathrm{L}'(\lambda_k)(\lambda_k - t_l)} \label{eq:3.75}
-\end{align}
-\begin{story}
-ここで、第3.2節において調べたことを思いだそう．(3.33)に対して
-\begin{equation}
-    r(x,t) = -p_2(x,t) + \frac{1}{4}p_1(x,t)^2 + \frac{1}{2}\frac{\partial}{\partial x}p_1(x,t) \label{eq:3.32}
-\end{equation}
-とし、SL型方程式
-\begin{equation}
-    \frac{d^2 z}{dx^2} = r(x,t)z
-\end{equation}
-を併せて考える．ここで124ページの考察を補題の形にまとめておこう．
-\end{story}
-124ページの命題3.7では
-\[
-\frac{d\phi}{dx}+\frac{1}{2}p_{1}(x,t)\phi=0
-\]
-のモノドロミーが$t$によらないことを仮定していたが、すぐ後で$\mathbb{P}^{1}(\mathbb{C})$では自動的にその条件が満たされることを言っている。具体的に解くと、
-\[
-\phi(x,t)=\prod_{i=1}^{M}(x-\xi_{i})^{-\frac{1}{2}\alpha_{i}}
-\]
-で与えられてモノドロミーは$e^{2\pi i\alpha_{i}(t)}$というスカラーで書けている。
-\[
-\frac{\partial^{2}\vec{\phi}}{\partial x^{2}} + p_{1}(x,t)\frac{\partial\vec{\phi}}{\partial x}+p_{2}(x,t)\vec{\phi}
-\]
-のモノドロミーが$t$によらないならモノドロミー行列は対角行列で、その成分は、$x=\xi$での特性指数を$s_{1},s_{2}$とすると、$e^{2\pi is_{i}}$の形であるから$s_{i}$が$t$によらないことは必要。つまり、$\alpha_{i}$は特性指数の和で書けているので$t$によらず、$\phi$の$x=\xi_{i}$におけるモノドロミー行列は$t$によらない。よって以下が導ける。
-\begin{story}
-\begin{lemma}[3.5]
-\begin{equation}
-    \frac{d^2 y}{dx^2} + p_1(x,t)\frac{dy}{dx} + p_2(x,t)y = 0 \label{eq:3.33}
-\end{equation}
-がモノドロミー保存変形を定めることと，
-\begin{equation}
-    \frac{d^2 z}{dx^2} = r(x,t)z \label{eq:3.25}
-\end{equation}
-がそうなることは同値であり，さらにこれは，以下の偏微分方程式系が $x$ の有理関数を解としてもつことと同値である．
-\begin{align}
-    \frac{\partial^3}{\partial x^3}w_l - 4r(x,t)\frac{\partial}{\partial x}w_l - 2\frac{\partial r}{\partial x}(x,t)w_l + 2\frac{\partial r}{\partial t_l}(x,t) = 0 \label{eq:3.82} \\
-    \left( \frac{\partial}{\partial t_h} - w_h \frac{\partial}{\partial x} \right) w_l = \left( \frac{\partial}{\partial t_l} - w_l \frac{\partial}{\partial x} \right) w_h \quad (h,l = 1,\cdots,g) \label{eq:3.83}
-\end{align}
+次に，$a_2^{(l)}(x,t)$ の形を決める．シュレジンガー型の方程式系に関係する命題3.11に対応して，次の補題が成り立つ．
+\begin{lemma}[3.8]
+$a_2^{(l)}(x,t)$ は次の性質をもつ．
+\begin{enumerate}
+    \item[(1)] $\xi$ が $t_l$ に依存しないとき，$x=\xi$ で少なくとも1位の零点をもつ．ただし、$x=\infty$の場合は、正則な点である。
+    \item[(2)] $x=t_l$ は正則点．
+    \item[(3)] $x=\lambda_k$ は高々1位の極。
+\end{enumerate}
 \end{lemma}
+
+これにより
+\begin{equation}
+    a_2^{(l)}(x,t) = M_l(t) \frac{T(x)}{L(x)(x-t_l)} \label{eq:3.89}
+\end{equation}
+とおくことができる．$T(x), L(x)$ は(3.69), (3.70)の多項式である．
+\end{story}
+実際(1)より、$h\neq l$をみたす$h$について$t_{h}$は$t_{l}$によらないので、$x=t_{h}$で0点を持つから、$\frac{T(x)}{x-t_{l}}$に比例する。(2)から、$x=t_{l}$で極を持たないので、分母の$x-t_{l}$はこれで十分であり、(3)から、$x=\lambda_{k}$は分母には多くても1つしか出てこないことがわかる。よって、分子は$g+2$次式以上で、分母は$g+1$次式以下である。ここで$\xi=\infty$で高々1位の極を持つことに注意すると、(分子)-(分母)は1次以下でなければならない。よって分子が$T(x)$分母が$L(x)(x-t_{l})$であることが確定し、残りは$x$によらない定数倍にしかよらないことがわかる・
+\begin{story}
+係数 $M_l(t)$ は，方程式(3.82)から決めることができる．すなわち，(3.85), (3.89)を(3.82)に代入して，$(x-t_l)^{-3}$ の係数を比較すると次式が得られる．
+\end{story}
+
+\begin{story}
+\begin{equation*}
+    a_2^{(l)}(t_l, t) = -1
+\end{equation*}
+
+したがって，
+\begin{equation*}
+    M_l(t) = -\frac{L(t_l)}{T'(t_l)} = M_l
+\end{equation*}
+となる．これは(3.74)で与えられたものと同じである．
+\end{story}
+
+\begin{align*}
+    r(x,t) &= \frac{\alpha_0}{x^2} + \frac{\alpha_1}{(x-1)^2} + \frac{\alpha_\infty}{x(x-1)} + \sum_{l=1}^g \left[ \frac{\beta_l}{(x-t_l)^2} + \frac{t_l(t_l-1)K_l}{x(x-1)(x-t_l)} \right] \\
+    &\quad + \sum_{k=1}^g \left[ \frac{3}{4(x-\lambda_k)^2} - \frac{\lambda_k(\lambda_k-1)\nu_k}{x(x-1)(x-\lambda_k)} \right]
+\end{align*}
+
+\begin{equation*}
+    a_2^{(l)}(x,t) = M_l(t) \frac{T(x)}{L(x)(x-t_l)} = M_l(t) \frac{x(x-1)\prod_{m \neq l} (x-t_m)}{L(x)}
+\end{equation*}
+
+\begin{equation*}
+    \frac{\partial^3 a_2^{(l)}}{\partial x^3} - 4r \frac{\partial a_2^{(l)}}{\partial x} - 2\frac{\partial r}{\partial x} a_2^{(l)} + 2\frac{\partial r}{\partial t_l} = 0
+\end{equation*}
+であるから，最低次の $(x-t_l)^{-3}$ の項を見ると，
+\begin{align*}
+    & -2 \frac{\partial}{\partial x} \left( \frac{\beta_l}{(x-t_l)^2} \right) \cdot M_l(t) \frac{x(x-1)\prod_{m \neq l} (x-t_m)}{L(x)} + 2 \frac{\partial}{\partial t_l} \left( \frac{\beta_l}{(x-t_l)^2} \right) \\
+    &= \frac{\beta_l}{(x-t_l)^3} \left( 4 M_l(t) \frac{x(x-1)\prod_{m \neq l} (x-t_m)}{L(x)} + 4 \right)
+\end{align*}
+
+よって，$\displaystyle \lim_{x \to t_l} (x-t_l)^3 \left( \frac{\partial^3 a_2^{(l)}}{\partial x^3} - 4r \frac{\partial a_2^{(l)}}{\partial x} - 2\frac{\partial r}{\partial x} a_2^{(l)} + 2\frac{\partial r}{\partial t_l} \right) = 0$ より，
+\begin{equation*}
+    \lim_{x \to t_l} 4\beta_l \left( a_2^{(l)}(x,t) + 1 \right) = 0
+\end{equation*}
+
+一般に $\beta_l \neq 0$ なので，
+\[
+\lim_{x \to t_l} a_2^{(l)}(x,t) = -1
+\]
+
+よって，
+\[
+M_l(t) = - \frac{L(t_l)}{T'(t_l)} = M_l
+\]
+である．
+
+\begin{story}
+\begin{proof}[補題3.8の証明]
+命題3.8より、$b_{2}^{(l)}=a_{2}^{(l)}$なので、(3.25)について考えればよい．(3.25)の解の基本系 $\vec{z} = \vec{\psi}(x,t)$ で，そのモノドロミー群が $t$ に依らないものをとる．$w(\vec{\psi})$ を，この解のロンスキアンとすると，微分方程式(3.25)の形と、命題2.2から、これは $x$ には依らない．一方，
+\[
+\frac{\partial \vec{\psi}}{\partial t_{l}} = a_{1}^{(l)}(x,t)\vec{\psi}+a_{2}^{(l)}(x,t)\frac{\partial\vec{\psi}}{\partial x} \quad (l=1,\cdots,L)
+\]
+から
+\begin{equation}
+    w(\vec{\psi}) \cdot a_2^{(l)}(x,t) = \det \left( \vec{\psi}(x,t), \frac{\partial}{\partial t_l}\vec{\psi}(x,t) \right) \label{eq:3.90}
+\end{equation}
+となる．
 実際、
-\begin{proposition}[3.8]
-非斉次微分方程式
-\begin{equation}
-    \frac{\partial^3 w}{\partial x^3} - 4r\frac{\partial w}{\partial x} - 2\frac{\partial r}{\partial x}w + 2\frac{\partial r}{\partial t_l} = 0 \label{eq:3.29}
-\end{equation}
-を満たす，$x$ の有理関数は存在するとしてもただ1つである。
-\end{proposition}
-により(3.82), (3.83)の有理関数解 $w_l = a_2^{(l)}(x,t)$ は存在すれば唯一であり，それに対して $a_1^{(l)}(x,t)$ を
-\begin{equation}
-    \frac{\partial p_1}{\partial t_l} = \frac{\partial c^{(l)}}{\partial x}, \quad c^{(l)} = p_1 a_2^{(l)} - 2a_1^{(l)} - \frac{\partial a_2^{(l)}}{\partial x} \label{eq:3.23}
-\end{equation}
-により定めると，変形方程式系
-\begin{equation}
-\left\{
-\begin{array}{l}
-    \displaystyle \frac{\partial^2 \vec{\phi}}{\partial x^2} + p_1(x,t)\frac{\partial \vec{\phi}}{\partial x} + p_2(x,t)\vec{\phi} = 0 \vspace{0.5em} \\
-    \displaystyle \frac{\partial \vec{\phi}}{\partial t_l} = a_1^{(l)}(x,t)\vec{\phi} + a_2^{(l)}(x,t)\frac{\partial \vec{\phi}}{\partial x}
-\end{array}
-\right. \label{eq:3.20}
-\end{equation}
-は完全積分可能である．さらに次の命題も成り立つ．
+\begin{align*}
+\det \left( \vec{\psi}, \frac{\partial}{\partial t_l}\vec{\psi}\right)&=\det \left( \vec{\psi}, a_{1}^{(l)}\vec{\psi}+a_{2}^{(l)}\frac{\partial\vec{\psi}}{\partial x}\right)\\
+&=\det \left( \vec{\psi}, a_{1}^{(l)}\vec{\psi} \right)+\det \left(\vec{\psi}, a_{2}^{(l)}\frac{\partial\vec{\psi}}{\partial x}\right)\\
+&=a_{2}^{(l)}\det \left(\vec{\psi}, \frac{\partial\vec{\psi}}{\partial x}\right)
+\end{align*}
+$x=x_0$ が(3.25)の正則点ならば，有理関数 $a_2^{(l)}(x,t)$ も $x=x_0$ で正則である．
+実際、
+\[
+a_{2}^{(l)}=\frac{\det \left( \vec{\psi}, \frac{\partial\vec{\psi}}{\partial t_l}\right)}{w(\vec{\psi})}
+\]
+であり、分母は定数で0でないので極にはなりえず、$\frac{\partial\vec{\psi}}{\partial t_l}$は$x=x_{0}$で正則なので、（コーシーの積分定理等を用いる。）分子も$x=x_{0}$で正則であることからわかる。
 
-\begin{proposition}[3.14]
-偏微分方程式系(3.82)の有理関数解 $w_l$ は，(3.83)を満たす．
-\end{proposition}
-
-この命題により，モノドロミー保存変形は(3.82)の考察に帰着される．証明のために
+特異点 $x=\xi$ ($\infty$を除く)の近傍における $a_2^{(l)}(x,t)$ の様子を局所的に調べる．まず以下の$\psi(x,t)$に対して$\frac{\det \left( \vec{\psi}, \frac{\partial\vec{\psi}}{\partial t_l}\right)}{w(\vec{\psi})}$の値を考える。
 \begin{equation*}
-    L = \frac{\partial^3}{\partial x^3} - 4r(x,t)\frac{\partial}{\partial x} - 2\frac{\partial r}{\partial x}(x,t)
+    \vec{\psi}(x,t) = \left( (x-\xi)^\sigma(1+\mathcal{O}(x-\xi)), \quad (x-\xi)^{1-\sigma}(1+\mathcal{O}(x-\xi)) \right)
 \end{equation*}
-とおく．計算によって次の補題の成立を確認することができる．
-
-\begin{lemma}[3.6]
-任意の解析関数 $f,g$ に対して次式が成り立つ．
+をとる．(3.25)の形から特性指数の和が1になることがわかる。この解の基本系 $\vec{\psi}$ の，$x=\xi$ のまわりの局所モノドロミーは $t$ に依らず，また
 \begin{equation*}
-    2\frac{\partial f}{\partial x}L(g) - 2\frac{\partial g}{\partial x}L(f) + f\frac{\partial}{\partial x}L(g) - g\frac{\partial}{\partial x}L(f) = L\left( f\frac{\partial g}{\partial x} - g\frac{\partial f}{\partial x} \right)
+    w(\vec{\psi}) = 1-2\sigma, \quad \det \left( \vec{\psi}, \frac{\partial \vec{\psi}}{\partial t_l} \right) = (2\sigma - 1)\frac{d\xi}{dt_l} + \mathcal{O}(x-\xi)
 \end{equation*}
-\end{lemma}
-\end{story}
-\begin{proof}
+となる．実際、$w(\vec{\psi})$ は次のように計算できる。
 \begin{align*}
-    & 2 \frac{\partial f}{\partial x} L(g) - 2 \frac{\partial g}{\partial x} L(f) + f \frac{\partial}{\partial x} L(g) - g \frac{\partial}{\partial x} L(f) \\
-    &= 2 \frac{\partial f}{\partial x} \left( \frac{\partial^3 g}{\partial x^3} - 4r \frac{\partial g}{\partial x} - 2 \frac{\partial r}{\partial x} g \right) - 2 \frac{\partial g}{\partial x} \left( \frac{\partial^3 f}{\partial x^3} - 4r \frac{\partial f}{\partial x} - 2 \frac{\partial r}{\partial x} f \right) \\
-    &\quad + f \frac{\partial}{\partial x} \left( \frac{\partial^3 g}{\partial x^3} - 4r \frac{\partial g}{\partial x} - 2 \frac{\partial r}{\partial x} g \right) - g \frac{\partial}{\partial x} \left( \frac{\partial^3 f}{\partial x^3} - 4r \frac{\partial f}{\partial x} - 2 \frac{\partial r}{\partial x} f \right) \\
-    &= 2 \left( \frac{\partial f}{\partial x}\frac{\partial^3 g}{\partial x^3} - \frac{\partial g}{\partial x}\frac{\partial^3 f}{\partial x^3} \right) - 4 \frac{\partial r}{\partial x} \left( \frac{\partial f}{\partial x}g - \frac{\partial g}{\partial x}f \right) \\
-    &\quad + f \left( \frac{\partial^4 g}{\partial x^4} - 4 \frac{\partial r}{\partial x}\frac{\partial g}{\partial x} - 4r \frac{\partial^2 g}{\partial x^2} - 2 \frac{\partial^2 r}{\partial x^2}g - 2 \frac{\partial r}{\partial x}\frac{\partial g}{\partial x} \right) \\
-    &\quad - g \left( \frac{\partial^4 f}{\partial x^4} - 4 \frac{\partial r}{\partial x}\frac{\partial f}{\partial x} - 4r \frac{\partial^2 f}{\partial x^2} - 2 \frac{\partial^2 r}{\partial x^2}f - 2 \frac{\partial r}{\partial x}\frac{\partial f}{\partial x} \right) \\
-    &= \left( 2\frac{\partial f}{\partial x}\frac{\partial^3 g}{\partial x^3} + f\frac{\partial^4 g}{\partial x^4} - 2\frac{\partial g}{\partial x}\frac{\partial^3 f}{\partial x^3} - g\frac{\partial^4 f}{\partial x^4} \right) - 4r \left( f\frac{\partial^2 g}{\partial x^2} - g\frac{\partial^2 f}{\partial x^2} \right) - 2\frac{\partial r}{\partial x} \left( f\frac{\partial g}{\partial x} - g\frac{\partial f}{\partial x} \right)
+    w(\vec{\psi}) &= 
+    \begin{vmatrix}
+        (x-\xi)^\sigma \big(1 + \mathcal{O}(x-\xi)\big) & (x-\xi)^{1-\sigma} \big(1 + \mathcal{O}(x-\xi)\big) \\[6pt]
+        (x-\xi)^{\sigma-1} \big(\sigma + \mathcal{O}(x-\xi)\big) & (x-\xi)^{-\sigma} \big(1-\sigma + \mathcal{O}(x-\xi)\big)
+    \end{vmatrix} \\[8pt]
+    &= \big(1 - \sigma + \mathcal{O}(x-\xi)\big) - \big(\sigma + \mathcal{O}(x-\xi)\big) \\[4pt]
+    &= 1 - 2\sigma + \mathcal{O}(x-\xi)
+\end{align*}
+ここで、$w(\vec{\psi})$ は定数であることより、$\mathcal{O}(x-\xi)$ の項は消滅し、厳密に以下の値をとる。
+\begin{equation}
+    w(\vec{\psi}) = 1 - 2\sigma
+\end{equation}
+また、$\det\left(\vec{\psi}, \frac{\partial \vec{\psi}}{\partial t_l}\right)$について、
+\begin{align*}
+    \det\left(\vec{\psi}, \frac{\partial \vec{\psi}}{\partial t_l}\right) &= 
+    \begin{vmatrix}
+        (x-\xi)^\sigma \big(1 + \mathcal{O}(x-\xi)\big) & (x-\xi)^{1-\sigma} \big(1 + \mathcal{O}(x-\xi)\big) \\[6pt]
+        (x-\xi)^{\sigma-1} \left(-\sigma \frac{\partial \xi}{\partial t_l} + \mathcal{O}(x-\xi)\right) & (x-\xi)^{-\sigma} \left(-(1-\sigma) \frac{\partial \xi}{\partial t_l} + \mathcal{O}(x-\xi)\right)
+    \end{vmatrix} \\[8pt]
+    &= -(1-\sigma) \frac{\partial \xi}{\partial t_l} + \sigma \frac{\partial \xi}{\partial t_l} + \mathcal{O}(x-\xi) \\[4pt]
+    &= (2\sigma - 1) \frac{\partial \xi}{\partial t_l} + \mathcal{O}(x-\xi)
 \end{align*}
 
-ここで、
+ただし、この計算において「モノドロミーは $t$ に依存しないので、特性指数 $\sigma$ は $t$ に依存しない」という事実を用いている。
+仮定(P2)から $1-2\sigma \neq 0$ であり，（実際$\sigma=\frac{1}{2}$なら、特性指数がともに$\frac{1}{2}$となって差は0）したがって、$x=\xi$ の近傍で
+\begin{equation*}
+    \frac{\det \left( \vec{\psi}, \frac{\partial\vec{\psi}}{\partial t_l}\right)}{w(\vec{\psi})}=-\frac{\partial \xi}{\partial t_l} + \mathcal{O}(x-\xi)
+\end{equation*}
+と表される。
+
+$x=\infty$ の局所座標を $x = 1/u$ とする。
+\begin{equation}
+    - \frac{\det\left(\vec{\psi}, \frac{\partial \vec{\psi}}{\partial t_l}\right)}{\det\left(\vec{\psi}, u^2 \frac{\partial \vec{\psi}}{\partial u}\right)} \label{eq:a2_inf_2}
+\end{equation}
+の値を求める。$u=0$ のまわりでの基本解行列 $\vec{\psi}(u,t)$ の漸近展開を次のように置く。
 \begin{align*}
-    \frac{\partial^3}{\partial x^3} \left( f\frac{\partial g}{\partial x} - g\frac{\partial f}{\partial x} \right) &= \frac{\partial^2}{\partial x^2} \left( f\frac{\partial^2 g}{\partial x^2} - g\frac{\partial^2 f}{\partial x^2} \right) \\
-    &= \frac{\partial}{\partial x} \left( \frac{\partial f}{\partial x}\frac{\partial^2 g}{\partial x^2} + f\frac{\partial^3 g}{\partial x^3} - \frac{\partial g}{\partial x}\frac{\partial^2 f}{\partial x^2} - g\frac{\partial^3 f}{\partial x^3} \right) \\
-    &= \left( 2\frac{\partial f}{\partial x}\frac{\partial^3 g}{\partial x^3} + f\frac{\partial^4 g}{\partial x^4} - 2\frac{\partial g}{\partial x}\frac{\partial^3 f}{\partial x^3} - g\frac{\partial^4 f}{\partial x^4} \right)
+    \vec{\psi}_1(u,t) &= u^\sigma \big(1 + c(t)u + \mathcal{O}(u^2)\big) \\
+    \vec{\psi}_2(u,t) &= u^{-1-\sigma} \big(1 + d(t)u + \mathcal{O}(u^2)\big)
 \end{align*}
 
-よって、
+分母の行列式（ロンスキアンに対応）は定数となり、以下の通り計算される。
 \begin{align*}
-    (\text{与式}) &= \frac{\partial^3}{\partial x^3} \left( f\frac{\partial g}{\partial x} - g\frac{\partial f}{\partial x} \right) - 4r \frac{\partial}{\partial x} \left( f\frac{\partial g}{\partial x} - g\frac{\partial f}{\partial x} \right) - 2\frac{\partial r}{\partial x} \left( f\frac{\partial g}{\partial x} - g\frac{\partial f}{\partial x} \right) \\
-    &= L \left( f\frac{\partial g}{\partial x} - g\frac{\partial f}{\partial x} \right)
+    \det\left(\vec{\psi}, u^2 \frac{\partial \vec{\psi}}{\partial u}\right) &= 
+    \begin{vmatrix}
+        u^\sigma (1 + \mathcal{O}(u)) & u^{-1-\sigma} (1 + \mathcal{O}(u)) \\[6pt]
+        u^{\sigma+1} (\sigma + \mathcal{O}(u)) & u^{-\sigma} (-(1+\sigma) + \mathcal{O}(u))
+    \end{vmatrix} \\[8pt]
+    &= -(1+\sigma) - \sigma + \mathcal{O}(u) \\
+    &= -(1+2\sigma) + \mathcal{O}(u)
 \end{align*}
+
+一方、分子の行列式については、時間微分 $\partial_{t_l}$ が $u^\sigma$ 等の主要部を消去することに注意すると、
+\begin{align*}
+    \det\left(\vec{\psi}, \frac{\partial \vec{\psi}}{\partial t_l}\right) &= 
+    \begin{vmatrix}
+        u^\sigma \big(1 + c(t)u + \mathcal{O}(u^2)\big) & u^{-1-\sigma} \big(1 + d(t)u + \mathcal{O}(u^2)\big) \\[6pt]
+        u^\sigma \left(\frac{\partial c(t)}{\partial t_l}u + \mathcal{O}(u^2)\right) & u^{-1-\sigma} \left(\frac{\partial d(t)}{\partial t_l}u + \mathcal{O}(u^2)\right)
+    \end{vmatrix} \\[8pt]
+    &= u^{-1} \left[ \big(1 + c(t)u\big)\left(\frac{\partial d(t)}{\partial t_l}u\right) - \big(1 + d(t)u\big)\left(\frac{\partial c(t)}{\partial t_l}u\right) \right] + \mathcal{O}(u) \\[4pt]
+    &= \frac{\partial d(t)}{\partial t_l} - \frac{\partial c(t)}{\partial t_l} + \mathcal{O}(u)
+\end{align*}
+
+よって、式\eqref{eq:a2_inf_2}に代入すると、
+\begin{equation}
+     - \frac{\det\left(\vec{\psi}, \frac{\partial \vec{\psi}}{\partial t_l}\right)}{\det\left(\vec{\psi}, u^2 \frac{\partial \vec{\psi}}{\partial u}\right)}= \frac{\frac{\partial d(t)}{\partial t_l} - \frac{\partial c(t)}{\partial t_l}}{1+2\sigma} + \mathcal{O}(u)
+\end{equation}
+となる。
+
+大域的な基本解系を $\vec{Y}(x,t)$、特異点 $x=\xi$ における局所正規化解を $\vec{\psi}(x,t) = (\psi_1, \psi_2)$ とし、接続行列を $C(t) = (C_{ij}(t))$ として $\vec{Y} = \vec{\psi}C(t)$ と表す。
+
+$a_2^{(l)}$ の計算に必要な行列式を展開する。まず分母のロンスキアンは、
+\begin{equation}
+    W(\vec{Y}) = \det(\vec{\psi}C, \partial_x(\vec{\psi}C)) = \det C(t) W(\vec{\psi})
+\end{equation}
+分子の時間微分に関する行列式は、分配則により次のように展開される。
+\begin{equation}
+    \det(\vec{Y}, \partial_{t_l}\vec{Y}) = \det C \det(\vec{\psi}, \partial_{t_l}\vec{\psi}) + \det(\vec{\psi}C, \vec{\psi}\partial_{t_l}C)
+\end{equation}
+右辺第2項を成分で具体的に計算すると、
+\begin{align*}
+    \det(\vec{\psi}C, \vec{\psi}\partial_{t_l}C) 
+    &= \begin{vmatrix} 
+        C_{11}\psi_1 + C_{21}\psi_2 & C_{12}\psi_1 + C_{22}\psi_2 \\ 
+        \dot{C}_{11}\psi_1 + \dot{C}_{21}\psi_2 & \dot{C}_{12}\psi_1 + \dot{C}_{22}\psi_2 
+    \end{vmatrix} \\
+    &= A\psi_1^2 + B\psi_2^2 + D\psi_1\psi_2
+\end{align*}
+ここで各係数は以下の通りである。
+\begin{align*}
+    A &= \begin{vmatrix} C_{11} & C_{12} \\ \dot{C}_{11} & \dot{C}_{12} \end{vmatrix} = C_{11}\dot{C}_{12} - \dot{C}_{11}C_{12} \\
+    B &= \begin{vmatrix} C_{21} & C_{22} \\ \dot{C}_{21} & \dot{C}_{22} \end{vmatrix} = C_{21}\dot{C}_{22} - \dot{C}_{21}C_{22} \\
+    D &= \begin{vmatrix} C_{21} & C_{12} \\ \dot{C}_{21} & \dot{C}_{12} \end{vmatrix} + \begin{vmatrix} C_{11} & C_{22} \\ \dot{C}_{11} & \dot{C}_{22} \end{vmatrix}
+\end{align*}
+
+局所解 $\vec{\psi}$ の $x=\xi$ 周りのモノドロミー行列を $\Gamma = \mathrm{diag}(e^{2\pi i \sigma}, e^{-2\pi i \sigma})$ とする。大域解 $\vec{Y}$ のモノドロミー行列は $C^{-1}\Gamma C$ となる。
+等モノドロミー変形の要請により、この行列は時間 $t_l$ に依存してはならない。
+\begin{equation}
+    C^{-1}\Gamma C = \frac{1}{\det C} 
+    \begin{pmatrix} 
+        C_{11}C_{22}e^{2\pi i \sigma} - C_{12}C_{21}e^{-2\pi i \sigma} & C_{12}C_{22}(e^{2\pi i \sigma} - e^{-2\pi i \sigma}) \\ 
+        -C_{11}C_{21}(e^{2\pi i \sigma} - e^{-2\pi i \sigma}) & C_{11}C_{22}e^{-2\pi i \sigma} - C_{12}C_{21}e^{2\pi i \sigma} 
+    \end{pmatrix}
+\end{equation}
+非対角成分が時間に依存しないことから、以下の微分方程式が成立する。
+\begin{equation}
+    \frac{d}{dt_l} \left( \frac{C_{12}C_{22}}{\det C} \right) = 0, \quad \frac{d}{dt_l} \left( \frac{C_{11}C_{21}}{\det C} \right) = 0
+\end{equation}
+第一式より、
+\begin{equation*}
+    \frac{d}{dt_l} \left( \frac{1}{\frac{C_{11}}{C_{12}} - \frac{C_{21}}{C_{22}}} \right) = -\frac{1}{\left(\frac{C_{11}}{C_{12}} - \frac{C_{21}}{C_{22}}\right)^2} \left( \frac{d}{dt_l}\left(\frac{C_{11}}{C_{12}}\right) - \frac{d}{dt_l}\left(\frac{C_{21}}{C_{22}}\right) \right) = 0
+\end{equation*}
+ここで $\frac{d}{dt_l}\left(\frac{C_{11}}{C_{12}}\right) = \frac{-A}{C_{12}^2}$、$\frac{d}{dt_l}\left(\frac{C_{21}}{C_{22}}\right) = \frac{-B}{C_{22}^2}$ であるから、
+\begin{equation}
+    \frac{A}{C_{12}^2} = \frac{B}{C_{22}^2} \label{eq:mono1}
+\end{equation}
+同様に、第二式から商の微分を用いて整理すると、
+\begin{equation}
+    \frac{A}{C_{11}^2} = \frac{B}{C_{21}^2} \label{eq:mono2}
+\end{equation}
+式\eqref{eq:mono1}および式\eqref{eq:mono2}から $A$ を消去すると、
+\begin{equation}
+    \left( \frac{C_{11}^2}{C_{21}^2} - \frac{C_{12}^2}{C_{22}^2} \right) B = \left( \frac{C_{11}}{C_{21}} + \frac{C_{12}}{C_{22}} \right) \left( \frac{C_{11}}{C_{21}} - \frac{C_{12}}{C_{22}} \right) B = 0
+\end{equation}
+$\det C \neq 0$ より $\frac{C_{11}}{C_{21}} - \frac{C_{12}}{C_{22}} \neq 0$ である。非自明な接続行列においては第一因数も一般にゼロにならないため、$B=0$ を得る。背理的に $A=0$ も従う。
+ここで、第一因数が $0$ となるエッジケース、すなわち $\frac{C_{11}}{C_{21}} = - \frac{C_{12}}{C_{22}}$ のときを考える。このとき $\frac{C_{11}}{C_{12}} = -\frac{C_{21}}{C_{22}}$ となるため、式\eqref{eq:mono1}の導出元である微分方程式に代入すると、
+\begin{equation*}
+    2 \frac{d}{dt_l}\left(\frac{C_{11}}{C_{12}}\right) = 0 \quad \Longrightarrow \quad \frac{C_{11}'C_{12} - C_{11}C_{12}'}{C_{12}^2} = 0
+\end{equation*}
+ここで、$C_{12} = 0 \Rightarrow A=0$ より $B=0$ で題意を満たす。
+また $C_{12} \neq 0$ ならば $A=0$ となり、式\eqref{eq:mono1}より結果として $B=0$ を得る。
+以上より、いかなる場合においても $A=0, B=0$ が成立し、多価の項は完全に消滅する。
+以上により、有理関数を阻害する多価の項 $\psi_1^2$ と $\psi_2^2$ の係数は恒等的に消滅することが代数的に証明された。
+
+$A=B=0$ の結果を用いると、$a_2^{(l)}$ の厳密な表示は次のように簡約化される。
+\begin{equation}
+    a_2^{(l)} = \frac{\det C \det(\vec{\psi}, \partial_{t_l}\vec{\psi}) + D\psi_1\psi_2}{\det C \cdot W(\vec{\psi})} = \frac{\det(\vec{\psi}, \partial_{t_l}\vec{\psi})}{W(\vec{\psi})} + \frac{D\psi_1\psi_2}{\det C \cdot W(\vec{\psi})}
+\end{equation}
+
+\textbf{(1) 固定特異点 $x=\xi$ の場合} \\
+$\xi$ は固定されているため $\partial_{t_l}\vec{\psi}$ の主要部は消滅し、第一項は $\mathcal{O}((x-\xi)^2)$ となる。一方、第二項は $\psi_1\psi_2 \sim (x-\xi)^\sigma (x-\xi)^{1-\sigma} = (x-\xi)^1$ である。
+したがって、主要部は第二項に支配され、
+\begin{equation}
+    a_2^{(l)} \sim \frac{D}{\det C \cdot W(\vec{\psi})} (x-\xi) = \mathcal{O}(x-\xi)
+\end{equation}
+となり、厳密に1位の零点を持つことが示された。
+
+\textbf{(2) 無限遠点 $x=\infty$ の場合} \\
+局所座標 $x=1/u$ を導入する。微分演算子 $\partial_x = -u^2 \partial_u$ の寄与により、分母に $u^2$ の補正が生じる。$\psi_1\psi_2 \sim u^{-\sigma} u^{\sigma+1} = u$ であるため、
+\begin{align*}
+    a_2^{(l)} &= \frac{\det\left(C\vec{\psi}, \frac{\partial (C\vec{\psi})}{\partial t_l}\right)}{\det\left(C\vec{\psi}, u^2 \frac{\partial (C\vec{\psi})}{\partial u}\right)} \\[8pt]
+    &= \frac{\det\left(C\vec{\psi}, C\frac{\partial \vec{\psi}}{\partial t_l}\right)}{\underbrace{\det\left(\vec{\psi}, u^2 \frac{\partial \vec{\psi}}{\partial u}\right)}_{\mathcal{O}(1)}} + \frac{1}{u^2} \frac{\overbrace{D\psi_1\psi_2}^{\sim \mathcal{O}(u)}}{\det C \cdot W(\vec{\psi})} \\[8pt]
+    &= \mathcal{O}(u^{-1})
+\end{align*}
+となり、厳密に1位の極を持つことが示された。命題3.8の証明から，これが $a_2^{(l)}(x,t)$ を局所的に定める。これで補題3.8の(1), (2)が示された．
+
+見かけの特異点 $x=\lambda$ の近傍では，基本解を
+\begin{equation*}
+    \vec{\psi}(x,t) = \left( (x-\lambda)^\sigma(1+\mathcal{O}(x-\lambda)), \quad (x-\lambda)^{1-\sigma}(1+\mathcal{O}(x-\lambda)) \right)
+\end{equation*}
+と定めると、特性指数は$-\frac{1}{2},\frac{3}{2}$より、$\sigma=\frac{3}{2}$として、モノドロミー行列$\Gamma$は$-I$となる。よって変換行列$C(t)$をかけても、モノドロミー行列は$C^{-1}\Gamma C=\Gamma$よりCに課される条件はない。よって動く特異点としての主要部と合わせて、
+\begin{align*}
+\det(\vec{\psi}C, \vec{\psi}\partial_{t_l}C) &= A\psi_1^2 + B\psi_2^2 + D\psi_1\psi_2\\
+&=A\mathcal{O}((x-\lambda)^{3}) + B\mathcal{O}((x-\lambda)^{-1}) + D\mathcal{O}(x-\lambda)
+\end{align*}
+となることがわかる。よって、
+\begin{align*}
+a_{2}^{(l)}(x,t)&=\frac{\partial \lambda}{\partial t_l}+\mathcal{O}((x-\lambda)^{-1})\\
+&=\mathcal{O}((x-\lambda)^{-1})
+\end{align*}
+このことから補題3.8の(3)が従う．
 \end{proof}
+\end{story}
+\begin{proposition}[3.8]
+非斉次微分方程式(3.29)を満たす，$x$ の有理関数は存在するとしてもただ1つである
+\end{proposition}
+
+\begin{proposition}[2.2]
+    \[
+    \frac{d^{2}y}{dx^{2}}+p_{1}(x)\frac{dy}{dx}+p_{2}(x)=0
+    \]
+    の解の基本系$\vec{\varphi}(x)$のロンスキアンは
+    \[
+    \frac{dw}{dx}+p_{1}(x)w=0
+    \]
+    なる$1$階微分方程式を満たす。
+\end{proposition}
 
 \begin{story}
-\begin{proof}[命題3.14の証明]
-(3.82)に有理関数解 $w_l$ が存在するとして
-\begin{equation}\label{eq_3.6:L_r_wl}
-    L(w_l) + 2\frac{\partial r}{\partial t_l}(x,t) = 0
+
+最後に，(3.85), (3.89) を，微分方程式系(3.82), (3.83) に代入することにより，次の補題が証明される．
+
+% --- 補題3.9 ---
+\begin{lemma}[3.9]
+    (3.85), (3.89) が成立するための条件は，アクセサリー・パラメータ $\lambda = (\lambda_1, \cdots, \lambda_g)$, $\nu = (\nu_1, \cdots, \nu_g)$ が，$K = (K_1, \cdots, K_g)$ をハミルトニアンとするハミルトン系
+    \begin{equation}
+        \frac{\partial \lambda_k}{\partial t_l} = \frac{\partial K_l}{\partial \nu_k}, \quad 
+        \frac{\partial \nu_k}{\partial t_l} = - \frac{\partial K_l}{\partial \lambda_k} \quad 
+        (k,l = 1, \cdots, g)
+        \tag{3.91}\label{eq:3.91}
+    \end{equation}
+    を満たすことである．
+\end{lemma}
+
+証明の方針は、係数の比較だけだが、計算はめんどうで若干の技巧を要する。
+
+微分方程式系\eqref{eq:3.91}は、(3.82)だけから導かれる。(3.83)からは
+\begin{equation}
+    \frac{\lambda_k - t_l}{M_l} \frac{\partial \lambda_k}{\partial t_l} - \frac{\lambda_k - t_h}{M_h} \frac{\partial \lambda_k}{\partial t_h} 
+    = \frac{(t_l - t_h) T(\lambda_k)}{(\lambda_k - t_l)(\lambda_k - t_h) L'(\lambda_k)} \quad 
+    (h, k, l = 1, \cdots, g)
+    \tag{3.92}\label{eq:3.92}
 \end{equation}
-から，積分可能条件として
-\[
-\frac{\partial^{2} r}{\partial t_l\partial t_{h}}(x,t)=\frac{\partial^{2} r}{\partial t_h\partial t_{l}}(x,t)
-\]
-より、(wの交換関係は当たり前に仮定していて、そこからどういう数式が生まれるか見ている。)
-\begin{align}
-    0 &= \frac{\partial}{\partial t_h}L(w_l) - \frac{\partial}{\partial t_l}L(w_h)\\
-    &= \left(\frac{\partial^{4}}{\partial t_h\partial x^{3}}-4\frac{\partial r}{\partial t_{h}}\frac{\partial}{\partial x}-4r\frac{\partial^{2}}{\partial t_{h}\partial x}-2\frac{\partial^{2}r}{\partial t_{h}\partial x}-2\frac{\partial r}{\partial t_{h}}\frac{\partial}{\partial x}\right)w_{l}\\
-    &-\left(\frac{\partial^{4}}{\partial t_l\partial x^{3}}-4\frac{\partial r}{\partial t_{l}}\frac{\partial}{\partial x}-4r\frac{\partial^{2}}{\partial t_{l}\partial x}-2\frac{\partial^{2}r}{\partial t_{l}\partial x}-2\frac{\partial r}{\partial t_{l}}\frac{\partial}{\partial x}\right)w_{h}\\
-    &= \left(\frac{\partial^{3}}{\partial x^{3}}-4r\frac{\partial}{\partial x}-2\frac{\partial r}{\partial x}\right)(\frac{\partial w_{l}}{\partial t_{h}}-\frac{\partial w_{h}}{\partial t_{l}})\\
-    &+\left(-4\frac{\partial r}{\partial t_h}\frac{\partial w_l}{\partial x} + 4\frac{\partial r}{\partial t_l}\frac{\partial w_h}{\partial x} - 2w_l\frac{\partial^2 r}{\partial x \partial t_h} + 2w_h\frac{\partial^2 r}{\partial x \partial t_l}\right)\\
-    &= L\left( \frac{\partial w_l}{\partial t_h} - \frac{\partial w_h}{\partial t_l} \right) + L_{hl} \label{eq:3.84}
-\end{align}
-が成り立っている．ここで
-\begin{equation*}
-    L_{hl} = -4\frac{\partial r}{\partial t_h}\frac{\partial w_l}{\partial x} + 4\frac{\partial r}{\partial t_l}\frac{\partial w_h}{\partial x} - 2w_l\frac{\partial^2 r}{\partial x \partial t_h} + 2w_h\frac{\partial^2 r}{\partial x \partial t_l}
-\end{equation*}
-であるが、\eqref{eq_3.6:L_r_wl}より、
+という式が出るが、命題3.14に示した通り、これは(3.82)の積分可能条件であり、この意味で\eqref{eq:3.91}に含まれる。第3.8節166ページ、(3.109)において、\eqref{eq:3.92}の意味について述べる。
+
+計算の見通しを良くするために、(3.83)から\eqref{eq:3.92}を直接導いてみよう。
+
+\begin{equation}
+    A_{hl} = \frac{1}{a_2^{(h)} a_2^{(l)}} \left( \frac{\partial a_2^{(l)}}{\partial t_h} - \frac{\partial a_2^{(h)}}{\partial t_l} \right) - \frac{\partial}{\partial x} \log \frac{a_2^{(l)}}{a_2^{(h)}} \notag
+\end{equation}
+とおく。(3.83) は $A_{hl} = 0$ と同じである。
+
+\end{story}
+実際、ベクトル場の可換性（積分可能条件）より、
 \begin{align*}
-    L_{hl} &=2\frac{\partial w_l}{\partial x}L(w_h) - 2\frac{\partial w_h}{\partial x}L(w_l)+w_{l}\frac{\partial}{\partial x}\left(-2\frac{\partial r}{\partial t_{h}}\right)-w_{h}\frac{\partial}{\partial x}\left(-2\frac{\partial r}{\partial t_{l}}\right)\\
-    &= 2\frac{\partial w_l}{\partial x}L(w_h) - 2\frac{\partial w_h}{\partial x}L(w_l) + w_l\frac{\partial}{\partial x}L(w_h) - w_h\frac{\partial}{\partial x}L(w_l) \\
+    \left(\frac{\partial}{\partial t_h} - a_2^{(h)} \frac{\partial}{\partial x}\right) a_2^{(l)} &= \left(\frac{\partial}{\partial t_l} - a_2^{(l)} \frac{\partial}{\partial x}\right) a_2^{(h)} \\
+    \frac{\partial a_2^{(l)}}{\partial t_h} - \frac{\partial a_2^{(h)}}{\partial t_l} - a_2^{(h)} \frac{\partial a_2^{(l)}}{\partial x} + a_2^{(l)} \frac{\partial a_2^{(h)}}{\partial x} &= 0
 \end{align*}
-補題3.6を使うと
+両辺を $a_2^{(l)} a_2^{(h)}$ で割って整理すると、
 \begin{equation*}
-    L_{hl} = L\left( w_l\frac{\partial w_h}{\partial x} - w_h\frac{\partial w_l}{\partial x} \right)
+    \frac{1}{a_2^{(l)}a_2^{(h)}} \left( \frac{\partial a_2^{(l)}}{\partial t_h} - \frac{\partial a_2^{(h)}}{\partial t_l} \right) - \frac{1}{a_2^{(l)}} \frac{\partial a_2^{(l)}}{\partial x} + \frac{1}{a_2^{(h)}} \frac{\partial a_2^{(h)}}{\partial x} = 0
 \end{equation*}
-したがって(3.84)より
+すなわち、$A_{hl}$ の定義式と一致し、
+\begin{equation}
+    A_{hl} = \frac{1}{a_2^{(h)}} \frac{\partial}{\partial t_h} \log a_2^{(l)} - \frac{1}{a_2^{(l)}} \frac{\partial}{\partial t_l} \log a_2^{(h)} - \frac{\partial}{\partial x} \log \frac{a_2^{(l)}}{a_2^{(h)}} = 0 \label{eq:A_hl_def}
+\end{equation}
+を得る。
+
+\begin{story}
+
+\begin{lemma}
+    $A_{hl}$ は $x$ の有理関数で，$g$ 個の点 $x=0, 1, t_p$ $(p \neq h, l)$ で高々1位の極，$x=\infty$ で少なくとも1位の零点をもつ．
+\end{lemma}
+
+\begin{proof}
+    補題3.8により
+    \begin{equation*}
+        a_2^{(l)}(x,t) = M_l \frac{T(x)}{L(x)(x-t_l)}, \quad M_l = -\frac{L(t_l)}{T'(t_l)}
+    \end{equation*}
+    であったから，$A_{hl}$ の定義式に含まれる各対数微分を計算する。
+\begin{align*}
+    \frac{\partial}{\partial x} \log a_2^{(l)} &= \frac{\partial}{\partial x} \left( \log \left( M_l \frac{T(x)}{L(x)(x-t_l)} \right) \right) \\
+    &= \frac{\partial}{\partial x} \left( \log M_l + \log x + \log(x-1) + \sum_{i \neq l} \log(x-t_i) - \sum_{k=1}^g \log(x-\lambda_k) \right) \\
+    &= \frac{1}{x} + \frac{1}{x-1} + \sum_{i \neq l} \frac{1}{x-t_i} - \sum_{k=1}^g \frac{1}{x-\lambda_k} \\[8pt]
+    \frac{\partial}{\partial t_h} \log a_2^{(l)} &= \frac{\partial}{\partial t_h} \left( \log \left( M_l \frac{T(x)}{L(x)(x-t_l)} \right) \right) \\
+    &= \frac{\partial}{\partial t_h} \left( \log M_l + \log x + \log(x-1) + \sum_{i \neq l} \log(x-t_i) - \sum_{k=1}^g \log(x-\lambda_k) \right) \\
+    &= \frac{\partial}{\partial t_h} \log M_l - \frac{1}{x-t_h} + \sum_{k=1}^g \frac{1}{x-\lambda_k} \frac{\partial \lambda_k}{\partial t_h}
+\end{align*}
+
+これを用いて $A_{hl}$ の第一項に代入する。
+\begin{align*}
+    \frac{1}{a_2^{(h)}} \frac{\partial}{\partial t_h} \log a_2^{(l)} 
+    &= \frac{(x-t_h)L(x)}{M_h T(x)} \left( \frac{\partial}{\partial t_h} \log M_l - \frac{1}{x-t_h} + \sum_{k=1}^g \frac{1}{x-\lambda_k} \frac{\partial \lambda_k}{\partial t_h} \right) \\
+    &= \frac{(x-t_h)L(x)}{M_h T(x)} \frac{\partial}{\partial t_h} \log M_l - \frac{1}{M_h} \frac{L(x)}{T(x)} + \frac{1}{M_h} \sum_{k=1}^g \frac{x-t_h}{T(x)} \frac{L(x)}{x-\lambda_k} \frac{\partial \lambda_k}{\partial t_h}
+\end{align*}
+
+これを $A_{hl}$ の定義式全体に代入して整理すると、
+\begin{align*}
+    A_{hl} &= \frac{L(x)}{T(x)} \left\{ \frac{x-t_h}{M_h} \frac{\partial}{\partial t_h} \log M_l - \frac{x-t_l}{M_l} \frac{\partial}{\partial t_l} \log M_h - \frac{1}{M_h} + \frac{1}{M_l} \right. \\
+    &\quad \left. + \sum_{k=1}^g \frac{1}{x-\lambda_k} \left( \frac{x-t_h}{M_h} \frac{\partial \lambda_k}{\partial t_h} - \frac{x-t_l}{M_l} \frac{\partial \lambda_k}{\partial t_l} \right) \right\} + \frac{1}{x-t_l} - \frac{1}{x-t_h}
+\end{align*}
+よって、有理関数であり、係数 $1/T(x)$ の寄与から、$x=0, 1, t_p\ (p \neq l,h)$ は高々1位の極をもつ。
+
+また、無限遠点での挙動を見るため $x=\frac{1}{u}$ を代入する。
+\begin{align*}
+    A_{hl} &= u \frac{\prod (1-\lambda_k u)}{(1-u) \prod (1-t_m u)} \left\{ (1-t_h u) \frac{\partial}{\partial t_h} \log M_l - (1-t_l u) \frac{\partial}{\partial t_l} \log M_h - \frac{u}{M_h} + \frac{u}{M_l} \right. \\
+    &\quad \left. + u \sum_{k=1}^g \frac{1}{1-\lambda_k u} \left( (1-t_h u) \frac{\partial \lambda_k}{\partial t_h} - (1-t_l u) \frac{\partial \lambda_k}{\partial t_l} \right) \right\} + \frac{u}{1-t_l u} - \frac{u}{1-t_h u} \\
+    &=: u B_{hl}
+\end{align*}
+ここで $u \to 0$ の極限をとると、
 \begin{equation*}
-    L\left( \frac{\partial w_l}{\partial t_h} - \frac{\partial w_h}{\partial t_l} + w_l\frac{\partial w_h}{\partial x} - w_h\frac{\partial w_l}{\partial x} \right) = 0
+    B_{hl} \xrightarrow{u \to 0} \frac{\partial}{\partial t_h} \log M_l - \frac{\partial}{\partial t_l} \log M_h
 \end{equation*}
-となる．命題3.8の証明で見たように，仮定(P2), (P3)によれば，3階線型常微分方程式 $L(w)=0$ は非自明な有理関数解をもたない．(以下を参照)すなわち
-\begin{equation*}
-    \frac{\partial w_l}{\partial t_h} - \frac{\partial w_h}{\partial t_l} + w_l\frac{\partial w_h}{\partial x} - w_h\frac{\partial w_l}{\partial x} = 0
-\end{equation*}
-以上の議論は，(3.83)が(3.82)の積分可能条件に他ならないことを示している．
+となるため、$A_{hl}$ は $x=\infty$ で少なくとも1位の零点をもつ。
 \end{proof}
 \end{story}
+
+ここで、$x=t_{h},t_{l}ではA_{hl}$は正則である。実際、$x=t_h$ 近傍における $A_{hl}$ の主要部を評価し、留数 (Residue) を計算すると
+$A_{hl}$ の各項のうち、$x=t_h$ で極を持ちうるのは以下の部分である。
+\begin{equation*}
+    \frac{1}{a_2^{(h)}} \frac{\partial}{\partial t_h} \log a_2^{(l)} \sim - \frac{1}{a_2^{(h)}} \frac{1}{x-t_h}, \qquad - \frac{\partial}{\partial x} \log a_2^{(l)} \sim - \frac{1}{x-t_h}
+\end{equation*}
+ここで、$a_2^{(h)}$ は $x=t_h$ を分母の $L(x)$ 因子に持つため、テキストの条件より $x \to t_h$ として極限（留数）が $a_2^{(h)}(t_h, t) \to -1$ となる。
+したがって、$x=t_h$ における留数は次のように計算される。
+\begin{equation*}
+    \mathop{\mathrm{Res}}_{x=t_h} A_{hl} = - \frac{1}{-1} - 1 = 0
+\end{equation*}
+留数が $0$ となることから、一見存在するように見えた $x=t_h$ での極は完全に相殺し、正則であることが証明された。$x=t_l$ についても対称性より同様である。
+
+\begin{story}
+一方，$A_{hl}(x)$ は $x=\lambda_k$ で正則で
+$A_{hl}$ の $x-\lambda_k$ の $0$ 次の項は、
+\begin{equation*}
+    \frac{L(x)}{x-\lambda_k} \cdot \frac{1}{T(x)} \left( \frac{x-t_h}{M_h} \frac{\partial \lambda_k}{\partial t_h} - \frac{x-t_l}{M_l} \frac{\partial \lambda_k}{\partial t_l} \right) + \frac{1}{x-t_l} - \frac{1}{x-t_h}
+\end{equation*}
+よって、$x=\lambda_k$ を代入して
+\begin{align*}
+    A_{hl}(\lambda_k) &= \frac{\prod_{m \neq k} (\lambda_k - \lambda_m)}{\lambda_k(\lambda_k-1)\prod_{m \neq h} (\lambda_k - t_m)} \cdot \left( \frac{1}{M_h} \frac{\partial \lambda_k}{\partial t_h} \right) \\
+    &\quad - \frac{\prod_{m \neq k} (\lambda_k - \lambda_m)}{\lambda_k(\lambda_k-1)\prod_{m \neq l} (\lambda_k - t_m)} \cdot \left( \frac{1}{M_l} \frac{\partial \lambda_k}{\partial t_l} \right) + \frac{1}{\lambda_k - t_l} - \frac{1}{\lambda_k - t_h} \\[8pt]
+    &= \frac{L'(\lambda_k)}{T(\lambda_k)} \cdot \left( \frac{\lambda_k-t_h}{M_h} \cdot \frac{\partial \lambda_k}{\partial t_h} - \frac{\lambda_k-t_l}{M_l} \frac{\partial \lambda_k}{\partial t_l} \right)
+\end{align*}
+となる。補題3.10により，零点と極の個数を数えればわかるように，有理関数として $A_{hl}(x) = 0$ となるための必要十分条件は
+\begin{equation*}
+    A_{hl}(\lambda_k) = 0 \quad (k = 1, 2, \cdots, g)
+\end{equation*}
+であり，この式を整理して(3.92)が成り立つことがわかった．
+\end{story}
+
+実際同値である。
+
+$(\Leftarrow)$ \quad $A_{hl}(x) \equiv 0$ ならば、当然 $A_{hl}(\lambda_k) = 0$ であるから成立する
+
+$(\Rightarrow)$ \quad $A_{hl}(\lambda_k) = 0 \ (k=1,\dots,g)$ とすると、$x=\infty$ での零点と合わせて、少なくとも $g+1$ 個の零点をもつ。また、$A_{hl}(x)$ は $x=0, 1, t_p \ (p \neq l, h)$ では高々1位の極をもち、それ以外の点では正則である。（すなわち、極の総数は高々 $g$ 個である。）ここで、もし $A_{hl}(x) \not\equiv 0$ と仮定する。リーマン球面 $\mathbb{P}^1(\mathbb{C})$ 上の偏角の原理から、0でない有理型関数の零点の総数と極の総数は等しくならなければならない。しかし、$A_{hl}(x)$ の零点は $g+1$ 個以上、極は $g$ 個以下であり、数が一致せず矛盾する。
+したがって、$A_{hl}(x) \equiv 0$ である。
+
+\begin{story}
+この節の残りで補題3.9の証明の概略を紹介する．本体の条件を解析するために
 \begin{equation}
-    \frac{\partial^3 \phi}{\partial x^3} - 4r\frac{\partial \phi}{\partial x} - 2\frac{\partial r}{\partial x}\phi = 0 \label{eq:3.39}
+    A_l = \frac{1}{2} a_2^{(l)} \frac{\partial^3 a_2^{(l)}}{\partial x^3} - \frac{\partial}{\partial x} \left( r(x,t) (a_2^{(l)})^2 \right) + a_2^{(l)} \frac{\partial r}{\partial t_l} (x,t) \notag
 \end{equation}
-を満たす有理関数解が0しかないことを示す。\\
-ところで，微分方程式(3.25)の1次独立解を $\varphi_1(x,t), \varphi_2(x,t)$ とすると，(3.39)の1次独立解は
-\begin{equation*}
-    \varphi_1(x,t)^2, \quad \varphi_1(x,t)\varphi_2(x,t), \quad \varphi_2(x,t)^2
-\end{equation*}
-である．実際、
-\begin{equation*}
-    \frac{\partial^3}{\partial x^3}(\varphi_1^2) - 4r\frac{\partial}{\partial x}(\varphi_1^2) - 2\frac{\partial r}{\partial x}\varphi_1^2 = 2\frac{\partial^3 \varphi_1}{\partial x^3}\varphi_1 + 6\frac{\partial^2 \varphi_1}{\partial x^2}\frac{\partial \varphi_1}{\partial x} - 8r\frac{\partial \varphi_1}{\partial x}\varphi_1 - 2\frac{\partial r}{\partial x}\varphi_1^2
-\end{equation*}
-ここで $\frac{\partial^2 \varphi_1}{\partial x^2} = r\varphi_1$ より $\frac{\partial^3 \varphi_1}{\partial x^3} = \frac{\partial r}{\partial x}\varphi_1 + r\frac{\partial \varphi_1}{\partial x}$
-\begin{align*}
-    \therefore \frac{\partial^3}{\partial x^3}(\varphi_1^2) - 4r\frac{\partial}{\partial x}(\varphi_1^2) - 2\frac{\partial r}{\partial x}\varphi_1^2 &= 6\frac{\partial^2 \varphi_1}{\partial x^2}\frac{\partial \varphi_1}{\partial x} - 6r\frac{\partial \varphi_1}{\partial x}\varphi_1 \\
-    &= 6\frac{\partial \varphi_1}{\partial x}\left(\frac{\partial^2 \varphi_1}{\partial x^2} - r\varphi_1\right) = 0
-\end{align*}
-よって、$\varphi_1^2$ は (3.39)の解. $\varphi_2^2$ も同様.
+とおき，すぐ上の議論と同様に $A_l = 0$ となる条件を絞り込んでいく．
 
-また、$\varphi_1\varphi_2$ について、
-\begin{align*}
-    & \frac{\partial^3}{\partial x^3}(\varphi_1\varphi_2) - 4r\frac{\partial}{\partial x}(\varphi_1\varphi_2) - 2\frac{\partial r}{\partial x}\varphi_1\varphi_2 \\
-    &= \frac{\partial^3 \varphi_1}{\partial x^3}\varphi_2 + 3\frac{\partial^2 \varphi_1}{\partial x^2}\frac{\partial \varphi_2}{\partial x} + 3\frac{\partial \varphi_1}{\partial x}\frac{\partial^2 \varphi_2}{\partial x^2} + \varphi_1\frac{\partial^3 \varphi_2}{\partial x^3} - 4r\frac{\partial \varphi_1}{\partial x}\varphi_2 - 4r\varphi_1\frac{\partial \varphi_2}{\partial x} - 2\frac{\partial r}{\partial x}\varphi_1\varphi_2 \\
-    &= 3\left( \frac{\partial \varphi_2}{\partial x}\left(\frac{\partial^2 \varphi_1}{\partial x^2} - r\varphi_1\right) + \frac{\partial \varphi_1}{\partial x}\left(\frac{\partial^2 \varphi_2}{\partial x^2} - r\varphi_2\right) \right) = 0
-\end{align*}
-よって、$\varphi_1\varphi_2$ も (3.39) の解.
+\begin{lemma}
+    有理関数 $A_l$ は次の性質をもつ．
+    \begin{itemize}
+        \item[(1)] $x=0, 1, t_h$ $(h \neq l)$ で正則
+        \item[(2)] $x=\lambda_k$ は高々4位の極
+        \item[(3)] $x=t_l$ は高々1位の極
+        \item[(4)] $x=\infty$ は少なくとも2位の零点
+    \end{itemize}
+\end{lemma}
 
-ここで $C_1\varphi_1^2 + C_2\varphi_1\varphi_2 + C_3\varphi_2^2 = 0$ とし、$\varphi_1 \neq 0$ となる領域で
-\begin{equation*}
-    C_1 + C_2\left(\frac{\varphi_2}{\varphi_1}\right) + C_3\left(\frac{\varphi_2}{\varphi_1}\right)^2 = 0
-\end{equation*}
-$U = \frac{\varphi_2}{\varphi_1}$ として 
+\begin{proof}
+(3.85)より、$r$はどの確定特異点でも高々2位の極を持つので、$u=x-\xi$ を特異点 $x=\xi$ における局所座標として
 \[
-C_1 + C_2U + C_3U^2 = 0
+    r(x,t) = \frac{\alpha}{u^2} + \frac{\beta}{u} + \cdots
 \]
-ここで、$\varphi_1, \varphi_2$ は一次独立より、$U(x) \not\equiv \text{const.}$ よって、$\frac{dU}{dx} \not\equiv 0$.よって$\frac{dU}{dx} \neq 0$なる領域で微分して、
+と展開する．$\alpha$は特性指数の積など、$t$によらないものの合成で書けるので、$\frac{\partial \alpha}{\partial t_l}=0$ であるから
+\[
+    \frac{\partial r}{\partial t_l}(x,t) = \frac{2\alpha}{u^3}\frac{\partial \xi}{\partial t_l} + \frac{\beta}{u^2}\frac{\partial \xi}{\partial t_l} + \frac{1}{u}\frac{\partial \beta}{\partial t_l}+\cdots
+\]
+もし $\frac{\partial \xi}{\partial t_l}=0$ ならば，このような $x=\xi$ については $a_2^{(l)}(\xi,t)=0$ であるから，
+$a_2^{(l)}$ は $x = 0, 1, t_h \ (h \neq l)$ で $1$位の零点をもち、
+\begin{align*}
+    a_2^{(l)} \frac{\partial^3 a_2^{(l)}}{\partial x^3} &\sim \mathcal{O}(u) \mathcal{O}(1) \sim \mathcal{O}(u) \\[8pt]
+    \frac{\partial}{\partial x} \left( r (a_2^{(l)})^2 \right) &\sim \frac{\partial}{\partial x} \left( \mathcal{O}(u^{-2}) \mathcal{O}(u^2) \right) \sim \frac{\partial}{\partial x} (\mathcal{O}(1)) \sim \mathcal{O}(1) \\[8pt]
+    a_2^{(l)} \frac{\partial r}{\partial t_l} &\sim \mathcal{O}(u) \mathcal{O}(u^{-1}) \sim \mathcal{O}(1)
+\end{align*}
+より、
 \begin{equation*}
-    C_2\frac{dU}{dx} + 2C_3U\frac{dU}{dx} = 0 \quad \therefore C_2 + 2C_3U = 0
+    A_l \sim \mathcal{O}(1)
 \end{equation*}
-もう一度微分して、
-\begin{equation*}
-    2C_3 \frac{dU}{dx} = 0 \quad \therefore C_3 = 0
-\end{equation*}
-よって、$C_2 = 0$ そして、 $C_1 = 0$ で線形独立。
+つまり、(1)が従う．
 
-したがって $\varphi_1^2, \varphi_2^2, \varphi_1\varphi_2$ は線形独立より、(3.39)の解は $\varphi_1^2, \varphi_2^2, \varphi_1\varphi_2$ で張られる。
+$\xi=t_l$ ならば，$a_2^{(l)}(t_l,t)=-1+\eta u+\cdots$ という形だから
+\begin{align*}
+    a_2^{(l)} \frac{\partial^3 a_2^{(l)}}{\partial x^3} &\sim \mathcal{O}(1) \mathcal{O}(1) \sim \mathcal{O}(1) \\
+    a_2^{(l)} \frac{\partial r}{\partial t_l}(x,t) &= -\frac{2\alpha}{u^3} + \frac{2\alpha\eta-\beta}{u^2} + \mathcal{O}(u^{-1}) \\
+    r(x,t)\left(a_2^{(l)}\right)^2 &= \frac{\alpha}{u^2} + \frac{\beta-2\alpha\eta}{u} + \mathcal{O}(1)
+\end{align*}
+となる．ここで $\mathcal{O}(1)$ は $u=0$ で正則な部分を表す．これを代入すれば，$x=t_l$ の近傍で、高次の極が打ち消しあって、
+\[
+    A_l = \mathcal{O}(u^{-1})
+\]
+となり，(3)が示された．
 
-一方，仮定(P3)により，$\varphi_1(x,t), \varphi_2(x,t)$ は $x$ の有理関数にはならない．実際、$\varphi_{1}(x,t)$が$x$の有理関数とすると、任意の特異点周りでこの関数は解になり、また、1価であるから、
+次に $u=\frac{1}{x}$ とすると，$u=0$ の近傍で $\frac{\partial}{\partial x}=-u^2 \frac{\partial}{\partial u}$ より
+\begin{align*}
+    \frac{1}{M_l}a_2^{(l)} &= \frac{1}{u}+a+bu+\cdots, & \frac{1}{M_l}\frac{\partial^3 a_2^{(l)}}{\partial x^3} &= -6bu^4+\cdots \\
+    r(x,t) &= cu^2+fu^3+\cdots, & \frac{\partial r}{\partial t_l}(x,t) &= \frac{\partial f}{\partial t_l}u^3, \quad \frac{\partial c}{\partial t_l}=0
+\end{align*}
+と表される。実際
+
+\begin{align*}
+\frac{1}{M_l} a_2^{(l)} &= \frac{x(x-1) \prod_{k \neq l} (x-t_k)}{\prod_{k=1}^g (x-\lambda_k)} \\
+&\quad x = \frac{1}{u} \text{として、} \\
+\frac{1}{M_l} a_2^{(l)} &= \frac{1}{u} \underbrace{\frac{(1-u) \prod_{k \neq l} (1-t_k u)}{\prod_{k=1}^g (1-\lambda_k u)}}_{=: B_l}
+\end{align*}
+
+$B_l \xrightarrow{u \to 0} 1$ より、
 \begin{equation*}
-    (\varphi_1^\gamma, \varphi_2^\gamma) = (\varphi_1, \varphi_2) 
-    \begin{pmatrix}
-        1 & * \\
-        0 & *
-    \end{pmatrix}
+\frac{1}{M_l} a_2^{(l)} = \frac{1}{u} + a + b u + \mathcal{O}(u^2)
 \end{equation*}
-となり、$\forall c\in\mathbb{C}$に対して、
+
+また、$\frac{\partial}{\partial x} = -u^2 \frac{\partial}{\partial u}$ より、
+\begin{align*}
+\frac{1}{M_l} \frac{\partial^3 a_2^{(l)}}{\partial x^3} = \frac{\partial^3}{\partial x^3} \left( \frac{a_2^{(l)}}{M_l} \right) &= - \left( u^2 \frac{\partial}{\partial u} \right)^3 \left( \frac{1}{u} + a + b u + \mathcal{O}(u^2) \right) \\
+&= - \left( u^2 \frac{\partial}{\partial u} \right)^2 \left( -1 + b u^2 + \mathcal{O}(u^3) \right) \\
+&= - \left( u^2 \frac{\partial}{\partial u} \right) \left( 2 b u^3 + \mathcal{O}(u^4) \right) \\
+&= -6 b u^4 + \mathcal{O}(u^5)
+\end{align*}
+
+また、
+\begin{align*}
+r\left(\frac{1}{u}, t\right) = u^2& \left( \alpha_0 + \frac{\alpha_1}{(1-u)^2} + \frac{\alpha_\infty}{1-u} + \sum_{i=1}^g \left[ \frac{\beta_i}{(1-t_i u)^2} + \frac{u t_i(t_i-1) K_i}{(1-u)(1-t_i u)} \right]\right. \\
+&\left.+ \sum_{k=1}^g \left[ \frac{\gamma_k}{(1-\lambda_k u)^2} - \frac{u \lambda_k(\lambda_k-1) \nu_k}{(1-u)(1-\lambda_k u)} \right] \right) 
+\end{align*}
+より$r$ は $x = \infty$ を $2$位の零点にもつ。よって、$r\left(\frac{1}{u}, t\right) = c u^2 + f u^3 + \mathcal{O}(u^4)$ここで $c = \alpha_0 + \alpha_1 + \alpha_\infty + \sum_{i=1}^g \beta_i + \sum_{k=1}^g \gamma_k = \frac{1-\kappa_\infty^2}{4}$ より、$\kappa_\infty$ は SL型に変形する前の特性指数で $t$ によらない。
+つまり $\frac{\partial c}{\partial t_l} = 0$ ．よって、
 \begin{equation*}
-    \begin{pmatrix}
-        1 & * \\
-        0 & *
-    \end{pmatrix}
-    \begin{pmatrix}
-        c \\
-        0
-    \end{pmatrix}
-    =
-    \begin{pmatrix}
-        c \\
-        0
-    \end{pmatrix}
+\frac{\partial r}{\partial t_l} = \frac{\partial f}{\partial t_l} u^3 + \mathcal{O}(u^4)
+\end{equation*}
+
+以上より、
+\begin{align*}
+a_2^{(l)} \frac{\partial^3 a_2^{(l)}}{\partial x^3} &\sim \mathcal{O}(u^{-1}) \mathcal{O}(u^4) \sim \mathcal{O}(u^3) \\
+a_2^{(l)} \frac{\partial r}{\partial t_l} &\sim \mathcal{O}(u^{-1}) \mathcal{O}(u^3) \sim \mathcal{O}(u^2) \\
+\frac{\partial}{\partial x} \left( r (a_2^{(l)})^2 \right) &\sim -u^2 \frac{\partial}{\partial u} \left( \mathcal{O}(u^2) \mathcal{O}(u^{-2}) \right) \sim \mathcal{O}(u^2)
+\end{align*}
+
+よって、 $A_l \sim \mathcal{O}(u^2)$、つまり(4)がわかる．
+
+最後に $u=x-\lambda_k$ として
+\begin{equation*}
+    a_2^{(l)} = \frac{1}{x-\lambda_k} \cdot \underbrace{M_l \frac{x(x-1) \prod_{m \neq l} (x-t_m)}{\prod_{m \neq k} (x-\lambda_m)}}_{=: B_l}
 \end{equation*}
 より、
 \begin{equation*}
-    \left\langle \begin{pmatrix} c \\ 0 \end{pmatrix} \right\rangle \text{ は不変部分空間．よって、既約性に矛盾．}
+    \lim_{x \to \lambda_k} B_l = M_l \frac{\lambda_k(\lambda_k-1) \prod_{m \neq l} (\lambda_k-t_m)}{\prod_{m \neq k} (\lambda_k-\lambda_m)} = M_l \frac{T(\lambda_k)}{L'(\lambda_k)(\lambda_k-t_l)} = M_l M^{k,l}
 \end{equation*}
-これによって、$\varphi_1^2, \varphi_2^2, \varphi_1\varphi_2$ が有理関数でないこともわかる。実際、任意の $0$ でない2次対称行列 $C=(c_{ij})$ に対して、二次形式 $\varphi(x,t) C \varphi^{T}(x,t)$ が有理関数でないことを示せば十分である。
-
-ある $0$ でない $C$ があって、$\varphi(x,t) C \varphi^{T}(x,t)$ が有理関数であるとすると、任意の道 $\gamma$ に対して
+よって、
 \begin{equation*}
-    \varphi^{\gamma}(x,t) = \varphi(x,t)\Gamma(\gamma)
+    a_2^{(l)} = M_l \left[ \frac{M^{k,l}}{u} + \sum_{p=0}^\infty M^{k,l,p} u^p \right]
 \end{equation*}
-とし、$\gamma$ に沿って解析接続をすれば、
-\begin{equation*}
-    \varphi^{\gamma}(x,t) C (\varphi^{\gamma}(x,t))^{T} = \varphi(x,t)\Gamma(\gamma) C \Gamma(\gamma)^{T}\varphi^{T}(x,t)
-\end{equation*}
-となる。ここで $\varphi(x,t) C \varphi^{T}(x,t)$ は有理関数なので、特に一価であり、
-\begin{equation*}
-    \varphi^{\gamma}(x,t) C (\varphi^{\gamma}(x,t))^{T} = \varphi(x,t) C \varphi^{T}(x,t)
-\end{equation*}
-よって、$\varphi_1^2, \varphi_2^2, \varphi_1\varphi_2$ は線型独立であったので、係数行列が一致しなければならず、
-\begin{equation*}
-    \Gamma(\gamma) C \Gamma(\gamma)^{T} = C
-\end{equation*}
-がわかる。
-
-ここで、(3.25) をみると、一階微分の係数がないので、命題2.2から、ロンスキアンは定数となる。つまり任意の道 $\gamma$ に対して、
-\begin{equation*}
-    \det(\Gamma(\gamma)) = 1
-\end{equation*}
-ここで
-\begin{equation*}
-    J =
-    \begin{pmatrix}
-        0 & 1 \\
-        -1 & 0
-    \end{pmatrix}
-\end{equation*}
-に対して、簡単な計算により、$\det A = 1$ であれば、
+また、
 \begin{align*}
-    A^{T}JA &= J \\
-    A^{T} &= JA^{-1}J^{-1}
+    r(x,t) &= \frac{3}{4} u^{-2} - \nu_k u^{-1} + \sum_{p=0}^\infty r_{k,p} u^p \\
+    \frac{\partial r}{\partial t_l} &= \frac{\partial}{\partial t_l} \left( \frac{3}{4} u^{-2} \right) - \frac{\partial}{\partial t_l} \left( \nu_k u^{-1} \right) + \sum_{p=0}^\infty \frac{\partial}{\partial t_l} \left( r_{k,p} u^p \right) \notag \\
+    &= \frac{3}{2} \frac{\partial \lambda_k}{\partial t_l} u^{-3} - \nu_k \frac{\partial \lambda_k}{\partial t_l} u^{-2} - \frac{\partial \nu_k}{\partial t_l} u^{-1} + \sum_{p=0}^\infty \left( \frac{\partial r_{k,p}}{\partial t_l} - (p+1) r_{k,p+1} \frac{\partial \lambda_k}{\partial t_l} \right) u^p
 \end{align*}
-となるので、
+と展開すれば
 \begin{align*}
-    \Gamma(\gamma) C \Gamma(\gamma)^{T} &= C \\
-    \Gamma(\gamma) C (J\Gamma(\gamma)^{-1}J^{-1}) &= C \\
-    \Gamma(\gamma) (CJ) &= (CJ)\Gamma(\gamma)
+    \frac{1}{2} a_2^{(l)} \frac{\partial^3 a_2^{(l)}}{\partial x^3} &= \frac{1}{2} \left( M_l M^{k,l} u^{-1} + \mathcal{O}(1) \right) \left( -6 M_l M^{k,l} u^{-4} + \mathcal{O}(1) \right) \\
+    &= -3 M_l^2 \left(M^{k,l}\right)^2 u^{-5} + \mathcal{O}(u^{-4}) \\[8pt]
+    \frac{\partial}{\partial x} \left( r(x,t) (a_2^{(l)})^2 \right) &= \frac{\partial}{\partial x} \left[ \left( \frac{3}{4} u^{-2} + \mathcal{O}(1) \right) \left( M_l M^{k,l} u^{-1} + \mathcal{O}(1) \right)^2 \right] \\
+    &= \frac{\partial}{\partial x} \left( \frac{3}{4} M_l^2 \left(M^{k,l}\right)^2 u^{-4} + \mathcal{O}(u^{-3}) \right) \\
+    &= -3 M_l^2 \left(M^{k,l}\right)^2 u^{-5} + \mathcal{O}(u^{-4}) \\[8pt]
+    a_2^{(l)} \frac{\partial r}{\partial t_l} &\sim \mathcal{O}(u^{-1}) \mathcal{O}(u^{-3}) \sim \mathcal{O}(u^{-4})
 \end{align*}
 
-よって、表現の任意の作用 $\Gamma(\gamma)$ と $CJ$ が可換であるので、(P3)の表現の既約性と $CJ$ をかける操作が絡作用素（intertwining operator）であることから、Schurの補題よりある $\lambda\in\mathbb{C}$ を用いて、
-\begin{align*}
-    CJ &= \lambda I \\
-    C &= \lambda J^{-1} = \lambda J^{T}
-\end{align*}
-ここで、$C$ は対称行列であり、$J$ は交代行列であることを用いると、
+よって、
 \begin{equation*}
-    C = C^{T} = (\lambda J^{T})^{T} = \lambda J = -\lambda J^{T} = -C
+    A_l \sim \mathcal{O}(u^{-4})
 \end{equation*}
-つまり $C=0$ となり、仮定に矛盾する。したがって非自明な有理関数は存在しない。
 
-よって，(3.39) を満足する有理関数解 $c(x,t)$ は $c \equiv 0$ に限る．すなわち，(3.29) の有理関数解は存在しても一意である．
+より，(2)も成り立つ．
+\end{proof}
+
+\vspace{1em}
+以上のことから，有理関数 $A_l(x)$ は
+\[
+    A_l(x) = \frac{W_l}{x-t_l} + \sum_{k=1}^g \sum_{q=1}^4 \frac{W_q^{k,l}}{(x-\lambda_k)^q}
+\]
+と書かれる．ここで
+\begin{equation} \tag{3.93}
+    W_q^{k,l} = 0 \qquad (k, l = 1, \cdots, g), \quad (q = 1, 2, 3, 4)
+\end{equation}
+が成立するならば、補題3.11(4)から必然的に $W_l=0$ であり，(実際、$x=u^{-1}$を代入しても1位の零点しか持たない。)$A_l(x)=0$ が従う．そこで条件(3.93)を1つ1つ書き下していく．
+
+\begin{align*}
+    &W_4^{k,l} = 0 \qquad &&\frac{\partial \lambda_k}{\partial t_l} - M_l \left[ 2M^{k,l}\nu_k - M^{k,l,0} \right] = 0 \\[8pt]
+    &W_3^{k,l} = 0 \qquad &&r_{k,0} - \nu_k^2 = 0 \\[8pt]
+    &W_2^{k,l} = 0 \qquad &&\frac{\partial \nu_k}{\partial t_l} - M_l \left[ M^{k,l}r_{k,1} + M^{k,l,1}\nu_k - \frac{3}{2}M^{k,l,2} \right] = 0
+\end{align*}
+
+そして最後に $W_1^{k,l}=0$ から
+\[
+    M^{k,l} \frac{\partial}{\partial t_l} r_{k,0} - M^{k,l,0} \frac{\partial \nu_k}{\partial t_l} = \left( M^{k,l}r_{k,1} + M^{k,l,1}\nu_k - \frac{3}{2}M^{k,l,2} \right) \frac{\partial \lambda_k}{\partial t_l}
+\]
+を得る．
+\end{story}
+
+与えられた $A_l(x)$ を $u$ のべき級数として直接展開し、係数を整理する。
+\begin{align*}
+    A_l(x) &= \frac{1}{2} \left( M_l M^{k,l} u^{-1} + \sum_{p=0}^\infty M_l M^{k,l,p} u^p \right) \left( -6 M_l M^{k,l} u^{-4} + 6 M_l M^{k,l,3} + \mathcal{O}(u) \right) \\
+    &\quad - \frac{\partial}{\partial x} \left\{ \left( \frac{3}{4} u^{-2} - \nu_k u^{-1} + \sum_{p=0}^\infty r_{k,p} u^p \right) \left( M_l^2 (M^{k,l})^2 u^{-2} + 2M_l^2 M^{k,l} M^{k,l,0} u^{-1} \right. \right. \\
+    &\hspace{4em} \left. \left. + (M_l^2(M^{k,l,0})^2 + 2M_l^2 M^{k,l} M^{k,l,1}) + (2M_l^2 M^{k,l} M^{k,l,2} + 2M_l^2 M^{k,l,0} M^{k,l,1}) u + \mathcal{O}(u^2) \right) \right\} \\
+    &\quad + \left( M_l M^{k,l} u^{-1} + \sum_{p=0}^\infty M_l M^{k,l,p} u^p \right) \left( \frac{3}{2} \frac{\partial \lambda_k}{\partial t_l} u^{-3} - \nu_k \frac{\partial \lambda_k}{\partial t_l} u^{-2} - \frac{\partial \nu_k}{\partial t_l} u^{-1} + \frac{\partial r_{k,0}}{\partial t_l} - r_{k,1}\frac{\partial \lambda_{k}}{\partial t_l} + \mathcal{O}(u) \right) \\
+    &= -3 M_l^2 M^{k,l} M^{k,l,0} u^{-4} - 3 M_l^2 M^{k,l} M^{k,l,1} u^{-3} - 3 M_l^2 M^{k,l} M^{k,l,2} u^{-2} \\
+    &\quad + \left( \underline{-3 M_l^2 M^{k,l} M^{k,l,3}} + \underline{3 M_l^2 M^{k,l} M^{k,l,3}} \right) u^{-1} \\
+    &\quad - \left\{ -3 \left( \frac{3}{2} M_l^2 M^{k,l} M^{k,l,0} - \nu_k M_l^2 (M^{k,l})^2 \right) u^{-4} \right. \\
+    &\hspace{3em} - 2 \left( \frac{3}{4} M_l^2 (M^{k,l,0})^2 + \frac{3}{2} M_l^2 M^{k,l} M^{k,l,1} - 2\nu_k M_l^2 M^{k,l} M^{k,l,0} + r_{k,0} M_l^2 (M^{k,l})^2 \right) u^{-3} \\
+    &\hspace{3em} \left. - \left( \frac{3}{2} M_l^2 M^{k,l} M^{k,l,2} + \frac{3}{2} M_l^2 M^{k,l,0} M^{k,l,1} - \nu_k M_l^2 (M^{k,l,0})^2 - 2\nu_k M_l^2 M^{k,l} M^{k,l,1} \right. \right.\\
+    &\hspace{3em}\left. \left.+ 2 r_{k,0} M_l^2 M^{k,l} M^{k,l,0} + r_{k,1} M_l^2 (M^{k,l})^2 \right) u^{-2} \right\} \\
+    &\quad + \frac{3}{2} M_l M^{k,l} \frac{\partial \lambda_k}{\partial t_l} u^{-4} + \left( - M_l M^{k,l} \nu_k \frac{\partial \lambda_k}{\partial t_l} + \frac{3}{2} M_l M^{k,l,0} \frac{\partial \lambda_k}{\partial t_l} \right) u^{-3} \\
+    &\quad + \left( - M_l M^{k,l} \frac{\partial \nu_k}{\partial t_l} - M_l M^{k,l,0} \nu_k \frac{\partial \lambda_k}{\partial t_l} + \frac{3}{2} M_l M^{k,l,1} \frac{\partial \lambda_k}{\partial t_l} \right) u^{-2} \\
+    &\quad + \left( M_l M^{k,l} \frac{\partial r_{k,0}}{\partial t_l} - M_l M^{k,l} r_{k,1}\frac{\partial \lambda_{k}}{\partial t_l} - M_l M^{k,l,0} \frac{\partial \nu_k}{\partial t_l} - M_l M^{k,l,1} \nu_k \frac{\partial \lambda_k}{\partial t_l} + \frac{3}{2} M_l M^{k,l,2} \frac{\partial \lambda_k}{\partial t_l} \right) u^{-1} + \mathcal{O}(1)
+\end{align*}
+これを整理し、各 $u^{-j}$ の係数 $W_j^{k,l}$ を取り出して $=0$ と置く。
+
+\paragraph{1. $u^{-4}$ の係数 $W_4^{k,l}$:}
+\begin{align*}
+    W_4^{k,l} &= -3 M_l^2 M^{k,l} M^{k,l,0} + \frac{9}{2} M_l^2 M^{k,l} M^{k,l,0} - 3 \nu_k M_l^2 (M^{k,l})^2 + \frac{3}{2} M_l M^{k,l} \frac{\partial \lambda_k}{\partial t_l} \\
+    &= \frac{3}{2} M_l M^{k,l} \left( M_l \left[ M^{k,l,0} - 2\nu_k M^{k,l} \right] + \frac{\partial \lambda_k}{\partial t_l} \right) = 0.
+\end{align*}
+したがって、$\frac{\partial \lambda_k}{\partial t_l} = M_l (2 \nu_k M^{k,l} - M^{k,l,0})$ を得る。
+
+\paragraph{2. $u^{-3}$ の係数 $W_3^{k,l}$:}
+項のキャンセルを丁寧に整理すると、
+\begin{align*}
+    W_3^{k,l} &= -3 M_l^2 M^{k,l} M^{k,l,1} + \frac{3}{2} M_l^2 (M^{k,l,0})^2 + 3 M_l^2 M^{k,l} M^{k,l,1} - 4 \nu_k M_l^2 M^{k,l} M^{k,l,0} + 2r_{k,0} M_l^2 (M^{k,l})^2 \\
+    &\quad - M_l M^{k,l} \nu_k \frac{\partial \lambda_k}{\partial t_l} + \frac{3}{2} M_l M^{k,l,0} \frac{\partial \lambda_k}{\partial t_l} \\
+    &= M_l^2 \left( \frac{3}{2} (M^{k,l,0})^2 - 4\nu_k M^{k,l} M^{k,l,0} + 2r_{k,0}(M^{k,l})^2 \right) + M_l \left( \frac{3}{2} M^{k,l,0} - M^{k,l}\nu_k \right) \frac{\partial \lambda_k}{\partial t_l} \\
+    &= 2 M_l^2 (M^{k,l})^2 \left( r_{k,0} - \nu_k^2 \right) = 0.
+\end{align*}
+したがって、$r_{k,0} = \nu_k^2$ を得る。
+
+\paragraph{3. $u^{-2}$ の係数 $W_2^{k,l}$:}
+各項を展開し、$r_{k,0} = \nu_k^2$ を用いて整理する。
+\begin{align*}
+W_2^{k,l} &= -3 M_l^2 M^{k,l} M^{k,l,2} + \frac{3}{2} M_l^2 M^{k,l} M^{k,l,2} + \frac{3}{2} M_l^2 M^{k,l,0} M^{k,l,1} - \nu_k M_l^2 (M^{k,l,0})^2\\
+&\hspace{1em}- 2\nu_k M_l^2 M^{k,l} M^{k,l,1} + 2r_{k,0} M_l^2 M^{k,l} M^{k,l,0} + r_{k,1} M_l^2 (M^{k,l})^2\\
+&\hspace{1em}- M_l M^{k,l} \frac{\partial \nu_k}{\partial t_l} - M_l M^{k,l,0} \nu_k \frac{\partial \lambda_k}{\partial t_l} + \frac{3}{2} M_l M^{k,l,1} \frac{\partial \lambda_k}{\partial t_l}
+\end{align*}
+ここで $\frac{\partial \lambda_k}{\partial t_l}$ を含む項をまとめ、残りの $M_l^2$ の項と分ける。
+\begin{align*}
+&= M_l^2 \left( \frac{3}{2} M^{k,l,1} - M^{k,l,0} \nu_k \right) \left( \frac{1}{M_l} \frac{\partial \lambda_k}{\partial t_l} \right)\\
+&+ M_l^2 \left( -\frac{3}{2} M^{k,l} M^{k,l,2} + \frac{3}{2} M^{k,l,0} M^{k,l,1} - \nu_k (M^{k,l,0})^2 - 2\nu_k M^{k,l} M^{k,l,1} + 2\nu_k^2 M^{k,l} M^{k,l,0} \right)\\
+&+ r_{k,1} M_l^2 (M^{k,l})^2 - M_l M^{k,l} \frac{\partial \nu_k}{\partial t_l}
+\end{align*}
+第1項の括弧に $\frac{1}{M_l} \frac{\partial \lambda_k}{\partial t_l} = 2\nu_k M^{k,l} - M^{k,l,0}$ を代入して展開する。
+\begin{align*}
+&\left( \frac{3}{2} M^{k,l,1} - M^{k,l,0} \nu_k \right) ( 2\nu_k M^{k,l} - M^{k,l,0} )\\
+&= 3\nu_k M^{k,l} M^{k,l,1} - \frac{3}{2} M^{k,l,0} M^{k,l,1} - 2\nu_k^2 M^{k,l} M^{k,l,0} + \nu_k (M^{k,l,0})^2
+\end{align*}
+これを元の式に代入し、相殺する項を整理する。
+\begin{align*}
+W_2^{k,l} &= M_l^2 \left( 3\nu_k M^{k,l} M^{k,l,1} - \frac{3}{2} M^{k,l,0} M^{k,l,1} - 2\nu_k^2 M^{k,l} M^{k,l,0} + \nu_k (M^{k,l,0})^2 \right.\\
+&\left. -\frac{3}{2} M^{k,l} M^{k,l,2} + \frac{3}{2} M^{k,l,0} M^{k,l,1} - \nu_k (M^{k,l,0})^2 - 2\nu_k M^{k,l} M^{k,l,1} + 2\nu_k^2 M^{k,l} M^{k,l,0} \right)\\
+&+ r_{k,1} M_l^2 (M^{k,l})^2 - M_l M^{k,l} \frac{\partial \nu_k}{\partial t_l}
+\end{align*}
+
+括弧内の相殺（$-\frac{3}{2}$ と $+\frac{3}{2}$、$-2\nu_k^2$ と $+2\nu_k^2$、$+\nu_k$ と $-\nu_k$）を実行し、残った $3\nu_k M^{k,l} M^{k,l,1}$ と $-2\nu_k M^{k,l} M^{k,l,1}$ を足し合わせる。
+\begin{equation}
+= M_l^2 \left( \nu_k M^{k,l} M^{k,l,1} - \frac{3}{2} M^{k,l} M^{k,l,2} \right) + r_{k,1} M_l^2 (M^{k,l})^2 - M_l M^{k,l} \frac{\partial \nu_k}{\partial t_l}
+\end{equation}
+
+全体を $-M_l M^{k,l}$ でくくる。
+
+\begin{equation}
+= - M_l M^{k,l} \left( \frac{\partial \nu_k}{\partial t_l} - M_l \left( \nu_k M^{k,l,1} - \frac{3}{2} M^{k,l,2} + r_{k,1} M^{k,l} \right) \right) = 0
+\end{equation}
+したがって、次式を得る。
+\begin{equation}
+\frac{\partial \nu_k}{\partial t_l} = M_l \left( \nu_k M^{k,l,1} - \frac{3}{2} M^{k,l,2} + r_{k,1} M^{k,l} \right)
+\end{equation}
+
+4. $u^{-1}$ の係数 $W_1^{k,l}$:
+
+$$W_1^{k,l} = M_l \left( M^{k,l} \frac{\partial r_{k,0}}{\partial t_l} - M^{k,l} r_{k,1}\frac{\partial \lambda_{k}}{\partial t_l} - M^{k,l,0} \frac{\partial \nu_k}{\partial t_l} - M^{k,l,1} \nu_k \frac{\partial \lambda_k}{\partial t_l} + \frac{3}{2} M^{k,l,2} \frac{\partial \lambda_k}{\partial t_l} \right) = 0$$
+
+これを整理して、時間微分 $\frac{\partial}{\partial t_l}$ の項を左辺に、$\frac{\partial \lambda_k}{\partial t_l}$ の項を右辺にまとめる。
+
+$$M^{k,l} \frac{\partial r_{k,0}}{\partial t_l} - M^{k,l,0} \frac{\partial \nu_k}{\partial t_l} = \left(M^{k,l} r_{k,1} + M^{k,l,1} \nu_k  - \frac{3}{2} M^{k,l,2}\right) \frac{\partial \lambda_k}{\partial t_l}$$
+
+\paragraph{4. $u^{-1}$ の係数 $W_1^{k,l}$:}
+\begin{align*}
+    W_1^{k,l} &= M_l \left( M^{k,l} \frac{\partial r_{k,0}}{\partial t_l} + M^{k,l} r_{k,1} - M^{k,l,0} \frac{\partial \nu_k}{\partial t_l} - M^{k,l,1} \nu_k \frac{\partial \lambda_k}{\partial t_l} + \frac{3}{2} M^{k,l,2} \frac{\partial \lambda_k}{\partial t_l} \right) = 0.
+\end{align*}
+つまり、
+\begin{equation*}
+M^{k,l} \frac{\partial r_{k,0}}{\partial t_l} - M^{k,l,0} \frac{\partial \nu_k}{\partial t_l} = \left(M^{k,l} r_{k,1} + M^{k,l,1} \nu_k  - \frac{3}{2} M^{k,l,2}\right) \frac{\partial \lambda_k}{\partial t_l}
+\end{equation*}
+以上より、各係数の消失からシステムを記述する関係式が導出された。
+
 \begin{story}
-そこで，(3.32)を用いて $r(x,t)$ を計算しよう．実際，$r(x,t)$ は $x=0, x=1, x=t$ で高々2位の極をもつ有理関数である．特性指数を考慮すれば，$r(x,t)$ は
-
-\begin{align}
-    r(x,t) &= \frac{\alpha_0}{x^2} + \frac{\alpha_1}{(x-1)^2} + \frac{\alpha_\infty}{x(x-1)} \nonumber \\
-    &\quad + \sum_{l=1}^g \left[ \frac{\beta_l}{(x-t_l)^2} + \frac{t_l(t_l-1)K_l}{x(x-1)(x-t_l)} \right] \label{eq:3.85} \\
-    &\quad + \sum_{k=1}^g \left[ \frac{3}{4(x-\lambda_k)^2} - \frac{\lambda_k(\lambda_k-1)\nu_k}{x(x-1)(x-\lambda_k)} \right] \nonumber
-\end{align}
-
-という形をしている．他方，(3.32)に(3.67)と(3.68)を代入して，係数の関係を調べる．すると
+まず，$W_3^{k,l}=0$ は，2階線型常微分方程式(3.25)の特異点 $x=\lambda_k$ が非対数的である，という条件と同一であり，新しい束縛条件は与えない．
+\end{story}
+$\phi(x) = u^s \sum_{n=0}^\infty a_n u^n$ として、微分方程式 $\frac{d^2\phi(x)}{dx^2} = r(x,t)\phi(x)$ に代入する。
 \begin{equation*}
-    \alpha_0 = \frac{1}{4}(\kappa_0^2 - 1), \quad \alpha_1 = \frac{1}{4}(\kappa_1^2 - 1), \quad \beta_l = \frac{1}{4}(\theta_l^2 - 1)
+    u^s \sum_{n=0}^\infty (s+n)(s+n-1) a_n u^{n-2} = \left( \frac{3}{4} u^{-2} - \nu_k u^{-1} + \sum_{n=0}^\infty r_{k,n} u^n \right) \left( u^s \sum_{n=0}^\infty a_n u^n \right)
 \end{equation*}
+両辺の $u$ の各べきの係数を比較する。
+
+\paragraph{1. $u^{s-2}$ の係数:}
+\begin{align*}
+    s(s-1) a_0 &= \frac{3}{4} a_0 \\
+    \therefore \quad \left(s + \frac{1}{2}\right)\left(s - \frac{3}{2}\right) a_0 &= 0
+\end{align*}
+$a_0 \neq 0$ より $s = -1/2, 3/2$ を得る。対数項の有無を調べるため、小さい根 $s = -1/2$ を採用して高次の係数を比較する。
+
+\paragraph{2. $u^{-3/2}$ の係数（$s=-1/2, n=1$ の項）:}
+\begin{align*}
+    \left(\frac{1}{2}\right)\left(-\frac{1}{2}\right) a_1 &= \frac{3}{4} a_1 - \nu_k a_0 \\
+    -\frac{1}{4} a_1 &= \frac{3}{4} a_1 - \nu_k a_0 \\
+    \therefore \quad a_1 &= \nu_k a_0
+\end{align*}
+
+\paragraph{3. $u^{-1/2}$ の係数（$s=-1/2, n=2$ の項）:}
+\begin{align*}
+    \left(\frac{3}{2}\right)\left(\frac{1}{2}\right) a_2 &= \frac{3}{4} a_2 - \nu_k a_1 + r_{k,0} a_0 \\
+    \frac{3}{4} a_2 &= \frac{3}{4} a_2 - \nu_k a_1 + r_{k,0} a_0 \\
+    \therefore \quad 0 &= -\nu_k a_1 + r_{k,0} a_0
+\end{align*}
+先ほど求めた $a_1 = \nu_k a_0$ を代入して整理すると、
+\begin{equation*}
+    (\nu_k^2 - r_{k,0}) a_0 = 0
+\end{equation*}
+$a_0 \neq 0$ より、$r_{k,0} = \nu_k^2$ が導かれる。
+\begin{story}
+また $W_1^{k,l}=0$ は，$W_4^{k,l}=W_2^{k,l}=0$ から $W_1^{k,l}$の係数部分に注目して、代入すると、
+\[
+    M^{k,l} \frac{\partial}{\partial t_l} r_{k,0} - \left( 2M^{k,l}\nu_k - \frac{1}{M_l} \frac{\partial \lambda_k}{\partial t_l} \right) \frac{\partial \nu_k}{\partial t_l} = \frac{1}{M_l} \frac{\partial \nu_k}{\partial t_l} \cdot \frac{\partial \lambda_k}{\partial t_l}
+\]
+すなわち次のようにも表され，これも非対数的条件 $W_3^{k,l}=0$ に含まれている．($W_3^{k,l}=0$を$t_{l}$で微分すれば良い。)
+\begin{equation}
+    \frac{\partial}{\partial t_l} r_{k,0} - 2\nu_k \frac{\partial \nu_k}{\partial t_l} = 0 \label{eq:rk0_derivative}
+\end{equation}
+
+したがって、本質的な条件は方程式系 $W_4^{k,l} = W_2^{k,l} = 0$ である。ここで、ハミルトニアン $K_l$ の具体形(3.86)を用いて直接計算で確認すれば、この方程式系がハミルトン系(3.91)に他ならないことがわかる。この部分の確認は読者にお任せする。以上の説明により補題3.9が確かに成り立つことを認め、先に進むことにしよう。
+\end{story}
+
+実際、
+運動量の変数変換式において、括弧内を $\omega_k$ と定義する。
+\begin{equation*}
+    \nu_k = \mu_k + \frac{1}{2} \underbrace{\left( \frac{1-\kappa_0}{\lambda_k} + \frac{1-\kappa_1}{\lambda_k-1} + \sum_{i=1}^g \frac{1-\theta_i}{\lambda_k-t_i} - \sum_{m \neq k} \frac{1}{\lambda_k-\lambda_m} \right)}_{=: \omega_k}
+\end{equation*}
+元のハミルトニアン $H_l$ とパラメータ $A_{k,l}$ は次で与えられる。
+\begin{align*}
+    H_l &= M_l \left[ \sum_{k=1}^g M^{k,l} \left\{ \mu_k^2 - A_{k,l} \mu_k + \frac{\kappa}{\lambda_k(\lambda_k-1)} \right\} \right] \\
+    A_{k,l} &= \frac{\kappa_0}{\lambda_k} + \frac{\kappa_1}{\lambda_k-1} + \sum_{i=1}^g \frac{\theta_i - \delta_{il}}{\lambda_k-t_i}
+\end{align*}
+$\mu_k = \nu_k - \frac{1}{2}\omega_k$ を $H_l$ に代入して、
+\begin{equation*}
+    H_l = M_l \left[ \sum_{k=1}^g M^{k,l} \left\{ \left(\nu_k - \frac{1}{2}\omega_k\right)^2 - A_{k,l} \left(\nu_k - \frac{1}{2}\omega_k\right) + \frac{\kappa}{\lambda_k(\lambda_k-1)} \right\} \right]
+\end{equation*}
+ここで、$K_l$ は $H_l$ に $\nu_k$ を含まない項を足して定義されている。
+\begin{equation*}
+    K_l = H_l + \frac{1-\theta_l}{2} \left( \frac{1-\kappa_0}{t_l} + \frac{1-\kappa_1}{t_l-1} + \sum_{m \neq l} \frac{1-\theta_m}{t_l-t_m} - \sum_{k=1}^g \frac{1}{t_l-\lambda_k} \right)
+\end{equation*}
+したがって、$\nu_k$ による偏微分は以下のようになる。
+\begin{align*}
+    \frac{\partial K_l}{\partial \nu_k} &= \frac{\partial H_l}{\partial \nu_k} = M_l M^{k,l} \left\{ 2\left(\nu_k - \frac{1}{2}\omega_k\right) - A_{k,l} \right\} \\
+    &= M_l \left( 2 M^{k,l} \nu_k - M^{k,l}(\omega_k + A_{k,l}) \right)
+\end{align*}
+これまでの特異点解析より $\frac{\partial \lambda_k}{\partial t_l} = M_l(2 M^{k,l} \nu_k - M^{k,l,0})$ であるため、
+\begin{equation*}
+    M^{k,l,0} = M^{k,l}(\omega_k + A_{k,l})
+\end{equation*}
+を示せばよい。$\omega_k$ と $A_{k,l}$ を足し合わせると、パラメータ $\kappa, \theta$ が相殺し、
+\begin{equation*}
+    \omega_k + A_{k,l} = \frac{1}{\lambda_k} + \frac{1}{\lambda_k-1} + \sum_{h \neq l} \frac{1}{\lambda_k-t_h} - \sum_{m \neq k} \frac{1}{\lambda_k-\lambda_m}
+\end{equation*}
+となる。一方で、ローラン展開の定義 $a_2^{(l)}(x,t) = M_l(M^{k,l}u^{-1} + M^{k,l,0} + \mathcal{O}(u))$ より、
+\begin{align*}
+    a_2^{(l)}(x,t) - M_l M^{k,l} u^{-1} &= M_l \left( \frac{T(x)}{L(x)(x-t_l)} - \frac{T(\lambda_k)}{(x-\lambda_k)L'(\lambda_k)(\lambda_k-t_l)} \right) \\
+    &= \frac{M_l}{u} \left( \frac{x(x-1)\prod_{i \neq l}(x-t_i)}{\prod_{h \neq k}(x-\lambda_h)} - \frac{\lambda_k(\lambda_k-1)\prod_{i \neq l}(\lambda_k-t_i)}{\prod_{h \neq k}(\lambda_k-\lambda_h)} \right)
+\end{align*}
+ここで、関数 $F(x) = \frac{x(x-1)\prod_{i \neq l}(x-t_i)}{\prod_{h \neq k}(x-\lambda_h)}$ とおくと、
+\begin{equation*}
+    M_l M^{k,l,0} = \lim_{x \to \lambda_k} M_l \frac{F(x) - F(\lambda_k)}{x-\lambda_k} = M_l F'(\lambda_k)
+\end{equation*}
+となるため、$M^{k,l,0} = F'(\lambda_k)$ である。対数微分法を用いると、
+\begin{align*}
+    \frac{F'(x)}{F(x)} &= \frac{1}{x} + \frac{1}{x-1} + \sum_{i \neq l} \frac{1}{x-t_i} - \sum_{h \neq k} \frac{1}{x-\lambda_h} \\
+    \therefore \quad F'(\lambda_k) &= \left( \frac{1}{\lambda_k} + \frac{1}{\lambda_k-1} + \sum_{i \neq l} \frac{1}{\lambda_k-t_i} - \sum_{h \neq k} \frac{1}{\lambda_k-\lambda_h} \right) F(\lambda_k) \\
+    &= M^{k,l}(\omega_k + A_{k,l})
+\end{align*}
+以上より、$M^{k,l,0} = M^{k,l}(\omega_k + A_{k,l})$ が示された。
+よって、
+\begin{equation*}
+    \frac{\partial \lambda_k}{\partial t_l} = \frac{\partial K_l}{\partial \nu_k}
+\end{equation*}
+が成立する。($\frac{\partial \nu_k}{\partial t_l} = \frac{\partial K_l}{\partial \lambda_k}$は面倒なのでパス)
+
+\subsection{ガルニエ系の完全可積分可能性}
+
+\begin{story}
+定理3.2の証明を完了するために，次の事実が成り立つことを確認しなくてはいけない．
+
+\begin{lemma}[3.12]
+(3.91)は完全積分可能である．
+\end{lemma}
+
+この結果をひとまず認めておこう．そうすると，以上によってSL型の方程式のモノドロミー保存変形は，完全積分可能ハミルトン系(3.91)で与えられることがわかった．定理3.2は，これからただちに従う．すなわち，$\lambda, \mu$についての方程式は(3.91)から，変換(3.87)を経由することによって得られる．
+\end{story}
+Lem 3.9 より
+\begin{align*}
+    \frac{\partial \lambda_k}{\partial t_l} = \frac{\partial K_l}{\partial \nu_k}, \quad \frac{\partial \nu_k}{\partial t_l} = - \frac{\partial K_l}{\partial \lambda_k}
+\end{align*}
+から，
+\begin{align*}
+    K_l = H_l + \frac{1-\theta_l}{2} W_l, \quad \nu_k = \mu_k + \frac{1}{2} \omega_k
+\end{align*}
+よって， $\displaystyle \frac{\partial}{\partial \nu_k} = \frac{\partial}{\partial \mu_k}$ より，
+\[
+\begin{cases}
+    \displaystyle \frac{\partial \lambda_k}{\partial t_l} = \frac{\partial H_l}{\partial \mu_k} + \frac{1-\theta_l}{2} \frac{\partial W_l}{\partial \mu_k} \\
+    \displaystyle \frac{\partial \mu_k}{\partial t_l} + \frac{1}{2} \frac{\partial \omega_k}{\partial t_l} = - \frac{\partial H_l}{\partial \lambda_k} - \frac{1-\theta_l}{2} \frac{\partial W_l}{\partial \lambda_k}
+\end{cases}
+\]
+ここで，
+\[
+\begin{cases}
+    \displaystyle W_l = \frac{1-\kappa_0}{t_l} + \frac{1-\kappa_1}{t_l-1} + \sum_{m \neq l} \frac{1-\theta_m}{t_l-t_m} + \sum_{k=1}^g \frac{1}{\lambda_k-t_l} \\
+    \displaystyle \omega_k = \frac{1-\kappa_0}{\lambda_k} + \frac{1-\kappa_1}{\lambda_k-1} + \sum_{l=1}^g \frac{1-\theta_l}{\lambda_k-t_l} - \sum_{m \neq k} \frac{1}{\lambda_k-\lambda_m}
+\end{cases}
+\]
+より，
+\begin{align*}
+    \frac{\partial W_l}{\partial \mu_k} &= 0 \\
+    \frac{\partial W_l}{\partial \lambda_k} &= - \frac{1}{(\lambda_k-t_l)^2} \\
+    \frac{\partial \omega_k}{\partial t_l} &= \frac{1-\theta_l}{(\lambda_k-t_l)^2}
+\end{align*}
+よって，
+\[
+\begin{cases}
+    \displaystyle \frac{\partial \lambda_k}{\partial t_l} = \frac{\partial H_l}{\partial \mu_k} \\
+    \displaystyle \frac{\partial \mu_k}{\partial t_l} = - \frac{\partial H_l}{\partial \lambda_k}
+\end{cases}
+\]
+\begin{story}
+一方これは，補題3.7で見たように，正準変換である．したがって求めるガルニエ系，すなわち$H=(H_1, \cdots, H_g)$をハミルトニアンとするハミルトン系$G_g$が得られる．以上のような筋道で，証明が完了する．
+
+以下本節の残りの部分では，$g$-次ガルニエ系
+\begin{equation*}
+    G_g \qquad \frac{\partial \lambda_k}{\partial t_l} = \frac{\partial H_l}{\partial \mu_k}, \quad \frac{\partial \mu_k}{\partial t_l} = - \frac{\partial H_l}{\partial \lambda_k}
+\end{equation*}
+の完全積分可能性を確認する．まず$G_g$が次の全微分方程式系で表されることに注意する．
+
+\begin{equation}
+    d\lambda_k = \sum_{l=1}^g \frac{\partial H_l}{\partial \mu_k} dt_l, \quad d\mu_k = - \sum_{l=1}^g \frac{\partial H_l}{\partial \lambda_k} dt_l \qquad (k=1, \cdots, g) \tag{3.94}
+\end{equation}
+
+\end{story}
+実際、
+\begin{align*}
+    d\lambda_k &= \sum_{l=1}^g \frac{\partial \lambda_k}{\partial t_l} dt_l = \sum_{l=1}^g \frac{\partial H_l}{\partial \mu_k} dt_l \\
+    d\mu_k &= \sum_{l=1}^g \frac{\partial \mu_k}{\partial t_l} dt_l = -\sum_{l=1}^g \frac{\partial H_l}{\partial \lambda_k} dt_l
+\end{align*}
+
+\begin{story}
+
+我々はこの全微分方程式系(3.94)も$g$-次ガルニエ系と呼び，同じ記号$G_g$で表す．このとき，$G_g$ が完全積分可能であるための条件は
+\begin{equation}
+    d\left( \sum_{l=1}^g \frac{\partial H_l}{\partial \mu_k} dt_l \right) = d\left( \sum_{l=1}^g \frac{\partial H_l}{\partial \lambda_k} dt_l \right) = 0 \tag{3.95}
+\end{equation}
+が成り立つことである．さて，一般に$\lambda, \mu$と$t$の関数$F, G$のポアソン括弧式を
+\begin{equation*}
+    \{F, G\} = \sum_{k=1}^g \left[ \frac{\partial F}{\partial \lambda_k} \frac{\partial G}{\partial \mu_k} - \frac{\partial F}{\partial \mu_k} \frac{\partial G}{\partial \lambda_k} \right]
+\end{equation*}
+で定義しよう．次に，$g$個のハミルトニアン$H=(H_1, \cdots, H_g)$に対し
+\begin{equation*}
+    \Phi = \sum_{l=1}^g H_l dt_l
+\end{equation*}
+という1型式を考える．ここで，関数$F$と1型式$\Phi$のポアソン括弧式を
+\begin{equation*}
+    \{F, \Phi\} = \sum_{l=1}^g \{F, H_l\} dt_l
+\end{equation*}
+により定める．このとき，$g$-次ガルニエ系$G_g$は次の形に書かれる．
+\begin{equation*}
+    d\lambda_k = \{\lambda_k, \Phi\}, \quad d\mu_k = \{\mu_k, \Phi\}
+\end{equation*}
+
+$\Omega$を基本2次型式(3.88)とする．$g=1$のときは$\Omega$にハミルトン系(3.64)の解を代入すると$\Omega=0$となる．
+\end{story}
+\begin{align*}
+    \Omega &= d\mu \wedge d\lambda - dH \wedge dt \\
+    &= \left( \frac{d\mu}{dt} + \frac{dH}{d\lambda} \right) dt \wedge d\lambda
+\end{align*}
+より，$g=1$ のときは，(3.64)の解を代入すると $\Omega = 0$．
+\begin{story}
+一般の多時間ハミルトン系については，$g>1$のとき，(3.94)が完全積分可能であるための条件は(3.95)であり，ハミルトン系が完全積分可能であったとしても，$\Omega$に(3.94)を代入して$\Omega=0$が得られるとは限らない．ただし，我々が考察している$g$-次ガルニエ系の場合には，$\Omega$に(3.94)の解を代入すると$\Omega=0$となる．
+
+上の(3.95)から，多時間ハミルトン系
+\begin{equation}
+    \frac{\partial \lambda_k}{\partial t_l} = \frac{\partial H_l}{\partial \mu_k}, \quad \frac{\partial \mu_k}{\partial t_l} = - \frac{\partial H_l}{\partial \lambda_k} \tag{3.96}
+\end{equation}
+が，偏微分方程式系として完全積分可能であるための条件は，$h, k, l=1, \cdots, g$に対して，次式が成り立つことである．
+\begin{equation}
+    \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \mu_k} \right) - \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \mu_k} \right) = 0 \tag{3.97}
+\end{equation}
+
+\begin{equation}
+    \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \lambda_k} \right) - \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \lambda_k} \right) = 0 \tag{3.98}
+\end{equation}
+
+\end{story}
+実際、
+
+\begin{align*}
+    d \left( \sum_{l=1}^g \frac{\partial H_l}{\partial \mu_k} dt_l \right) &= \sum_{l=1}^g \left( \sum_{h=1}^g \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \mu_k} \right) dt_h \right) \wedge dt_l + \left( \sum_{l=1}^g \frac{\partial H_l}{\partial \mu_k} \right) \underbrace{d(dt_l)}_{=0} \\
+    &= \sum_{l=1}^g \sum_{h=1}^g \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \mu_k} \right) dt_h \wedge dt_l \\
+    &= \sum_{h < l} \left( \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \mu_k} \right) - \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \mu_k} \right) \right) dt_h \wedge dt_l = 0
+\end{align*}
+
+\vspace{1em}
+\noindent
+線型独立性から，
+\begin{equation*}
+    \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \mu_k} \right) - \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \mu_k} \right) = 0
+\end{equation*}
+
+\vspace{1em}
+\noindent
+$\lambda_k$ も同様。
+
+\begin{story}
+
+この条件について少し詳しく調べてみよう．まず，$\lambda_k, \mu_k, t_l$の関数である$F$に対し，$\lambda_k, \mu_k$が方程式系(3.96)の解であるとして$F$を$t_l$で微分すると
+\begin{equation*}
+    \frac{\partial F}{\partial t_l} = \sum_{k=1}^g \frac{\partial \lambda_k}{\partial t_l} \frac{\partial F}{\partial \lambda_k} + \sum_{k=1}^g \frac{\partial \mu_k}{\partial t_l} \frac{\partial F}{\partial \mu_k} + \left( \frac{\partial}{\partial t_l} \right) F
+\end{equation*}
+となる．ここで$\left( \frac{\partial}{\partial t_l} \right)$は，$\lambda_k, \mu_k$等も定数とみて，$t_l$で偏微分する，という意味である．(3.96)を用いて、ポアソン括弧式を使ってこの計算結果を書き直すと
+\begin{equation}
+    \frac{\partial F}{\partial t_l} = \{F, H_l\} + \left( \frac{\partial}{\partial t_l} \right) F \tag{3.99}
+\end{equation}
+が得られる．このことを用いて，完全積分可能条件(3.97)を計算する．実際
+\begin{equation}
+    \Omega_{hl} = \{H_h, H_l\} + \left( \frac{\partial}{\partial t_l} \right) H_h - \left( \frac{\partial}{\partial t_h} \right) H_l \tag{3.100}
+\end{equation}
+とおくと，(3.97)の左辺について
+\begin{equation*}
+    \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \mu_k} \right) - \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \mu_k} \right) + \left( \frac{\partial}{\partial \mu_k} \right) \Omega_{hl} = 0
+\end{equation*}
+が成り立つ．
+\end{story}
+\begin{align*}
+    \left( \frac{\partial}{\partial \mu_k} \right) \Omega_{hl} &= \frac{\partial}{\partial \mu_k} \{H_h, H_l\} + \frac{\partial}{\partial \mu_k} \left( \frac{\partial}{\partial t_l} \right) H_h - \frac{\partial}{\partial \mu_k} \left( \frac{\partial}{\partial t_h} \right) H_l
+\end{align*}
+
+\begin{align*}
+    \frac{\partial}{\partial a} (\{F, G\}) &= \frac{\partial}{\partial a} \sum_{k=1}^g \left( \frac{\partial F}{\partial \lambda_k} \cdot \frac{\partial G}{\partial \mu_k} - \frac{\partial F}{\partial \mu_k} \cdot \frac{\partial G}{\partial \lambda_k} \right) \\
+    &= \sum_{k=1}^g \left\{ \frac{\partial}{\partial \lambda_k} \left( \frac{\partial F}{\partial a} \right) \cdot \frac{\partial G}{\partial \mu_k} - \frac{\partial}{\partial \mu_k} \left( \frac{\partial F}{\partial a} \right) \cdot \frac{\partial G}{\partial \lambda_k} \right\} \\
+    &\quad + \left\{ \frac{\partial F}{\partial \lambda_k} \cdot \frac{\partial}{\partial \mu_k} \left( \frac{\partial G}{\partial a} \right) - \frac{\partial F}{\partial \mu_k} \cdot \frac{\partial}{\partial \lambda_k} \left( \frac{\partial G}{\partial a} \right) \right\} \\
+    &= \left\{ \frac{\partial F}{\partial a}, G \right\} + \left\{ F, \frac{\partial G}{\partial a} \right\}
+\end{align*}
+
+\begin{align*}
+    \therefore \left( \frac{\partial}{\partial \mu_k} \right) \Omega_{hl} &= \left[ \left\{ \frac{\partial H_h}{\partial \mu_k}, H_l \right\} + \left( \frac{\partial}{\partial t_l} \right) \frac{\partial H_h}{\partial \mu_k} \right] + \left\{ H_h, \frac{\partial H_l}{\partial \mu_k} \right\} - \left( \frac{\partial}{\partial t_h} \right) \frac{\partial H_l}{\partial \mu_k} \\
+    &= \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \mu_k} \right) - \left[ \left\{ \frac{\partial H_l}{\partial \mu_k}, H_h \right\} + \left( \frac{\partial}{\partial t_h} \right) \frac{\partial H_l}{\partial \mu_k} \right] \\
+    &= \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \mu_k} \right) - \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \mu_k} \right) \\
+    \therefore \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \mu_k} \right) &- \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \mu_k} \right) + \left( \frac{\partial}{\partial \mu_k} \right) \Omega_{hl} = 0
+\end{align*}
+
+\begin{story}
+同様に(3.98)の左辺から
+\begin{equation*}
+    \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \lambda_k} \right) - \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \lambda_k} \right) + \left( \frac{\partial}{\partial \lambda_k} \right) \Omega_{hl} = 0
+\end{equation*}
+となる．
+\end{story}
+\begin{align*}
+    \left( \frac{\partial}{\partial \lambda_k} \right) \Omega_{hl} &= \left[ \left\{ \frac{\partial H_h}{\partial \lambda_k}, H_l \right\} + \left( \frac{\partial}{\partial t_l} \right) \frac{\partial H_h}{\partial \lambda_k} \right] + \left\{ H_h, \frac{\partial H_l}{\partial \lambda_k} \right\} - \left( \frac{\partial}{\partial t_h} \right) \frac{\partial H_l}{\partial \lambda_k} \\
+    &= \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \lambda_k} \right) - \left[ \left\{ \frac{\partial H_l}{\partial \lambda_k}, H_h \right\} + \left( \frac{\partial}{\partial t_h} \right) \frac{\partial H_l}{\partial \lambda_k} \right] \\
+    &= \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \lambda_k} \right) - \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \lambda_k} \right) \\
+    \therefore \frac{\partial}{\partial t_h} \left( \frac{\partial H_l}{\partial \lambda_k} \right) &- \frac{\partial}{\partial t_l} \left( \frac{\partial H_h}{\partial \lambda_k} \right) + \left( \frac{\partial}{\partial \lambda_k} \right) \Omega_{hl} = 0 \quad ,,
+\end{align*}
+\begin{story}
+すなわち，完全積分可能条件(3.95)は
+\begin{equation}
+    \sum_{h,l=1}^g \left( \frac{\partial}{\partial \mu_k} \right) \Omega_{hl} dt_h \wedge dt_l = \sum_{h,l=1}^g \left( \frac{\partial}{\partial \lambda_k} \right) \Omega_{hl} dt_h \wedge dt_l = 0 \tag{3.101}
+\end{equation}
+と書かれる．
+\end{story}
+\vspace{1em}
+\noindent
+よって，(3.97), (3.98) と比べて，
+\begin{equation*}
+    \begin{cases}
+        \displaystyle \left( \frac{\partial}{\partial \mu_k} \right) \Omega_{hl} = 0 \\[1.5em]
+        \displaystyle \left( \frac{\partial}{\partial \lambda_k} \right) \Omega_{hl} = 0
+    \end{cases}
+\end{equation*}
+が可積分条件である．
+\begin{story}
+ここで，基本2次型式(3.88)を$\Omega_{hl}$を使って表す．
+
+\begin{lemma}[3.13]
+次の式が成り立つ．
+\begin{equation*}
+    \Omega = \sum_{h<l} \Omega_{hl} dt_h \wedge dt_l
+\end{equation*}
+\end{lemma}
+
+一般には，$H_l$ は $\lambda_k, \mu_k, t_h$ の関数であるから $\Omega_{hl}$ もそうである．もし，$\Omega_{hl}$ が $\lambda_k, \mu_k$ に依らないように $H_l$ が与えられていれば，$H_l$ をハミルトニアンとする多時間ハミルトン系(3.94)は(3.101)より，完全積分可能となる．
+
+\begin{proof}$\Omega_{hl}$ を補題が成り立つように定めたとして，(3.94)や
+\begin{equation*}
+    dH_l = \sum_{h=1}^g \frac{\partial H_l}{\partial t_h} dt_h
+\end{equation*}
+などを使って丁寧に計算すると
+\begin{equation*}
+    \Omega_{hl} = \{H_l, H_h\} - \frac{\partial H_l}{\partial t_h} + \frac{\partial H_h}{\partial t_l}
+\end{equation*}
+を得る．実際
+\begin{align*}
+    \Omega &= \sum_{k=1}^g d\mu_k \wedge d\lambda_k - \sum_{l=1}^g dH_l \wedge dt_l \\
+    &= \sum_{k=1}^g \left( \sum_{h=1}^g \sum_{l=1}^g \frac{\partial \mu_k}{\partial t_h} \frac{\partial \lambda_k}{\partial t_l} dt_h \wedge dt_l \right) - \sum_{l=1}^g \left( \sum_{h=1}^g \frac{\partial H_l}{\partial t_h} \right) dt_h \wedge dt_l \\
+    &= \sum_{h<l} \left( \sum_{k=1}^g \left( \frac{\partial \mu_k}{\partial t_h} \frac{\partial \lambda_k}{\partial t_l} - \frac{\partial \lambda_k}{\partial t_h} \frac{\partial \mu_k}{\partial t_l} \right) - \left( \frac{\partial H_l}{\partial t_h} - \frac{\partial H_h}{\partial t_l} \right) \right) dt_h \wedge dt_l \\
+    &= \sum_{h<l} \left( \sum_{k=1}^g \left( -\frac{\partial H_h}{\partial \lambda_k} \frac{\partial H_l}{\partial \mu_k} + \frac{\partial H_h}{\partial \mu_k} \frac{\partial H_l}{\partial \lambda_k} \right) - \left( \frac{\partial H_l}{\partial t_h} - \frac{\partial H_h}{\partial t_l} \right) \right) dt_h \wedge dt_l \\
+    &= \sum_{h<l} \left( \lbrace H_l, H_h \rbrace - \frac{\partial H_l}{\partial t_h} + \frac{\partial H_h}{\partial t_l} \right) dt_h \wedge dt_l
+\end{align*}
+より，
+\begin{align*}
+    \lbrace H_l, H_h \rbrace - \frac{\partial H_l}{\partial t_h} + \frac{\partial H_h}{\partial t_l} &= \lbrace H_l, H_h \rbrace - \lbrace H_l, H_h \rbrace - \left( \frac{\partial}{\partial t_h} \right) H_l + \lbrace H_h, H_l \rbrace + \left( \frac{\partial}{\partial t_l} \right) H_h \\
+    &= \lbrace H_h, H_l \rbrace + \left( \frac{\partial}{\partial t_l} \right) H_h - \left( \frac{\partial}{\partial t_h} \right) H_l = \Omega_{hl}
+\end{align*}
+ここで，(3.99)を使うと確かに(3.100)が得られる．さらに，次の式が成り立つこともわかる．
+\begin{equation}
+    2\Omega_{hl} = \frac{\partial H_l}{\partial t_h} - \frac{\partial H_h}{\partial t_l} + \left( \frac{\partial}{\partial t_h} \right) H_l - \left( \frac{\partial}{\partial t_l} \right) H_h \tag{3.102}
+\end{equation}
+実際、
+\begin{align*}
+    \Omega_{hl} &= - \lbrace H_h, H_l \rbrace - \frac{\partial H_l}{\partial t_h} + \frac{\partial H_h}{\partial t_l}
+\end{align*}
+よって，
+\begin{align*}
+    2\Omega_{hl} &= \frac{\partial H_h}{\partial t_l} - \frac{\partial H_l}{\partial t_h} + \left( \frac{\partial}{\partial t_l} \right) H_h - \left( \frac{\partial}{\partial t_h} \right) H_l
+\end{align*}
+\end{proof}
+
+これまでの考察は一般的な多時間ハミルトン系に関することであるが，ガルニエ系について補題の主張が正しいことを見るためには，ハミルトニアン$H_l$あるいは$K_l$の具体形が必要である．もちろん，正準変換により基本2次型式$\Omega$は不変であるから，補題3.12は，$K_l$か$H_l$のどちらかについて確かめればよい．(3.73), (3.86)などを使って計算すると，ガルニエ系について
+\begin{equation*}
+    \Omega_{hl} = 0
+\end{equation*}
+となっていることがわかる。実際、前節補題3.8によれば，変形方程式の係数$a_2^{(l)} = a_2^{(l)}(x,t)$は，$x=t_h \ (h \neq l)$のまわりで次のような展開をもつ．
+\begin{equation*}
+    a_2^{(l)} = M_l u(a_0^{l,h} + a_1^{l,h}u + \cdots), \quad u = x - t_h
+\end{equation*}
+\begin{equation*}
+    a_0^{l,h} = \frac{1}{M_h(t_l - t_h)}, \quad a_1^{l,h} = - \sum_{k=1}^g \frac{M^{k,l}}{(\lambda_k - t_h)^3}
+\end{equation*}
+\end{story}
+実際、
+\begin{align*}
+    a_2^{(l)} (x,t) &= - M_l \cdot \frac{T(x)}{L(x)(x-t_l)} \\
+    &= - M_l \cdot \frac{x(x-1)\prod_{k \neq h}(x-t_k)}{L(x)(x-t_l)} u \\
+    \therefore \quad a_0^{l,h} &= - M_l \cdot \frac{T'(t_h)}{L(t_h)} \cdot \frac{1}{t_h - t_l} = \frac{M_l}{M_h} \cdot \frac{1}{t_l - t_h}
+\end{align*}
+$F_{(x)} = \displaystyle - M_l \cdot \frac{x(x-1)\prod_{k \neq h}(x-t_k)}{L(x)(x-t_l)}$ として．
+\begin{align*}
+    F_{(x)} &= - M_l \cdot \left( \sum_{j=1}^g \frac{1}{x-\lambda_j} \frac{T(\lambda_j)}{L'(\lambda_j) (\lambda_j-t_l) (\lambda_j-t_h)} + c \right) \\
+    &= - M_l \cdot \left( \sum_{j=1}^g \frac{M^{j,l}}{(\lambda_j-t_h)(x-\lambda_j)} + c \right) \\
+    F'_{(x)} &= M_l \cdot \left( - \sum_{j=1}^g \frac{M^{j,l}}{(t_h-\lambda_j)(x-\lambda_j)^2} \right) \\
+    \therefore \quad a_1^{l,h} &= - M_l \cdot \sum_{j=1}^g \frac{M^{j,l}}{(t_h-\lambda_j)^3}
+\end{align*}
+\begin{story}
+このとき，補題3.11で考察した有理関数$A_l = A_l(x)$については，当然
+\begin{equation*}
+    A_l(t_h) = 0, \quad h \neq l
+\end{equation*}
+である．
+\end{story}
+実際、
+\[
+A_l(x) = \frac{W_l}{x-t_l} + \sum_{k=1}^g \sum_{q=1}^4 \frac{W_q^{k,l}}{(x-\lambda_k)^q}
+\]
+であり、
+\begin{equation} \tag{3.93}
+W_q^{k,l} = 0 \qquad (k, l = 1, \cdots, g), \quad (q = 1, 2, 3, 4)
+\end{equation}
+と3.91が特異点が非対数的であるという仮定の下で同値であったので、
+\[
+A_l(x) = \frac{W_l}{x-t_l}
+\]
+であり、$A_l$が$x=\infty$で2位の零点を持つことから
+\[
+A_{l}(x)\equiv 0
+\]
+である。
+\begin{story}
+この条件を，線型常微分方程式(3.25)の係数$r = r(x,t)$が
+\begin{equation*}
+    r = \frac{\beta_h}{u^2} + \frac{K_h}{u} + \cdots, \quad u = x - t_h
+\end{equation*}
+と書かれることを使って具体的に書き表すと
+\begin{equation*}
+    \frac{\partial K_h}{\partial t_l} = M_l \left[ a_0^{l,h} K_h + 2 a_1^{l,h} \beta_h \right]
+\end{equation*}
+となる．
+\end{story}
+実際
+\begin{align*}
+    r(x,t) &= \frac{\alpha_0}{x^2} + \frac{\alpha_1}{(x-1)^2} + \frac{\alpha_\infty}{x(x-1)} \nonumber \\
+    &\quad + \sum_{l=1}^g \left[ \frac{\beta_l}{(x-t_l)^2} + \frac{t_l(t_l-1)K_l}{x(x-1)(x-t_l)} \right]\\
+    &\quad + \sum_{k=1}^g \left[ \frac{3}{4(x-\lambda_k)^2} - \frac{\lambda_k(\lambda_k-1)\nu_k}{x(x-1)(x-\lambda_k)} \right] 
+\end{align*}
+より、
+\begin{equation*}
+    r = \frac{\beta_h}{u^2} + \frac{K_h}{u} + \cdots, \quad u = x - t_h
+\end{equation*}
+とかけて、 $\beta_h$ は特性指数の関数で$t$によらないので、
+\begin{align*}
+    0 = A_l(x) &= \frac{1}{2} a_2^{(l)} \frac{\partial^3 a_2^{(l)}}{\partial x^3} - \frac{\partial}{\partial x} \left( r(x,t) (a_2^{(l)})^2 \right) + a_2^{(l)} \frac{\partial r}{\partial t_l}(x,t) \\
+    &= \frac{1}{2} M_l \mathcal{O}(u) \cdot \mathcal{O}(1) - \frac{\partial}{\partial x} \left( \frac{\beta_h}{u^2} + \frac{K_h}{u} + \mathcal{O}(1) \right) M_l^2 u^2 (a_0^{l,h} + a_1^{l,h} u + \mathcal{O}(u^2))^2 \\
+    &\quad + M_l u (a_0^{l,h} + a_1^{l,h} u + \mathcal{O}(u^2)) \left( \frac{\partial K_h}{\partial t_l} \frac{1}{u} + \mathcal{O}(1) \right) \\
+    &= \frac{M_l}{2} \mathcal{O}(u) - \frac{\partial}{\partial x} \left( \beta_h + K_h u + \mathcal{O}(u^2) \right) M_l^2 \left( (a_0^{l,h})^2 + 2 a_0^{l,h} a_1^{l,h} u + \mathcal{O}(u^2) \right) \\
+    &\quad + M_l (a_0^{l,h} + a_1^{l,h} u + \mathcal{O}(u^2)) \left( \frac{\partial K_h}{\partial t_l} + \mathcal{O}(u) \right) \\
+    &= \mathcal{O}(u) - M_l^2 \left( K_h (a_0^{l,h})^2 + 2 a_0^{l,h} a_1^{l,h} \beta_h \right) + \mathcal{O}(u) + M_l \frac{\partial K_h}{\partial t_l} a_0^{l,h} + \mathcal{O}(u) \\
+    &= M_l a_0^{l,h} \left( \frac{\partial K_h}{\partial t_l} - M_l \left( K_h a_0^{l,h} + 2 a_1^{l,h} \beta_h \right) \right) \\
+    \frac{\partial K_h}{\partial t_l} &= M_l \left( K_h a_0^{l,h} + 2 a_1^{l,h} \beta_h \right)
+\end{align*}
+\begin{story}
+これを使って(3.102)の右辺が$K_l$について恒等的に0となることを確かめる．細かい計算は省略する．
+\end{story}
+本当に面倒
+
+\subsection{ガルニエ系とシュレージンガー系}
+\begin{story}
+本章を締めくくるにあたり, $g$-次ガルニエ系 $G_g$ と $2 \times 2$ シュレジンガー系との関係について調べておこう.
+
+\[
+\vec{y} = \begin{pmatrix} y_1 \\ y_2 \end{pmatrix}
+\]
+
+についての, シュレジンガー型方程式
+
+\begin{equation} \tag{3.103}
+    \frac{d\vec{y}}{dx} = \left( \frac{B_0}{x} + \frac{B_1}{x-1} + \sum_{l=1}^g \frac{A_l}{x-t_l} \right) \vec{y}
+\end{equation}
+
+を考える. このフックス型方程式について次のような仮定をおく.
+
+\[
+\det B_\Delta = \det A_l = 0 \qquad (\Delta = 0, 1, \quad l = 1, \cdots, g)
+\]
+
+\begin{equation} \tag{3.104}
+    B_0 + B_1 + \sum_{l=1}^g A_l = - \begin{pmatrix} \chi_\infty & 0 \\ 0 & \chi_\infty + \kappa_\infty - 1 \end{pmatrix}
+\end{equation}
+
+前述のように, これは一般性を失わない. また
+
+\[
+\mathrm{Trace}\, B_\Delta = \kappa_\Delta, \qquad \mathrm{Trace}\, A_l = \theta_l
+\]
+
+とおく. これらのパラメータの間には, フックスの関係式
+
+\[
+\kappa_0 + \kappa_1 + \sum_{l=1}^g \theta_l + 2\chi_\infty + \kappa_\infty = 1
+\]
+が成り立っている.
+\end{story}
+実際、(3.104)でtraceをとればいい。
+\begin{story}
+ここで(3.103)のモノドロミー保存変形を考えると, シュレジンガー系
+
+\begin{align*}
+    \frac{\partial B_\Delta}{\partial t_l} &= \frac{[B_\Delta, A_l]}{\Delta - t_l} \qquad (\Delta = 0, 1) \\
+    \frac{\partial A_l}{\partial t_h} &= \frac{[A_l, A_h]}{t_l - t_h} \qquad (h \neq l) \\
+    \frac{\partial A_l}{\partial t_l} &= - \sum_{h=1 \, (h \neq l)}^g \frac{[A_h, A_l]}{t_h - t_l} - \sum_{\Delta=0,1} \frac{[B_\Delta, A_l]}{\Delta - t_l}
+\end{align*}
+
+が得られる．これから $G_g$ の得られることは，次の補題により保証される．
+
+\begin{lemma}[3.14]
+(3.103) から $y_2$ を消去すると，$y=y_1$ は，(3.33), (3.67), (3.68) の，2階単独フックス型方程式を満たす．
+\end{lemma}
+
+計算は 94 ページ以下で見たものとほとんど同じである．行列 $B_\Delta, A_j$ の成分をそれぞれ $B_\Delta^{\alpha\beta}, A_j^{\alpha\beta}$ ($\alpha, \beta = 1, 2$) と書く．また微分方程式 (3.103) の右辺の係数を $R(x,t)$，その成分を $R^{\alpha\beta}=R^{\alpha\beta}(x,t)$ とおく．すると，とくに (3.104) から
+
+\[
+R^{12} = \frac{B_0^{12}}{x} + \frac{B_1^{12}}{x-1} + \sum_{l=1}^g \frac{A_l^{12}}{x-t_l} = \frac{X \cdot L(x)}{T(x)}
+\]
+
+ここに
+
+\begin{equation} \tag{3.105}
+    X = B_1^{12} + \sum_{l=1}^g t_l A_l^{12}
+\end{equation}
+
+また，$T(x), L(x)$ は多項式 (3.69), (3.70) である．
+\end{story}
+\begin{align*}
+    R^{12} &= \frac{B_0^{12}}{x} + \frac{B_1^{12}}{x-1} + \sum_{l=1}^g \frac{A_l^{12}}{x-t_l} \\
+    &= \frac{1}{T(x)} \left\{ B_0^{12}(x-1)\prod_{l=1}^g (x-t_l) + B_1^{12}x\prod_{l=1}^g (x-t_l) + \sum_{l=1}^g A_l^{12} x(x-1) \prod_{m \neq l} (x-t_m) \right\} \\
+    &= \frac{1}{T(x)} \left[ \left( B_0^{12} + B_1^{12} + \sum_{l=1}^g A_l^{12} \right) x^{g+1} - \left\{ \left( 1 + \sum_{l=1}^g t_l \right) B_0^{12} + \left( \sum_{l=1}^g t_l \right) B_1^{12} + \sum_{l=1}^g \left( 1 + \sum_{m \neq l} t_m \right) A_l^{12} \right\} x^g\right.\\
+    &\left.+ O(x^{g-1}) \right]
+\end{align*}
+
+(3.104) より
+\[
+B_0^{12} + B_1^{12} + \sum_{l=1}^g A_l^{12} = 0
+\]
+また，
+\begin{align*}
+    &\left( 1 + \sum_{l=1}^g t_l \right) B_0^{12} + \left( \sum_{l=1}^g t_l \right) B_1^{12} + \sum_{l=1}^g \left( 1 + \sum_{m \neq l} t_m \right) A_l^{12} \\
+    &= - B_1^{12} - \sum_{l=1}^g t_l A_l^{12}
+\end{align*}
+よって，
+\[
+R^{12} = \frac{X}{T(x)} \times (\text{最高次係数が } 1 \text{ の } g \text{ 次式})
+\]
+
+また，$y_2$ を消去することによって，$\frac{d^2 y_1}{dx^2} + P_1(x,t) \frac{d y_1}{dx} + P_2(x,t) y_1 = 0$ として，
+\begin{align*}
+    P_1(x,t) &= - \left( R^{11} + R^{22} + \frac{d}{dx} \log R^{12} \right) \\
+    P_2(x,t) &= R^{11} R^{22} - R^{12} R^{21} - \frac{d R^{11}}{dx} + R^{11} \frac{d}{dx} \log R^{12}
+\end{align*}
+よって，$R^{12}$ の零点は $P_1$ で高々1位の極，$P_2$ で高々1位の極なので確定特異点で，
+もとの行列型では正則で解の特異点とはならないので $R^{12}$ の零点は見かけの特異点...
+よって，それらを $\lambda_1, \cdots, \lambda_g$ として，（これ重複したら見かけの特異点減るよね？）
+\[
+R^{12} = \frac{X L(x)}{T(x)}
+\]
+\begin{story}
+$g$ 個の見かけの特異点 $\lambda_k$ は，有理関数 $R^{12}(x,t)$ の零点として現れる．他のアクセサリー・パラメータについては，詳しいことは 94 ページの計算を参照することにして，ここでは計算結果だけ書く．
+
+\[
+\mu_k = \frac{B_0^{11}}{\lambda_k} + \frac{B_1^{11}}{\lambda_k - 1} + \sum_{l=1}^g \frac{A_l^{11}}{\lambda_k - t_l}
+\]
+
+\[
+\begin{aligned}
+    H_l &= \sum_{k=1}^g \frac{A_l^{11}}{\lambda_k - t_l} + \frac{1}{t_l} (B_0^{11} + A_l^{11} - \kappa_0 \theta_l) + \frac{1}{t_l - 1} (B_1^{11} + A_l^{11} - \kappa_1 \theta_l) \\
+    &\quad + \sum_{h=1 \, (h \neq l)}^g \frac{1}{t_l - t_h} (A_h^{11} + A_l^{11} - \theta_l \theta_h) \\
+    &\quad + \mathrm{Trace} \left[ A_l \left( \frac{B_0}{t_l} + \frac{B_1}{t_l - 1} + \sum_{h=1 \, (h \neq l)}^g \frac{A_h}{t_l - t_h} \right) \right]
+\end{aligned}
+\]
+などが得られる．
+\end{story}
+\begin{align*}
+    \mu_k &= \mathop{\mathrm{Res}}_{x=\lambda_k} P_2(x, t) \\
+    &= \mathop{\mathrm{Res}}_{x=\lambda_k} \left( R^{11} R^{22} - R^{12} R^{21} - \frac{dR^{11}}{dx} + R^{11} \frac{d}{dx} \log R^{12} \right)
+\end{align*}
+
+ここで $R^{11}, R^{22}, R^{12}, R^{21}$ は $x = \lambda_k$ で正則なので，
+
+\begin{align*}
+    \mu_k &= \mathop{\mathrm{Res}}_{x=\lambda_k} \left( R^{11} \frac{d}{dx} \log R^{12} \right) \\
+    &= \mathop{\mathrm{Res}}_{x=\lambda_k} \left( R^{11} \frac{d}{dx} \left( \log X + \sum_{i=1}^g \log (x-\lambda_i) - \log x - \log (x-1) - \sum_{j=1}^g \log (x-t_j) \right) \right) \\
+    &= R^{11}(\lambda_k) \\
+    &= \frac{B_0^{11}}{\lambda_k} + \frac{B_1^{11}}{\lambda_k - 1} + \sum_{l=1}^g \frac{A_l^{11}}{\lambda_k - t_l}
+\end{align*}
+
+また、
+\begin{align*}
+    H_l &= -\mathop{\mathrm{Res}}_{x=t_l} P_2(x, t) \\
+    &= -\mathop{\mathrm{Res}}_{x=t_l} \left( R^{11} R^{22} - R^{12} R^{21} - \frac{dR^{11}}{dx} + R^{11} \frac{d}{dx} \log R^{12} \right)
+\end{align*}
+ここで $R^{11} = \frac{A_l^{11}}{x-t_l} + O(1)$ より，
+$$
+\frac{dR^{11}}{dx} = -\frac{A_l^{11}}{(x-t_l)^2} + O(1)
+$$
+よって，
+$$
+H_l = -\mathop{\mathrm{Res}}_{x=t_l} \left( R^{11} R^{22} - R^{12} R^{21} + R^{11} \frac{d}{dx} \log R^{12} \right)
+$$
+ここで，
+\begin{align*}
+    R^{ij}(x) &= \frac{B_0^{ij}}{x} + \frac{B_1^{ij}}{x-1} + \sum_{l=1}^g \frac{A_l^{ij}}{x-t_l} \\
+    &= \frac{A_l^{ij}}{x-t_l} + \frac{B_0^{ij}}{t_l} + \frac{B_1^{ij}}{t_l-1} + \sum_{k \neq l} \frac{A_k^{ij}}{t_l-t_k} + O(x-t_l)
+\end{align*}
+よって，
+\begin{align*}
+    H_l &= -A_l^{11} \left( \frac{B_0^{22}}{t_l} + \frac{B_1^{22}}{t_l-1} + \sum_{k \neq l} \frac{A_k^{22}}{t_l-t_k} \right) - A_l^{22} \left( \frac{B_0^{11}}{t_l} + \frac{B_1^{11}}{t_l-1} + \sum_{k \neq l} \frac{A_k^{11}}{t_l-t_k} \right) \\
+    &\quad + A_l^{12} \left( \frac{B_0^{21}}{t_l} + \frac{B_1^{21}}{t_l-1} + \sum_{k \neq l} \frac{A_k^{21}}{t_l-t_k} \right) + A_l^{21} \left( \frac{B_0^{12}}{t_l} + \frac{B_1^{12}}{t_l-1} + \sum_{k \neq l} \frac{A_k^{12}}{t_l-t_k} \right) \\
+    &\quad - A_l^{11} \left( \sum_{k=1}^g \frac{1}{t_l-\lambda_k} - \frac{1}{t_l} - \frac{1}{t_l-1} - \sum_{h \neq l} \frac{1}{t_l-t_h} \right) - \frac{B_0^{11}}{t_l} - \frac{B_1^{11}}{t_l-1} - \sum_{k \neq l} \frac{A_k^{11}}{t_l-t_k} \\
+    &= A_l^{11} \left( \frac{B_0^{11}}{t_l} + \frac{B_1^{11}}{t_l-1} + \sum_{k \neq l} \frac{A_k^{11}}{t_l-t_k} \right) + A_l^{22} \left( \frac{B_0^{22}}{t_l} + \frac{B_1^{22}}{t_l-1} + \sum_{k \neq l} \frac{A_k^{22}}{t_l-t_k} \right) \\
+    &\quad + A_l^{12} \left( \frac{B_0^{21}}{t_l} + \frac{B_1^{21}}{t_l-1} + \sum_{k \neq l} \frac{A_k^{21}}{t_l-t_k} \right) + A_l^{21} \left( \frac{B_0^{12}}{t_l} + \frac{B_1^{12}}{t_l-1} + \sum_{k \neq l} \frac{A_k^{12}}{t_l-t_k} \right) \\
+    &\quad - \overbrace{(A_l^{11} + A_l^{22})}^{\theta_l} \left( \frac{\overbrace{B_0^{11} + B_0^{22}}^{\kappa_0}}{t_l} + \frac{\overbrace{B_1^{11} + B_1^{22}}^{\kappa_1}}{t_l-1} + \sum_{k \neq l} \frac{\overbrace{A_k^{11} + A_k^{22}}^{\theta_k}}{t_l-t_k} \right) \\
+    &\quad + \sum_{k=1}^g \frac{A_l^{11}}{\lambda_k - t_l} + \frac{1}{t_l} (A_l^{11} - B_0^{11}) + \frac{1}{t_l-1} (A_l^{11} - B_1^{11}) + \sum_{h \neq l} \frac{1}{t_l-t_h} (A_l^{11} - A_h^{11}) \\
+    &= \mathrm{Trace}\left[ A_l \left( \frac{B_0}{t_l} + \frac{B_1}{t_l-1} + \sum_{k \neq l} \frac{A_k}{t_l-t_k} \right) \right] \\
+    &\quad + \sum_{k=1}^g \frac{A_l^{11}}{\lambda_k - t_l} + \frac{1}{t_l} (A_l^{11} - B_0^{11} - \kappa_0 \theta_l) + \frac{1}{t_l-1} (A_l^{11} - B_1^{11} - \theta_l \kappa_1) + \sum_{h \neq l} \frac{1}{t_l-t_h} (A_l^{11} - A_h^{11} - \theta_l \theta_h)
+\end{align*}
+\begin{story}
+ここまでの考察にはモノドロミー保存変形は入っていない．
+以下，パラメータ $\kappa_0, \kappa_1, \kappa_\infty, \theta_l$ を固定する．このとき，次の補題が成り立つ．
+
+\begin{lemma}[3.15]
+行列 $B_\Delta, A_l (\Delta=0, 1, \quad l=1, \cdots, g)$ は，(3.105)で与えられる量 $X$ を除いて $(\lambda_k, \mu_k)$ で決定される． \hfill $\Box$
+\end{lemma}
+
+\begin{proof}
+まず，$R^{12}(x)$は$L(x)$を含むので、$R^{12}(\lambda_k, t) = 0$ から
+\[
+\frac{B_0^{12}}{\lambda_k} + \frac{B_1^{12}}{\lambda_k - 1} + \sum_{l=1}^g \frac{A_l^{12}}{\lambda_k - t_l} = 0
+\]
+これを (3.104) を用いて整理すると
+\[
+\sum_{l=1}^g E_{kl} A_l^{12} = - \frac{X}{\lambda_k (\lambda_k - 1)}
+\]
+ここで $E_{kl}$ は (3.80) で与えられたものである．すなわち
+\[
+E_{kl} = \frac{t_l(t_l - 1)}{\lambda_k(\lambda_k - 1)(\lambda_k - t_l)}
+\]
+実際、
+\begin{align*}
+    \frac{B_0^{12}}{\lambda_k} + \frac{B_1^{12}}{\lambda_k - 1} &= \frac{(B_0^{12} + B_1^{12})(\lambda_k - 1) + B_1^{12}}{\lambda_k(\lambda_k - 1)} \\
+    &= \frac{-\sum_{l=1}^g A_l^{12}(\lambda_k - 1) + X - \sum_{l=1}^g t_l A_l^{12}}{\lambda_k(\lambda_k - 1)} \\
+    &= \frac{X}{\lambda_k(\lambda_k - 1)} - \sum_{l=1}^g \frac{\lambda_k - 1 + t_l}{\lambda_k(\lambda_k - 1)} A_l^{12}
+\end{align*}
+
+ここで $R^{12}(\lambda_k, t) = 0$ すなわち $\frac{B_0^{12}}{\lambda_k} + \frac{B_1^{12}}{\lambda_k - 1} = -\sum_{l=1}^g \frac{A_l^{12}}{\lambda_k - t_l}$ より，
+
+\begin{align*}
+    \frac{X}{\lambda_k(\lambda_k - 1)} &= \sum_{l=1}^g \biggl( \frac{\lambda_k - 1 + t_l}{\lambda_k(\lambda_k - 1)} - \frac{1}{\lambda_k - t_l} \biggr) A_l^{12} \\
+    &= \sum_{l=1}^g \frac{(\lambda_k + (t_l - 1))(\lambda_k - t_l) - \lambda_k(\lambda_k - 1)}{\lambda_k(\lambda_k - 1)(\lambda_k - t_l)} A_l^{12} \\
+    &= - \sum_{l=1}^g \frac{t_l(t_l - 1)}{\lambda_k(\lambda_k - 1)(\lambda_k - t_l)} A_l^{12} \\
+    &= - \sum_{l=1}^g E_{kl} A_l^{12}
+\end{align*}
+
+補題 3.4 の場合と同様にこの連立1次方程式を解く．ここでも (3.69), (3.70) の多項式を使う．恒等式
+\begin{align}
+    \sum_{k=1}^g \frac{M^{k,l}}{\lambda_k(\lambda_k - 1)} &= 1 \tag{3.106} \\
+    M^{k,l} &= \frac{T(\lambda_k)}{L'(\lambda_k)(\lambda_k - t_l)}
+\end{align}
+実際
+\[
+\sum_{k=1}^g \frac{M^{k,l}}{\lambda_k (\lambda_k - 1)} = \sum_{k=1}^g \frac{\prod_{h \neq l} (\lambda_k - t_h)}{\prod_{m \neq k} (\lambda_k - \lambda_m)}
+\]
+
+ここで $F_l(x) = \frac{\prod_{h \neq l} (x - t_h)}{\prod_{m=1}^g (x - \lambda_m)}$ として，
+
+\[
+\mathop{\mathrm{Res}}_{x=\lambda_k} F_l(x) = \frac{\prod_{h \neq l} (\lambda_k - t_h)}{\prod_{m \neq k} (\lambda_k - \lambda_m)}
+\]
+
+\[
+\therefore \quad F_l(x) = \sum_{k=1}^g \frac{\prod_{h \neq l} (\lambda_k - t_h)}{\prod_{m \neq k} (\lambda_k - \lambda_m)} \cdot \frac{1}{x - \lambda_k}
+\]
+
+また，
+\begin{align*}
+    x F_l(x) &= \frac{\prod_{h \neq l} \left(1 - \frac{t_h}{x}\right)}{\prod_{m=1}^g \left(1 - \frac{\lambda_m}{x}\right)} \xrightarrow{x \to \infty} 1 \\
+    &= \sum_{k=1}^g \frac{\prod_{h \neq l} (\lambda_k - t_h)}{\prod_{m \neq k} (\lambda_k - \lambda_m)} \cdot \frac{x}{x - \lambda_k} \xrightarrow{x \to \infty} \sum_{k=1}^g \frac{\prod_{h \neq l} (\lambda_k - t_h)}{\prod_{m \neq k} (\lambda_k - \lambda_m)}
+\end{align*}
+
+よって，
+\[
+\sum_{k=1}^g \frac{M^{k,l}}{\lambda_k (\lambda_k - 1)} = 1
+\]
+
+これを用いると
+\[
+A_l^{12} = - M_l X, \qquad M_l = - \frac{L(t_l)}{T'(t_l)}
+\]
+となる．
+
+実際
+\[
+\frac{X}{\lambda_k(\lambda_k - 1)} = -\sum_{l=1}^g E_{kl} A_l^{12} \quad \text{より．}
+\]
+
+\begin{align*}
+    \sum_{k=1}^g \frac{M^{k,h}}{\lambda_k(\lambda_k - 1)} X &= - \sum_{k=1}^g \sum_{l=1}^g M^{k,h} E_{kl} A_l^{12} \\
+    &= - \sum_{l=1}^g \biggl( \sum_{k=1}^g M^{k,h} E_{kl} M_l \biggr) \frac{A_l^{12}}{M_l}
+\end{align*}
+
+Lem 3.4 より $\sum_{k=1}^g M^{k,h} M_l E_{kl} = \delta_l^h$ より．
+
+\[
+X = - \frac{A_h^{12}}{M_h}
+\]
+
+\[
+\therefore \quad A_h^{12} = - M_h X
+\]
+
+この $M_l$ は，$g$-次ガルニエ系の計算でも大切な量であった．なお，(3.106) は，補題 3.4 の証明に用いた $x$ の有理関数 $Z_l(x)$ についていえば
+\[
+\mathop{\mathrm{Res}}_{x=\infty} Z_l(x)dx = -1
+\]
+という式にほかならない．
+
+実際
+\[
+Z_l(x) = \frac{T(x)}{x(x-1)(x-t_l)L(x)} = \frac{\prod_{h \neq l} (x-t_h)}{\prod_{k=1}^g (x-\lambda_k)}
+\]
+の留数は，
+\[
+\sum_{k=1}^g \frac{M^{k,l}}{\lambda_k(\lambda_k-1)} = 1
+\]
+より，$\mathbb{P}^1(\mathbb{C})$ 上ではコーシーの積分定理より，
+\[
+\mathop{\mathrm{Res}}_{x=\infty} Z_l(x) = - \sum_{k=1}^g \mathop{\mathrm{Res}}_{x=\lambda_k} Z_l(x) = -1
+\]
+
+次に $M^{(\Delta)} (\Delta=0, 1)$ を
+\[
+-\frac{L(x)}{T(x)} = \frac{M^{(0)}}{x} + \frac{M^{(1)}}{x-1} + \sum_{l=1}^g \frac{M_l}{x-t_l}
+\]
+により導入する．念のために繰り返せば，$M_l$ はすぐ上に書いたものと同じで，さらに
+\[
+M^{(0)} = -\frac{L(0)}{T'(0)} \, , \quad M^{(1)} = -\frac{L(1)}{T'(1)}
+\]
+
+である．これらの式を使うと
+
+\[
+B_\Delta^{12} = -M^{(\Delta)} X
+\]
+
+となることがわかる．
+実際、
+$$
+-\frac{L(x)}{T(x)} = \frac{M^{(0)}}{x} + \frac{M^{(1)}}{x-1} + \sum_{l=1}^g \frac{M_l}{x-t_l} \quad \text{より．}
+$$
+
+$$
+-\frac{X L(x)}{T(x)} = \frac{X M^{(0)}}{x} + \frac{X M^{(1)}}{x-1} + \sum_{l=1}^g \frac{X M_l}{x-t_l}
+$$
+
+$$
+\frac{B_0^{12}}{x} + \frac{B_1^{12}}{x-1} + \sum_{l=1}^g \frac{A_l^{12}}{x-t_l} = - \left( \frac{X M^{(0)}}{x} + \frac{X M^{(1)}}{x-1} + \sum_{l=1}^g \frac{X M_l}{x-t_l} \right)
+$$
+
+より，留数をとって，
+
+$$
+B_0^{12} = -X M^{(0)}, \quad B_1^{12} = -X M^{(1)}
+$$
+
+（$A_l^{12}$ も留数とればいいのでは...？）
+
+以下は省略するが，他も同様である．このようにして，$B_\Delta^{\alpha\beta}, A_l^{\alpha\beta}$ が，$X$ と $(\lambda_k, \mu_k)$ で表される．この計算にも，ガルニエ系 $G_g$ は使われない．
+
+実際
+$$
+\mu_k = R^{11}(\lambda_k) \quad , \quad B_0^{11} + B_1^{11} + \sum_{l=1}^g A_l^{11} = - \chi_\infty \quad \text{より，}
+$$
+
+$B_1^{11}, A_l^{11}$ は $B_0^{11}$ と定数（$\lambda_k, \mu_k$ を含む）の線型結合で表せる．
+
+ここで，
+\begin{align*}
+    B_\Delta^{22} &= \kappa_\Delta - B_\Delta^{11} & A_l^{22} &= \theta_l - A_l^{11} \\
+    B_\Delta^{21} &= \frac{B_\Delta^{11}(\kappa_\Delta - B_\Delta^{11})}{B_\Delta^{12}} & A_l^{21} &= \frac{A_l^{11}(\theta_l - A_l^{11})}{A_l^{12}}
+\end{align*}
+より，$B_\Delta^{22}, B_\Delta^{21}, A_l^{22}, A_l^{21}$ も $B_0^{11}$ と定数（$\lambda_k, \mu_k$ を含む）の分数等で表せる．
+
+また，$B_0^{21} + B_1^{21} + \sum_{l=1}^g A_l^{21} = 0$ より，$B_0^{11}$ は
+$$
+\frac{1}{B_0^{12}} B_0^{11}(\kappa_0 - B_0^{11}) + \frac{1}{B_1^{12}} B_1^{11}(\kappa_1 - B_1^{11}) + \sum_{l=1}^g \frac{1}{A_l^{12}} A_l^{11}(\theta_l - A_l^{11}) = 0
+$$
+から，$\lambda_k, \mu_k$ を用いて表せるので Lem 3.15 が示された．（ちなみに2次式なので $B_0^{11}$ は2通りありえる）
+\end{proof}
+
+ガルニエ系 $G_g$ を満足する $\lambda_k = \lambda_k(t), \mu_k = \mu_k(t)$ をとる．すると，もう1つの変量 $X$ の意味が明らかになる．ここでも次の量が大切な役割を果たす．
+
+\begin{equation} \tag{3.107}
+    M_l = -\frac{L(t_l)}{T'(t_l)}
+\end{equation}
+
+\begin{lemma}[3.16]
+$M_l$ を (3.107) で定められるものとすると，(3.105) で与えられる $X$ は，完全積分可能系
+
+\begin{equation} \tag{3.108}
+    d \log X = -\kappa_\infty \sum_{l=1}^g M_l dt_l
+\end{equation}
+
+を満たす．
+\end{lemma}
+
+計算は省略する．(3.108) を示すのには，$(\lambda_k, \mu_k)$ が $g$-次ガルニエ系の解であるという事実が必要となる．このとき，上の補題 3.15 によって $B_\Delta, A_l$ を定める．このようにして得られるシュレージンガー型の方程式も，モノドロミー保存変形を許す．すなわち $B_\Delta, A_l$ は，シュレージンガー系を満たす．この事実が本質的に使われる．シュレージンガー系から出発すれば，単独2階フックス型線型方程式のモノドロミー保存変形として，ガルニエ系を得ることになる．
+
+(3.108) の積分可能条件は
+
+\begin{equation} \tag{3.109}
+    \frac{\partial M_h}{\partial t_l} = \frac{\partial M_l}{\partial t_h}
+\end{equation}
+
+で与えられる．(3.74) を用いて計算すると，この条件は，前々節 (3.92) で与えた，(3.83) から得られる方程式系と同等であることがわかる．
+
+以上をまとめて次のことがわかった．前節で調べたガルニエ系の完全積分可能性は，この結果からも保証される．
+
+\begin{theorem}[3.3]
+ガルニエ系 $G_g$ は，$2 \times 2$ シュレージンガー系と同等である．
+\end{theorem}
+
 \end{story}
 \end{document}
